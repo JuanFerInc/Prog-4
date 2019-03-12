@@ -5,7 +5,7 @@
 #include "DtBicicleta.h"
 
 
-class Bicicleta{
+class Bicicleta: public Vehiculo{
 	private:
 		TipoBici tipo;
 		int cantCambios;
