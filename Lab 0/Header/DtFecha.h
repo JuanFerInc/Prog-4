@@ -1,29 +1,24 @@
+#ifndef DTFECHA_H
+#define DTFECHA_H
 
-
-class DtFecha{
+class DtFecha {
 private:
 	int d, m, a;
 public:
 	//Constructores
-	DtFecha(int,int,int);
+	DtFecha();
+	DtFecha(int, int, int);
 
 	//getters
 	int getDia();
 	int getMes();
 	int getAnio();
 
-	//setters
-	void setDia(int);
-	void setMes(int);
-	void setAnio(int);	
-	void setDtFecha(int, int, int);
+	//Otras
 
+	DtFecha operator=(DtFecha);
+	bool operator==(DtFecha);
 
-	//Destructor
- 	~DtFecha();
+};
 
- 	//Otras
-
- 	DtFecha operator=(DtFecha);
-
-}
+#endif

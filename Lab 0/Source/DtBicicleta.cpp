@@ -1,16 +1,15 @@
 #include "../Header/DtBicicleta.h"
 
 //Constructor 
-DtBicicleta(TipoBici tipo,int cantCambios) {
+DtBicicleta::DtBicicleta(TipoBici tipo,int cantCambios) {
     this->tipo=tipo;
     this->cantCambios=cantCambios;
 }
 //Getters
-TipoBici get_TipoBici() {
-    return (this->TipoBici);
+TipoBici DtBicicleta::get_TipoBici() {
+    return (this->tipo);
 }
 
-int get_cantCambios() {
+int DtBicicleta::get_cantCambios() {
     return (this->cantCambios);
 }
-//Destructor

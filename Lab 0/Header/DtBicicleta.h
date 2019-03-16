@@ -10,12 +10,10 @@ class DtBicicleta: public DtVehiculo{
         int cantCambios;
     public:
         //Constructor
-        DtBicicleta(TipoBici tipo;int cantCambios);
+        DtBicicleta(TipoBici,int);
         //Getters
         TipoBici get_TipoBici();
         int get_cantCambios();
-        //Destructor
-        ~DtBicicleta();
-}
+};
 
 #endif

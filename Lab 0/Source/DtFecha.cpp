@@ -1,8 +1,12 @@
-#include "..DtFecha.h"
 #include <string>
+#include "../Header/DtFecha.h"
 
 //Constructor
-DtFecha(int di, int me, int an){
+DtFecha::DtFecha() {
+
+}
+
+DtFecha::DtFecha(int di, int me, int an){
 	d = di;
 	m = me;
 	a = an;
@@ -21,33 +25,20 @@ int DtFecha::getAnio(){
 	return a;
 }
 
-//setters
-void DtFecha::setDia(int dia){
-	d = dia;
-}
-
-void DtFecha::setMes(int mes){
-	m = mes;
-}
-
-void DtFecha::setAnio(int anio){
-	a = anio;
-}
-
-void DtFecha::setAnio(int dia, int mes, int anio){
-	d = dia;
-	m = mes;
-	a = anio;
-}
-
-//Destructor
-
 //Otras
 
 DtFecha DtFecha::operator=(DtFecha fechita){
 	DtFecha aux;
-	aux.d = getDia(fechita);
-	aux.m = getMes(fechita);
-	aux.a = getAnio(fechita);
+	aux.d = fechita.d;
+	aux.m = fechita.m;
+	aux.a = fechita.a;
 	return aux;
 }
+bool DtFecha::operator==(DtFecha fecha) {
+	bool iguales = false;
+	if ((this->d == fecha.d) && (this->m == fecha.m) && (this->a == fecha.a)) {
+		iguales = true;
+	}
+	return iguales;
+}
+

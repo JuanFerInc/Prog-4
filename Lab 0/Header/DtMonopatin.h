@@ -8,11 +8,9 @@ class DtMonopatin: public DtVehiculo{
         bool tieneLuces;
     public:
         //Constructor
-        DtMonopatin(bool tieneLuces);
+		DtMonopatin();
+        DtMonopatin(int,float,float,bool );
         //Getters
         bool get_tieneLuces();
-        //Destructor
-        ~DtMonopatin();
-}
-
-#endif
+};
+#endif 

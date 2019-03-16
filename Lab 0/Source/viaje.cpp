@@ -1,16 +1,14 @@
-#include "..viaje.h"
 #include <string>
-
+#include "../Header/viaje.h"
 
 //Constructors
+Viaje::Viaje(){}
 Viaje::Viaje(DtFecha fechita, int di, int du){
 	fecha = fechita;
 	distancia = di;
 	duracion = du;
-	*viajero = NULL;
-	*viajaen = NULL;
+	viajaen = NULL;
 }
-
 
 //getters
 
@@ -41,16 +39,18 @@ void Viaje::setduracion(int d){
 	this->duracion = d;
 }
 
-void Viaje::setEsViajeDe(Usuario us){
-	*viajero = us;
-}
 
-void Viaje::setViajaEn(Vehiculo ve){
+void Viaje::setViajaEn(Vehiculo &ve){
 	*viajaen = ve;
 }
 
 
 //Otras
 bool Viaje::operator!=(Viaje via){
-	return !((this->fecha == via.fecha) && (this->distancia == via.distancia) && (this->duracion == via.duracion))
+	return !((this->fecha == via.fecha) && (this->distancia == via.distancia) && (this->duracion == via.duracion));
+}
+
+//Destructor
+Viaje::~Viaje() {
+
 }

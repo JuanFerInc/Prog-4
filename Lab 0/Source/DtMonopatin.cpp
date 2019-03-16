@@ -1,11 +1,13 @@
 #include "../Header/DtMonopatin.h"
 
 //Constructor
-DtMonopatin (bool tieneLuces) {
-    this->tieneLuces=tieneLuces;
+DtMonopatin::DtMonopatin() {
+}
+DtMonopatin::DtMonopatin (int nroSerie, float porcentaje, float precioBase,bool tieneLuces):DtVehiculo(nroSerie,porcentaje,precioBase) {
+    
+	this->tieneLuces=tieneLuces;
 }
 //Getters
-bool get_tieneLuces() {
+bool DtMonopatin::get_tieneLuces() {
     return (this->tieneLuces);
 }
-//destructor
