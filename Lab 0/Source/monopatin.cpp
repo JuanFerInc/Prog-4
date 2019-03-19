@@ -2,27 +2,30 @@
 
 
 //Constructor
-		Monopatin(bool tieneLuces){
-            this->tieneLuces = tieneLuces
-        }
+Monopatin::Monopatin(){}
+Monopatin::Monopatin(bool tieneLuces) {
+	this->tieneLuces = tieneLuces;
+}
 		//Get
-		bool gettieneLuces(){
-            return this->tieneLuces;
-        }
+bool Monopatin::gettieneLuces() {
+	return this->tieneLuces;
+}
 		//Set
-		void settieneLuces(bool tieneLuces){
-            this->tieneLuces = tieneLuces
-        }
+void Monopatin::settieneLuces(bool tieneLuces) {
+	this->tieneLuces = tieneLuces;
+}
 		//Def
-		float darPrecioViaje(int duracion, int distancia){
-            float precio;
-            if(tieneLuces){
-                precio = ((0.5)*duracion) + (distancia*precioBase);
-                
-            }else{
-                precio = distancia*precioBase;
-            }
-            return precio;
+float Monopatin::darPrecioViaje(int duracion, int distancia) {
+	float precio;
+	
+	if (tieneLuces) {
+		precio = ((float)(0.5)*duracion) + (distancia*this->getprecioBase());
+
+	}
+	else {
+		precio = distancia * this->getprecioBase();
+	}
+	return precio;
 }
 
 
