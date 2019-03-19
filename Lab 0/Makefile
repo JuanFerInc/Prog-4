@@ -32,13 +32,13 @@ all: principal
 
 
 # directorios
-HDIR    = include
-CPPDIR  = src
-ODIR    = obj
+HDIR    = Header
+CPPDIR  = Source
+ODIR    = Obj
 
-TESTDIR = test
+TESTDIR = Test
 
-MODULOS = info cadena binario pila cola_binarios conjunto iterador cola_prioridad tabla uso_tads
+MODULOS = bicicleta DtBicicleta DtFecha DtMonopatin DtVehiculo DtViaje DtViajesBase monopatin TipoBici usuario vehiculo viaje
 
 # cadena de archivos, con directorio y extensión
 HS   = $(MODULOS:%=$(HDIR)/%.h)
@@ -69,6 +69,11 @@ $(EJECUTABLE): $(ODIR)/$(PRINCIPAL).o $(OS)
 	$(CC) $(CCFLAGS) $^ -o $@
 
 
+	
+#Para mirar mas adelante	
+	
+	
+	
 # casos de prueba de memoria
 CASOS_MEM = 001 002 003 004
 
@@ -188,4 +193,4 @@ clean:clean_test clean_bin
 
 
 check-syntax:
-gcc -o nul -S ${CHK_SOURCES}
+	gcc -o nul -S ${CHK_SOURCES}
