@@ -11,7 +11,7 @@ class Bicicleta: public Vehiculo{
 		int cantCambios;
 	public:	
 		//Constructor
-		Bicicleta(TipoBici tipo, int cantCambios);
+		Bicicleta(int,float,float,TipoBici, int);
 
 		//Get
 		TipoBici getTipo();
@@ -19,12 +19,10 @@ class Bicicleta: public Vehiculo{
 
 		//Set
 		void setTipo(TipoBici tipo);
-		void setcantCambios(int cantCambios);
+		void setcantCambios(int);
 
 		//Def
-		float darPrecioViaje(int duracion, int distancia);
-}
-
-
+		float darPrecioViaje(int, int);
+};
 
 #endif

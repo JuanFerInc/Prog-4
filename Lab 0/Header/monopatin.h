@@ -10,15 +10,13 @@ class Monopatin: public Vehiculo{
 		bool tieneLuces;
 	public:	
 		//Constructor
-		Monopatin(bool tieneLuces);
+		Monopatin();
+		Monopatin(int, float, float,bool);
 		//Get
 		bool gettieneLuces();
 		//Set
-		void settieneLuces(bool tieneLuces);
+		void settieneLuces(bool );
 		//Def
-		float darPrecioViaje(int duracion, int distancia);
-}
-
-
-
+		float darPrecioViaje(int , int );
+};
 #endif

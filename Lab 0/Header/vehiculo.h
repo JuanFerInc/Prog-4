@@ -1,27 +1,26 @@
-#ifndef VEHICULO.H
-#define VEHICULO.H
+#ifndef VEHICULO_H
+#define VEHICULO_H
 
-class Vehiculo{
-    private:
-        int nroSerie;
-        float porcentajeBateria;
-        float precioBase;
-    public:
-        //Cons
-        Vehiculo(int nroSerie, float porcentajeBateria, float precioBase);
-        //Get
-        int getnroSerie();
-        float getporcentajeBateria();
-        float getprecioBase();
-        //Set
-        void setnroSerie(int nroserie);
-        void setporcentajeBateria(float porcentajeBateria);
-        void setprecioBase(float precioBase);
-        //Def
-        virtual float darPrecioViaje(int duracion, int distancia) = 0;
-        
-}
+class Vehiculo {
+private:
+	int nroSerie;
+	float porcentajeBateria;
+	float precioBase;
+public:
+	//Cons
+	Vehiculo();
+	Vehiculo(int, float, float);
+	//Get
+	int getnroSerie();
+	float getporcentajeBateria();
+	float getprecioBase();
+	//Set
+	void setnroSerie(int);
+	void setporcentajeBateria(float);
+	void setprecioBase(float);
+	//Def
+	 float darPrecioViaje(int, int);
 
-
+};
 
 #endif
