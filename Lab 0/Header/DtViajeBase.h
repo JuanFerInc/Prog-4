@@ -14,6 +14,8 @@ public:
 	//Constructora
 	DtViajeBase();
 	DtViajeBase(DtFecha, int, int);
+	DtViajeBase(const DtViajeBase&);
+
 	//Get
 	DtFecha getFecha();
 	int getDuracion();
@@ -21,9 +23,6 @@ public:
 
 	//Como es dt
 	bool sonIguales(DtViajeBase* a_comparar);
-
-	
-
 
 };
 #endif 

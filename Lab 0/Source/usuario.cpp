@@ -43,15 +43,15 @@ void Usuario::setFechaIngreso(DtFecha fecha) {
 }
 
 //Otras
-bool Usuario::agregarViaje(Viaje via) {
-	int i = 0;
+bool Usuario::agregarViaje(Viaje* via) {
 	bool insertado = false;
+	int i = 0;
 	while ((i < 100) && (Viajes[i] != NULL)) {
 		i++;
 	}
 	if (i < 100) {
+		Viajes[i] = via;
 		insertado = true;
-		*Viajes[i] = via;
 	}
 	return insertado;
 }

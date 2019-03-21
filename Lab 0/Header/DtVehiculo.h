@@ -11,11 +11,10 @@ class DtVehiculo {
 		DtVehiculo();
 		//DtVehiculo(nroSerie ,porcentaje ,precioBase)
 		DtVehiculo(int , float , float);
-	
+
 		//Getters
 		int getnroSerie() const;
 		float getporcentajeBateria() const;
 		float virtual getprecioBase() const;
 };
-
 #endif 

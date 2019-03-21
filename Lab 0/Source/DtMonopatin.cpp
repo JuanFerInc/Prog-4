@@ -3,7 +3,6 @@
 //Constructor
 DtMonopatin::DtMonopatin() {
 }
-
 DtMonopatin::DtMonopatin (int nroSerie, float porcentaje, float precioBase,bool tieneLuces):DtVehiculo(nroSerie,porcentaje,precioBase) {
     
 	this->tieneLuces=tieneLuces;

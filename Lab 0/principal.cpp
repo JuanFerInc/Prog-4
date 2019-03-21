@@ -23,8 +23,6 @@
 Usuario *Usuarios[MAX_USUARIOS];
 Vehiculo *Vehiculos[MAX_VEHICULOS];
 
-
-
 /*
 Registra un Ususario en el sistema. La fecha de ingreso se obtiene del reloj de la máquina. Si
 existe un usuario registrado con la misma cédula, se levanta una excepción
@@ -121,18 +119,36 @@ void agregarVehiculo(const DtVehiculo& vehiculo) {
 	}
 }
 
-static Usuario* existeUsuario(std::string ci) {
-
+//Devuelve un puntero al Usuario con ci o NULL si no existe
+static Usuario* existeUsuario(std::string ci){
+	Usuario* res = NULL;
+	bool parar = false;
+	for (int i = 0; i < MAX_USUARIOS; i++) {
+		if ((Usuarios[i] != NULL) && (Usuarios[i]->getCedula() == ci)) {
+			res = Usuarios[i];
+		}
+	}
+	return res;
 }
+//Devuelve un puntero al vehiculo con nroSerieVehiculo o NULL si no existe
 static Vehiculo* existeVehiculo(int nroSerieVehiculo) {
-
+	Vehiculo* res = NULL;
+	for (int i = 0; i < MAX_USUARIOS; i++) {
+		if ((Vehiculos[i] != NULL) && (Vehiculos[i]->getnroSerie() == nroSerieVehiculo)) {
+			res = Vehiculos[i];
+		}
+	}
+	return res;
 }
+//Devuelve true si y solo si la duracion > 0
 static bool duracionValida(DtViajeBase via) {
-
+	return (via.getDuracion() > 0);
 }
-static bool distaciaValida(DtViajeBase via) {
-
+//Devuelve true si y solo si la distancia > 0
+static bool distanciaValida(DtViajeBase via) {
+	return (via.getDistancia() > 0);
 }
+
 /*
 Crea un viaje entre el usuario y el vehículo identificados por ci y
 nroSerieVehiculo, respectivamente. Controlar que se cumplen: (1) existe un
@@ -141,11 +157,37 @@ duración y distancia positivas y (4) fecha del viaje posterior o igual a la fech
 ingreso del usuario. De no ser así, se levanta una excepción std::invalid_argument.
 */
 void ingresarViaje(std::string ci, int nroSerieVehiculo, const DtViajeBase& viaje) {
-	
+	DtViajeBase via = DtViajeBase(viaje);
+	Usuario* usu = existeUsuario(ci);
+	Vehiculo* vehiculo = existeVehiculo(nroSerieVehiculo);
+	if (usu == NULL) {
+		throw std::invalid_argument("No existe usuario");
+	}
+	else {
+		if (vehiculo == NULL) {
+			throw std::invalid_argument("No existe vehiculo");
+		}
+		else {
+			if (!duracionValida(via)){
+				throw std::invalid_argument("Duracion Invalida");
+			}
+			else {
+				if (!distanciaValida(via)) {
+					throw std::invalid_argument("Distancia Invalida");
+				}
+				else {
+					if (usu->getFechaIngreso() < via.getFecha()) {
+						throw std::invalid_argument("Fecha Invalida");
+					}
+					else {
+						Viaje *viajecito = new Viaje(via.getFecha(), via.getDistancia(), via.getDuracion(), vehiculo);
+						usu->agregarViaje(viajecito);
+					}
+				}
+			}	
+		}
+	}
 }
-
-
-
 
 /*
 Devuelve un arreglo con información detallada de los viajes realizados por el usuario
@@ -173,7 +215,6 @@ no existe un usuario registrado con esa cédula, se levanta una excepción
 std::invalid_argument.
 */
 void eliminarViajes(std::string ci, const DtFecha& fecha) {
-	
 	Usuario* p = existeUsuario(ci);
 
 	if(p == NULL){
@@ -181,7 +222,6 @@ void eliminarViajes(std::string ci, const DtFecha& fecha) {
 	}else{
 		p->eliminarViaje(fecha);
 	}
-	
 }
 
 /*
@@ -202,7 +242,6 @@ void cambiarBateriaVehiculo(int nroSerieVehiculo, float cargaVehiculo) {
 		vehiculo->setporcentajeBateria(cargaVehiculo);
 	}
 }
-
 
 /*
 Devuelve un arreglo con los vehículos del sistema. cantVehiculos es un parámetro

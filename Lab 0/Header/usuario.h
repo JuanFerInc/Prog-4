@@ -8,7 +8,6 @@
 #include "viaje.h"
 
 
-
 class Usuario{
 private:
 	std::string cedula, nombre;
@@ -25,27 +24,21 @@ public:
 	std::string getNombre();
 	DtFecha getFechaIngreso();
 
-
-
 	//setters
 	void setCedula(std::string);
 	void setNombre(std::string);
 	void setFechaIngreso(DtFecha);
 
 
-
-
 	//Destructors
 	~Usuario();
 
 	//Otras
-	bool agregarViaje(Viaje); //Si el usuario tiene 100 viajes no hace nada
+	bool agregarViaje(Viaje*); //Si el usuario tiene 100 viajes no hace nada	
 	void eliminarViaje(Viaje); //Si el usuario no tiene viajes o no esta Viaje no hace nada
 	void eliminarViaje(DtFecha); //Elimina todos los viajes hechos en esa fecha si no hay ninguno no hace nada
 	int contarViajes(const DtFecha&);
 	DtViaje** arregloViajesMenores(const DtFecha&, int);
 };
-
-
 
 #endif

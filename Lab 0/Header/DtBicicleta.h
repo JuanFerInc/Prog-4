@@ -14,7 +14,9 @@ class DtBicicleta: public DtVehiculo{
         //DtBicicleta(int nroSerie,float porcentaje,float precioBase, tipo, cantCambios)
         DtBicicleta(int,float,float,TipoBici,int);
         
-		//Getters
+        //Constructor
+        DtBicicleta(TipoBici,int);
+        //Getters
         TipoBici getTipoBici() const;
         int getcantCambios() const;
 
