@@ -1,6 +1,6 @@
 #include <string>
 
-#include "../Header/DtViajesBase.h"
+#include "../Header/DtViajeBase.h"
 
 
 //Constructora

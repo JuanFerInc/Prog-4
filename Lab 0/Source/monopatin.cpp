@@ -3,7 +3,7 @@
 
 //Constructor
 Monopatin::Monopatin(){}
-Monopatin::Monopatin(bool tieneLuces) {
+Monopatin::Monopatin(int nroSerie, float porcentajeBateria, float precioBase,bool tieneLuces):Vehiculo(nroSerie,porcentajeBateria,precioBase) {
 	this->tieneLuces = tieneLuces;
 }
 		//Get

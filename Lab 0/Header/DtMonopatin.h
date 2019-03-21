@@ -9,8 +9,12 @@ class DtMonopatin: public DtVehiculo{
     public:
         //Constructor
 		DtMonopatin();
+		//DtMonopatin(nroSerie,porcentaje,precioBase,tieneluces)
         DtMonopatin(int,float,float,bool );
+		DtMonopatin(const DtMonopatin&);
         //Getters
-        bool get_tieneLuces();
+        bool gettieneLuces() const;
+		float getprecioBase() const;
+		virtual ~DtMonopatin() = default;
 };
 #endif 

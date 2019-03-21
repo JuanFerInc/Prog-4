@@ -6,8 +6,8 @@
 DtViaje::DtViaje(){
 }
 
-DtViaje::DtViaje(DtFecha fecha_arg, int duracion_arg, int distancia_arg, float precio_arg, DtVehiculo vehiculo_arg):DtViajeBase(fecha_arg,duracion_arg,distancia_arg) {
-	precioTotal = precio_arg;
+DtViaje::DtViaje(DtFecha fecha_arg, int duracion_arg, int distancia_arg, float precioTotal_arg, DtVehiculo vehiculo_arg):DtViajeBase(fecha_arg,duracion_arg,distancia_arg) {
+	precioTotal = precioTotal_arg;
 	vehiculo = vehiculo_arg;
 }
 

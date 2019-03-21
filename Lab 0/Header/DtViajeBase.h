@@ -1,5 +1,5 @@
-#ifndef DTVIAJESBASE_H
-#define DTVIAJESBASE_H
+#ifndef DTVIAJEBASE_H
+#define DTVIAJEBASE_H
 
 #include "DtFecha.h"
 

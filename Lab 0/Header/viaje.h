@@ -14,12 +14,15 @@ private:
 public:
 	//Constructors
 	Viaje();
-	Viaje(DtFecha, int, int);
+	Viaje(DtFecha, int, int,Vehiculo*);
 
 	//getters
 	DtFecha getfecha();
 	int getdistancia();
 	int getduracion();
+	//Retorna un puntero al vehiculo
+	Vehiculo* getviajaen();
+	int getPrecioViaje();
 	
 	//setters
 	void setfecha(DtFecha);
@@ -32,8 +35,6 @@ public:
 
 	//Destructor
 	~Viaje();
-
-		
 };
 
 

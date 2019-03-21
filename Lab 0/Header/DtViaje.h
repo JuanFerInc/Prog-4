@@ -1,7 +1,7 @@
 #ifndef DTVIAJE_H
 #define DTVIAJE_H
 
-#include "DtViajesBase.h"
+#include "DtViajeBase.h"
 #include "DtVehiculo.h"
 
 class DtViaje : public DtViajeBase {

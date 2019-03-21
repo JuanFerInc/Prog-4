@@ -4,46 +4,48 @@
 #include <string>
 
 #include "DtFecha.h"
-//#include "viaje.h"
+#include "DtViaje.h"
+#include "viaje.h"
 
-class Viaje;
 
 
 class Usuario{
-private: 
-		std::string cedula, nombre;
-		DtFecha fechaingreso;
-		Viaje *Viajes[100];
+private:
+	std::string cedula, nombre;
+	DtFecha fechaingreso;
+	Viaje *Viajes[100];
 
-public: 
-		//constructor
-		Usuario();
-		Usuario(std::string, std::string, DtFecha);
+public:
+	//constructor
+	Usuario();
+	Usuario(std::string, std::string, DtFecha);
 
-		//getters
-		std::string getCedula();
-		std::string getNombre();
-		DtFecha getFechaIngreso();
-
-
-
-		//setters
-		void setCedula(std::string);
-		void setNombre(std::string);
-		void setFechaIngreso(DtFecha);
+	//getters
+	std::string getCedula();
+	std::string getNombre();
+	DtFecha getFechaIngreso();
 
 
 
+	//setters
+	void setCedula(std::string);
+	void setNombre(std::string);
+	void setFechaIngreso(DtFecha);
 
-		//Destructors
-		~Usuario();
 
-		//Otras
-		void AgregarViaje(Viaje); //Si el usuario tiene 100 viajes no hace nada
-		void EliminarViaje(Viaje); //Si el usuario no tiene viajes o no esta Viaje no hace nada
 
+
+	//Destructors
+	~Usuario();
+
+	//Otras
+	bool agregarViaje(Viaje); //Si el usuario tiene 100 viajes no hace nada
+	void eliminarViaje(Viaje); //Si el usuario no tiene viajes o no esta Viaje no hace nada
+	void eliminarViaje(DtFecha); //Elimina todos los viajes hechos en esa fecha si no hay ninguno no hace nada
+	int contarViajes(const DtFecha&);
+	DtViaje** arregloViajesMenores(const DtFecha&, int);
 };
 
-#include "viaje.h"
+
 
 #endif
