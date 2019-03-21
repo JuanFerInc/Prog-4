@@ -19,7 +19,7 @@ public:
 	void setporcentajeBateria(float);
 	void setprecioBase(float);
 	//Def
-	virtual float darPrecioViaje(int, int) = 0;
+	 float darPrecioViaje(int, int);
 
 };
 

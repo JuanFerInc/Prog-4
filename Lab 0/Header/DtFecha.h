@@ -8,6 +8,7 @@ public:
 	//Constructores
 	DtFecha();
 	DtFecha(int, int, int);
+	DtFecha(const DtFecha&);
 
 	//getters
 	int getDia();
@@ -18,7 +19,7 @@ public:
 
 	DtFecha operator=(DtFecha);
 	bool operator==(DtFecha);
-
+	bool operator<(const DtFecha&);
 };
 
 #endif

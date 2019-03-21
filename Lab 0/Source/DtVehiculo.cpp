@@ -9,15 +9,16 @@ DtVehiculo::DtVehiculo(int nroSerie,float porcentaje,float precioBase) {
     this->porcentaje=porcentaje;
     this->precioBase=precioBase;
 }
+
 //Getters
-int DtVehiculo::get_nroSerie() {
+int DtVehiculo::getnroSerie()const {
     return (this->nroSerie);
 }
 
-float DtVehiculo::get_porcentaje() {
+float DtVehiculo::getporcentajeBateria()const {
     return (this->porcentaje);
 }
 
-float DtVehiculo::get_precioBase() {
+float DtVehiculo::getprecioBase()const {
     return (this->precioBase);
 }

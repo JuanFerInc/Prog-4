@@ -10,7 +10,10 @@ class DtMonopatin: public DtVehiculo{
         //Constructor
 		DtMonopatin();
         DtMonopatin(int,float,float,bool );
+		DtMonopatin(const DtMonopatin&);
         //Getters
-        bool get_tieneLuces();
+        bool gettieneLuces() const;
+		float getprecioBase() const;
+		virtual ~DtMonopatin() = default;
 };
 #endif 

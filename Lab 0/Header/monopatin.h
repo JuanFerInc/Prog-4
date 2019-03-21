@@ -11,7 +11,7 @@ class Monopatin: public Vehiculo{
 	public:	
 		//Constructor
 		Monopatin();
-		Monopatin(bool );
+		Monopatin(int, float, float,bool);
 		//Get
 		bool gettieneLuces();
 		//Set

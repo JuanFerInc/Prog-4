@@ -3,8 +3,10 @@
 Vehiculo::Vehiculo() {
 
 }
-Vehiculo::Vehiculo(int, float, float) {
-
+Vehiculo::Vehiculo(int nroSerie, float porcentajeBateria, float precioBase) {
+	this->nroSerie = nroSerie;
+	this->precioBase = precioBase;
+	this->porcentajeBateria = porcentajeBateria;
 }
 //Get
 int Vehiculo::getnroSerie() {

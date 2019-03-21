@@ -8,12 +8,13 @@ class DtBicicleta: public DtVehiculo{
     private:
         TipoBici tipo;
         int cantCambios;
-    public:
+	public:
         //Constructor
         DtBicicleta(TipoBici,int);
         //Getters
-        TipoBici get_TipoBici();
-        int get_cantCambios();
+        TipoBici getTipoBici() const;
+        int getcantCambios() const;
+
 };
 
 #endif

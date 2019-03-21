@@ -1,19 +1,23 @@
 #ifndef DTVEHICULO_H
 #define DTVEHICULO_H
 
-class DtVehiculo {
-private:
-	int nroSerie;
-	float porcentaje;
-	float precioBase;
-public:
-	//Constructor
-	DtVehiculo();
-	DtVehiculo(int , float , float );
-	//Getters
-	int get_nroSerie();
-	float get_porcentaje();
-	float get_precioBase();
+class DtMonopatin;
 
+class DtVehiculo {
+	private:
+		int nroSerie;
+		float porcentaje;
+		float precioBase;
+	protected:
+		//Constructor
+		DtVehiculo();
+		DtVehiculo(int , float , float);
+	public:
+		//Getters
+		int getnroSerie() const;
+		float getporcentajeBateria() const;
+		float virtual getprecioBase() const;
 };
+
+#include "DtMonopatin.h"
 #endif 

@@ -6,10 +6,11 @@ DtBicicleta::DtBicicleta(TipoBici tipo,int cantCambios) {
     this->cantCambios=cantCambios;
 }
 //Getters
-TipoBici DtBicicleta::get_TipoBici() {
+TipoBici DtBicicleta::getTipoBici() const{
     return (this->tipo);
 }
 
-int DtBicicleta::get_cantCambios() {
+int DtBicicleta::getcantCambios() const {
     return (this->cantCambios);
 }
+

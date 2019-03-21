@@ -11,7 +11,11 @@ DtFecha::DtFecha(int di, int me, int an){
 	m = me;
 	a = an;
 }
-
+DtFecha::DtFecha(const DtFecha& fecha) {
+	this->d = fecha.d;
+	this->m = fecha.m;
+	this->a = fecha.a;
+}
 //getters
 int DtFecha::getDia(){
 	return d;
@@ -40,5 +44,17 @@ bool DtFecha::operator==(DtFecha fecha) {
 		iguales = true;
 	}
 	return iguales;
+}
+bool DtFecha::operator<(const DtFecha& fechita) {
+	bool res = false;
+	if (this->a <= fechita.a) {
+		if (this->m <= fechita.m) {
+			if (this->d < fechita.d) {
+				res = true;
+			}
+		}
+	}
+	return res;
+
 }
 
