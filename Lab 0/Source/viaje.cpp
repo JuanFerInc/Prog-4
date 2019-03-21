@@ -30,7 +30,8 @@ Vehiculo* Viaje::getviajaen() {
 	return this->viajaen;
 }
 
-int Viaje::getPrecioViaje() {
+
+float Viaje::getPrecioViaje() {
 	return this->viajaen->darPrecioViaje(this->duracion,this->distancia);
 }
 

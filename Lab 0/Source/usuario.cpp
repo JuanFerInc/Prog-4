@@ -97,13 +97,13 @@ DtViaje** Usuario::arregloViajesMenores(const DtFecha& fechita, int cantViajes) 
 			
 			DtVehiculo vehiculo(ptrVehiculo->getnroSerie(),ptrVehiculo->getporcentajeBateria(),ptrVehiculo->getprecioBase());
 			
-			*nuevoViaje[j] = DtViaje(Viajes[i]->getfecha(),Viajes[i]->getduracion, Viajes[i]->getdistancia(), ptrVehiculo->getprecioBase(), vehiculo);
+			*nuevoViaje[j] = DtViaje(Viajes[i]->getfecha(),Viajes[i]->getduracion(), Viajes[i]->getdistancia(), ptrVehiculo->getprecioBase(), vehiculo);
 
 			j++;
 		}
 
 	}
-
+	return nuevoViaje;
 }
 
 //Destructor

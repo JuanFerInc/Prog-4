@@ -21,7 +21,7 @@ public:
 	int getdistancia();
 	int getduracion();
 	Vehiculo* getviajaen();
-	int getPrecioViaje();
+	float getPrecioViaje();
 	//setters
 	void setfecha(DtFecha);
 	void setdistancia(int);
