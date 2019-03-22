@@ -13,6 +13,7 @@ class DtVehiculo {
 		//DtVehiculo(nroSerie ,porcentaje ,precioBase)
 		DtVehiculo( int ,  float ,  float);
 
+
 		//Getters
 		int getnroSerie() const;
 		float getporcentajeBateria() const;

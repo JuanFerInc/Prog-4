@@ -13,7 +13,9 @@ private:
 public:
 	//Constructora
 	DtViajeBase();
+	//DtViajeBase(fecha,duracion,distnacia)
 	DtViajeBase(DtFecha, int, int);
+	
 	DtViajeBase(const DtViajeBase&);
 
 	//Get

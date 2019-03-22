@@ -9,6 +9,7 @@ private:
 public:
 	//Cons
 	Vehiculo();
+	//Vehiculo(nroSerie,porcentajeBateria,percioBase)
 	Vehiculo(int, float, float);
 	//Get
 	int getnroSerie();

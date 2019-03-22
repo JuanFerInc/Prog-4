@@ -13,6 +13,8 @@ class DtMonopatin: public DtVehiculo{
 		//DtMonopatin(nroSerie,porcentaje,precioBase,tieneluces)
         DtMonopatin(int,float,float,bool );
 		DtMonopatin(const DtMonopatin&);
+		
+
         //Getters
         bool gettieneLuces() const;
 		float getprecioBase() const;

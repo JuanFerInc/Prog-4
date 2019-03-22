@@ -14,6 +14,7 @@ private:
 public:
 	//Constructors
 	Viaje();
+	//Viaje(fecha,distancia,duracion,vehiculo)
 	Viaje(DtFecha, int, int, Vehiculo*);
 
 	//getters
