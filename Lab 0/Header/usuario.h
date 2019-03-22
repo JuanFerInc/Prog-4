@@ -5,9 +5,7 @@
 
 #include "DtFecha.h"
 #include "DtViaje.h"
-//#include "viaje.h"
-
-class Viaje;
+#include "viaje.h"
 
 
 class Usuario{
@@ -25,28 +23,22 @@ public:
 	std::string getCedula();
 	std::string getNombre();
 	DtFecha getFechaIngreso();
-	//Viaje** getViajes()       //Revisar si es asi el arreglo dinámico 
-
 
 	//setters
 	void setCedula(std::string);
 	void setNombre(std::string);
 	void setFechaIngreso(DtFecha);
-	//void setViajes(Viaje*);      //Capaz no es necesario
-
 
 
 	//Destructors
 	~Usuario();
 
 	//Otras
-	bool agregarViaje(Viaje*); //Si el usuario tiene 100 viajes no hace nada
+	bool agregarViaje(Viaje*); //Si el usuario tiene 100 viajes no hace nada	
 	void eliminarViaje(Viaje); //Si el usuario no tiene viajes o no esta Viaje no hace nada
 	void eliminarViaje(DtFecha); //Elimina todos los viajes hechos en esa fecha si no hay ninguno no hace nada
 	int contarViajes(const DtFecha&);
-//	DtViaje** arregloViajesMenores(const DtFecha&, int);
+	DtViaje** arregloViajesMenores(const DtFecha&, int);
 };
-
-#include "viaje.h"
 
 #endif

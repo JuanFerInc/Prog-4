@@ -62,6 +62,7 @@ void Usuario::eliminarViaje(Viaje via) {
 		i++;
 	}
 	if (i < 100) {
+		delete Viajes[i];
 		Viajes[i] = NULL;
 	}
 }
@@ -86,15 +87,25 @@ int Usuario::contarViajes(const DtFecha& fechita) {
 	return cantViajes;
 }
 
-/*
-DtViaje** Usuario::arregloViajesMenores(const DtFecha&, int) {
-	
+DtViaje** Usuario::arregloViajesMenores(const DtFecha& fechita, int cantViajes) {
+	DtViaje **nuevoViaje = new DtViaje*[cantViajes];
+	int j = 0;
 
+	for (int i = 0; i < 100; i++) {
+		if (this->Viajes[i]->getfecha() < fechita) {
+			Vehiculo *ptrVehiculo = Viajes[i]->getviajaen();
+			
+			DtVehiculo vehiculo(ptrVehiculo->getnroSerie(),ptrVehiculo->getporcentajeBateria(),ptrVehiculo->getprecioBase());
+			
+			*nuevoViaje[j] = DtViaje(Viajes[i]->getfecha(),Viajes[i]->getduracion(), Viajes[i]->getdistancia(), ptrVehiculo->getprecioBase(), vehiculo);
 
+			j++;
+		}
 
-
+	}
+	return nuevoViaje;
 }
-*/
+
 //Destructor
 Usuario:: ~Usuario() {
 	for (int i = 0; i < 100; i++) {

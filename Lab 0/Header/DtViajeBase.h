@@ -15,15 +15,12 @@ public:
 	DtViajeBase();
 	DtViajeBase(DtFecha, int, int);
 	DtViajeBase(const DtViajeBase&);
+
 	//Get
 	DtFecha getFecha();
 	int getDuracion();
 	int getDistancia();
 
-	//Como es dt
-	bool sonIguales(DtViajeBase* a_comparar);
-
-	
 
 
 };

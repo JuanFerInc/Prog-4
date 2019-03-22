@@ -20,7 +20,8 @@ public:
 	DtFecha getfecha();
 	int getdistancia();
 	int getduracion();
-	
+	Vehiculo* getviajaen();
+	float getPrecioViaje();
 	//setters
 	void setfecha(DtFecha);
 	void setdistancia(int);
@@ -32,8 +33,6 @@ public:
 
 	//Destructor
 	~Viaje();
-
-		
 };
 
 

@@ -1,6 +1,7 @@
 #ifndef DTMONOPATIN_H
 #define DTMONOPATIN_H
 
+
 #include "DtVehiculo.h"
 
 class DtMonopatin: public DtVehiculo{
@@ -9,11 +10,18 @@ class DtMonopatin: public DtVehiculo{
     public:
         //Constructor
 		DtMonopatin();
+		//DtMonopatin(nroSerie,porcentaje,precioBase,tieneluces)
         DtMonopatin(int,float,float,bool );
 		DtMonopatin(const DtMonopatin&);
         //Getters
         bool gettieneLuces() const;
 		float getprecioBase() const;
+		
+		
+		friend std::ostream& operator<<(std::ostream&, DtVehiculo*);
+		
+		
 		virtual ~DtMonopatin() = default;
 };
+
 #endif 

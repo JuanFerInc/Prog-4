@@ -3,6 +3,7 @@
 
 //Constructors
 Viaje::Viaje(){}
+
 Viaje::Viaje(DtFecha fechita, int di, int du, Vehiculo* vehiculo){
 	fecha = fechita;
 	distancia = di;
@@ -25,8 +26,16 @@ int Viaje::getduracion(){
 }
 
 
-//setters
+Vehiculo* Viaje::getviajaen() {
+	return this->viajaen;
+}
 
+
+float Viaje::getPrecioViaje() {
+	return this->viajaen->darPrecioViaje(this->duracion,this->distancia);
+}
+
+//setters
 void Viaje::setfecha(DtFecha fechita){
 	fecha = fechita;
 }

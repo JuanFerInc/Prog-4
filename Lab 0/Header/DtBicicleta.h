@@ -1,6 +1,7 @@
 #ifndef DTBICICLETA_H
 #define DTBICICLETA_H
 
+
 #include "DtVehiculo.h"
 #include "TipoBici.h"
 
@@ -9,12 +10,16 @@ class DtBicicleta: public DtVehiculo{
         TipoBici tipo;
         int cantCambios;
 	public:
-        //Constructor
-        DtBicicleta(TipoBici,int);
+		//Constructor
+		//DtBicicleta(TipoBici, int);
+        //DtBicicleta(int nroSerie,float porcentaje,float precioBase, tipo, cantCambios)
+        DtBicicleta(int,float,float,TipoBici,int);
+      
+     
         //Getters
         TipoBici getTipoBici() const;
         int getcantCambios() const;
-
+		friend std::ostream& operator<<(std::ostream& ,DtVehiculo*);
 };
 
 #endif

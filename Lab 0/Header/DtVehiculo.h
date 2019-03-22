@@ -1,7 +1,6 @@
 #ifndef DTVEHICULO_H
 #define DTVEHICULO_H
-
-class DtMonopatin;
+#include <iostream>
 
 class DtVehiculo {
 	private:
@@ -11,13 +10,13 @@ class DtVehiculo {
 	public:
 		//Constructor
 		DtVehiculo();
+		//DtVehiculo(nroSerie ,porcentaje ,precioBase)
 		DtVehiculo(int , float , float);
 
 		//Getters
 		int getnroSerie() const;
 		float getporcentajeBateria() const;
 		float virtual getprecioBase() const;
-};
 
-#include "DtMonopatin.h"
+};		
 #endif 
