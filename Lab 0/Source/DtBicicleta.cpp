@@ -15,3 +15,17 @@ int DtBicicleta::getcantCambios() const {
     return (this->cantCambios);
 }
 
+void DtBicicleta::print(std::ostream& out) {
+	using namespace std;
+	out << "Numero de serie: " << this->getnroSerie() << endl;
+	out << "Porcentaje de bateria: " << this->getporcentajeBateria() << endl;
+	out << "Precio base: $" << this->getprecioBase() << endl;
+	if (this->getTipoBici() == PASEO) {
+		out << "Tipo de bicicleta: Paseo" << endl;
+	}
+	else {
+		out << "Tipo de bicicleta: Montania" << endl;
+	}
+	out << "Cantidad de cambios: " << this->getcantCambios() << endl;
+	
+}

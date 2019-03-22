@@ -21,8 +21,7 @@ public:
 	int getDuracion();
 	int getDistancia();
 
-	//Como es dt
-	bool sonIguales(DtViajeBase* a_comparar);
+
 
 };
 #endif 

@@ -22,3 +22,8 @@ float DtVehiculo::getporcentajeBateria()const {
 float DtVehiculo::getprecioBase()const {
     return (this->precioBase);
 }
+
+std::ostream& operator<<(std::ostream& out , DtVehiculo*info) {
+	info->print(out);
+	return out;
+}

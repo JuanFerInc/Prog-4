@@ -87,17 +87,13 @@ int Usuario::contarViajes(const DtFecha& fechita) {
 	return cantViajes;
 }
 
-DtViaje** Usuario::arregloViajesMenores(const DtFecha& fechita, int cantViajes) {
-	DtViaje **nuevoViaje = new DtViaje*[cantViajes];
+Viaje** Usuario::arregloViajesMenores(const DtFecha& fechita, int cantViajes) {
+	Viaje **nuevoViaje = new Viaje*[cantViajes];
 	int j = 0;
 
 	for (int i = 0; i < 100; i++) {
 		if (this->Viajes[i]->getfecha() < fechita) {
-			Vehiculo *ptrVehiculo = Viajes[i]->getviajaen();
-			
-			DtVehiculo vehiculo(ptrVehiculo->getnroSerie(),ptrVehiculo->getporcentajeBateria(),ptrVehiculo->getprecioBase());
-			
-			*nuevoViaje[j] = DtViaje(Viajes[i]->getfecha(),Viajes[i]->getduracion(), Viajes[i]->getdistancia(), ptrVehiculo->getprecioBase(), vehiculo);
+			nuevoViaje[j] = Viajes[i];
 
 			j++;
 		}
