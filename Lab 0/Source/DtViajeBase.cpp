@@ -32,11 +32,3 @@ int DtViajeBase::getDistancia(){
 	return this->distancia;
 }
 
-bool DtViajeBase::sonIguales(DtViajeBase* a_comparar) {		//Preguntar lo de puntero
-	if ((fecha == a_comparar->getFecha()) && (a_comparar->getDuracion() == duracion) && (a_comparar->getDistancia() == distancia)) {
-		return true;
-	}
-	else {
-		return false;
-	}
-}

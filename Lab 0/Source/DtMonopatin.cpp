@@ -19,3 +19,16 @@ float DtMonopatin::getprecioBase() const {
 	return 5;
 }
 
+void DtMonopatin::print(std::ostream& out) {
+	using namespace std;
+	out << "Numero de serie: " << this->getnroSerie() << endl;
+	out << "Porcentaje de bateria: " << this->getporcentajeBateria() << endl;
+	out << "Precio base: $" << this->getprecioBase() << endl;
+	if (this->gettieneLuces() == 1) {
+		out << "Luces: Si" << endl;
+	}
+	else {
+		out << "Luces: No" << endl;
+	}
+
+}

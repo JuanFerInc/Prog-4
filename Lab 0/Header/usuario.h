@@ -4,7 +4,7 @@
 #include <string>
 
 #include "DtFecha.h"
-#include "DtViaje.h"
+
 #include "viaje.h"
 
 
@@ -38,7 +38,7 @@ public:
 	void eliminarViaje(Viaje); //Si el usuario no tiene viajes o no esta Viaje no hace nada
 	void eliminarViaje(DtFecha); //Elimina todos los viajes hechos en esa fecha si no hay ninguno no hace nada
 	int contarViajes(const DtFecha&);
-	DtViaje** arregloViajesMenores(const DtFecha&, int);
+	Viaje** arregloViajesMenores(const DtFecha&, int);
 };
 
 #endif

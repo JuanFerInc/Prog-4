@@ -1,6 +1,7 @@
 #ifndef DTMONOPATIN_H
 #define DTMONOPATIN_H
 
+
 #include "DtVehiculo.h"
 
 class DtMonopatin: public DtVehiculo{
@@ -15,6 +16,12 @@ class DtMonopatin: public DtVehiculo{
         //Getters
         bool gettieneLuces() const;
 		float getprecioBase() const;
+		void print(std::ostream&);
+
+		
+		
+		
 		virtual ~DtMonopatin() = default;
 };
+
 #endif 
