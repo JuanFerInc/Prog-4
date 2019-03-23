@@ -11,7 +11,7 @@ Usuario::Usuario(std::string ci, std::string nombre1, DtFecha fecha) {
 	cedula = ci;
 	nombre = nombre1;
 	fechaingreso = fecha;
-	for (int i = 1; i < 100; i++) {
+	for (int i = 0; i < 100; i++) {
 		Viajes[i] = NULL;
 	}
 }

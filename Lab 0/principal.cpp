@@ -182,7 +182,7 @@ void ingresarViaje(std::string ci, int nroSerieVehiculo, const DtViajeBase& viaj
 					throw std::invalid_argument("Distancia Invalida");
 				}
 				else {
-					if (usu->getFechaIngreso() < via.getFecha()) {
+					if (via.getFecha() < usu->getFechaIngreso()) {
 						throw std::invalid_argument("Fecha Invalida");
 					}
 					else {
@@ -227,18 +227,18 @@ DtViaje** verViajesAntesDeFecha(const DtFecha& fecha, std::string ci, int &cantV
 			
 			if (monopatin) {
 
-				data_vehiculo = &DtMonopatin(monopatin->getnroSerie(), monopatin->getporcentajeBateria(), monopatin->getprecioBase(), monopatin->gettieneLuces());
+				data_vehiculo =  new DtMonopatin(monopatin->getnroSerie(), monopatin->getporcentajeBateria(), monopatin->getprecioBase(), monopatin->gettieneLuces());
 
 
 			}
 			else if (bicicleta) {
-				data_vehiculo = &DtBicicleta(bicicleta->getnroSerie(), bicicleta->getporcentajeBateria(), bicicleta->getprecioBase(), bicicleta->getTipo(), bicicleta->getcantCambios());
+				data_vehiculo =  new DtBicicleta(bicicleta->getnroSerie(), bicicleta->getporcentajeBateria(), bicicleta->getprecioBase(), bicicleta->getTipo(), bicicleta->getcantCambios());
 			}
 			else {
 				throw std::exception("No se pudo convertir de Vehiculo a una de sus clases derivadas");
 			}
-			DtViaje data_viaje(Viajes[i]->getfecha(), Viajes[i]->getduracion(), Viajes[i]->getdistancia(), Viajes[i]->getPrecioViaje(), data_vehiculo);
-			*res[i] = data_viaje;
+			DtViaje *data_viaje = new DtViaje(Viajes[i]->getfecha(), Viajes[i]->getduracion(), Viajes[i]->getdistancia(), Viajes[i]->getPrecioViaje(), data_vehiculo);
+			res[i] = data_viaje;
 
 		}
 	}
@@ -292,7 +292,7 @@ DtVehiculo** obtenerVehiculos(int& cantVehiculos) {
 	int j = 0;
 
 	//contamos cantidad de vehiculos
-	for (int i = 0; i < 100; i++) {
+	for (int i = 0; i < MAX_VEHICULOS; i++) {
 		if (!(Vehiculos[i] == NULL)) {
 			j++;
 		}
@@ -305,7 +305,7 @@ DtVehiculo** obtenerVehiculos(int& cantVehiculos) {
 
 		j = 0;
 
-		for (int i = 0; i < 100; i++) {
+		for (int i = 0; i < MAX_VEHICULOS; i++) {
 			if (Vehiculos[i] != NULL) {
 				Bicicleta *bici = dynamic_cast<Bicicleta*>(Vehiculos[i]);
 				Monopatin *monopatin = dynamic_cast<Monopatin*>(Vehiculos[i]);
@@ -330,7 +330,7 @@ Menu sencillo interactivo para poder probar
 las funcionalidades requeridas
 */
 void menuSencillo(int comando) {
-	system("clear");
+	system("CLS");
 	try{
 	using namespace std;
 		if(comando == 1){ // Registrar Usuario
@@ -345,7 +345,7 @@ void menuSencillo(int comando) {
 			cout << "Usuario fue agregado correctamente!" << endl;
 		
 		}else if(comando == 2){ //Agregar Vehiculo
-			cout << "¿Desea ingresar un monopatin (m) o bicicleta (b) (ingresar letra en minuscula)?" << endl;
+			cout << "Desea ingresar un monopatin (m) o bicicleta (b) (ingresar letra en minuscula)?" << endl;
 			char tipo;
 			cin >> tipo;
 			int cantidad, nroSerie;
@@ -358,7 +358,7 @@ void menuSencillo(int comando) {
 			cin >> precio;
 			DtVehiculo *vehiculo;
 			if (tipo == 'm') {
-				cout << "¿Tiene luces? [y/n]?";
+				cout << "Tiene luces? [y/n]?";
 				cin >> tipo;
 				bool luces = (tipo == 'y');
 
@@ -425,16 +425,16 @@ void menuSencillo(int comando) {
 			cout << "El usuario de CI " << ci << " hizo " << cantViajes << " viajes." << endl;
             int i = 0;             
             while(i < cantViajes){                              //A partir de aca agregue
-                fecha_arg = viajes_antes[dia]->getFecha();
-                cout << "Viaje Nº: " << i << endl;
+                fecha_arg = viajes_antes[i]->getFecha();
+                cout << "Viaje Nro: " << i << endl;
                 cout << "Dia: " << fecha_arg.getDia() << endl;
                 cout << "Mes: " << fecha_arg.getMes() << endl;
                 cout << "Anio: " << fecha_arg.getAnio() << endl;
-                cout << "Duracion: " << viajes_antes[dia]->getDuracion() << endl;
-                cout << "Distancia_recorrida: " << viajes_antes[dia]->getDistancia() << endl;
-                cout << "Precio total: " << viajes_antes[dia]->getprecioTotal() << endl;
+                cout << "Duracion: " << viajes_antes[i]->getDuracion() << endl;
+                cout << "Distancia_recorrida: " << viajes_antes[i]->getDistancia() << endl;
+                cout << "Precio total: " << viajes_antes[i]->getprecioTotal() << endl;
                 cout << "Vehiculo" << endl; 
-                DtVehiculo *vehiculo_usado = viajes_antes[dia]->getvehiculo();              
+                DtVehiculo *vehiculo_usado = viajes_antes[i]->getvehiculo();              
                	
                 
                 DtMonopatin *monopatin_usado = dynamic_cast<DtMonopatin*>(vehiculo_usado);
@@ -445,9 +445,27 @@ void menuSencillo(int comando) {
                 }else{
                     cout << bicicleta_usado->getcantCambios();                //cout ¿?
                 }
+				i++;
             };
 
 		}else if(comando ==5){ // Eliminar Viajes
+			string ci;
+			
+			int dia, mes, anio;
+
+			cout << "Ingrese Cedula: " << endl;
+			cin >> ci;
+			cout << "Ingrese dia: " << endl;
+			cin >> dia;
+			cout << "Ingrese mes: " << endl;
+			cin >> mes;
+			cout << "Ingrese anio: " << endl;
+			cin >> anio;
+			
+			DtFecha fecha(dia, mes, anio);
+
+			eliminarViajes(ci, fecha);
+
 
 			cout << "El viaje fue eliminado correctamente!" << endl;
 
@@ -490,11 +508,6 @@ int main(){
 		Vehiculos[i] = NULL;
 
 	int comando = -1;
-
-	DtBicicleta test(1, 100, 5, MONTANIA,5);
-	DtMonopatin test2(10,50,3,1);
-	std::cout << &test << std::endl;
-	std::cout << &test2 << endl;
 	while (comando != 0) {
 	
 		cout << "Bienvenido. Elija una opcion:" << endl;
@@ -514,7 +527,7 @@ int main(){
 		}
 	}
 
-	system("clear");
+	system("CLS");
 
 	return 0;
 }
