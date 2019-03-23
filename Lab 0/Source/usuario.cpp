@@ -68,10 +68,13 @@ void Usuario::eliminarViaje(Viaje via) {
 }
 void Usuario::eliminarViaje(DtFecha fechita) {
 	for (int i = 0; i < 100; i++) {
-		if (Viajes[i]->getfecha() == fechita) {
-			delete Viajes[i];
-			Viajes[i] = NULL;
+		if (Viajes[i] != NULL) {
+			if (Viajes[i]->getfecha() == fechita) {
+				delete Viajes[i];
+				Viajes[i] = NULL;
+			}
 		}
+		
 	}
 }
 

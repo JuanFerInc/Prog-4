@@ -377,7 +377,7 @@ void menuSencillo(int comando) {
 		}else if(comando == 2){ //Agregar Vehiculo
 			if (noestallenoVehiculos()) {
 				cout << "¿Desea ingresar un monopatin (m) o bicicleta (b) (ingresar letra en minuscula)?" << endl;
-				char tipo;
+				string tipo;
 				cin >> tipo;
 				int cantidad, nroSerie;
 				float porcentaje, precio;
@@ -385,27 +385,27 @@ void menuSencillo(int comando) {
 				cin >> nroSerie;
 				cout << "Ingrese porcentaje de bateria: " << endl;
 				cin >> porcentaje;
-				while ((porcentaje > 100) || (porcentaje < 0)) {
+				/*while ((porcentaje > 100) || (porcentaje < 0)) {
 					cout << "Porcentaje invalido, porfavor ingrese porcentaje de bateria valido(0-100): " << endl;
 					cin >> porcentaje;
-				}
+				}*/
 				cout << "Ingrese precio base: " << endl;
 				cin >> precio;
 				DtVehiculo *vehiculo;
-				if (tipo == 'm') {
+				if (tipo == "m") {
 					cout << "¿Tiene luces? [y/n]?";
 					cin >> tipo;
-					bool luces = (tipo == 'y');
+					bool luces = (tipo == "y");
 
 					vehiculo = new DtMonopatin(nroSerie, porcentaje, precio, luces);
 					agregarVehiculo(*vehiculo);
 				}
-				else if (tipo == 'b') {
+				else if (tipo == "b") {
 					cout << "¿Es de tipo montania? [y/n]" << endl;
 					cin >> tipo;
 					cout << "¿Cantidad de cambios?" << endl;
 					cin >> cantidad;
-					if (tipo == 'y') {
+					if (tipo == "y") {
 						cout << "Bicicleta de tipo Montania" << endl;
 						DtBicicleta* bici;
 						bici = new DtBicicleta(nroSerie, porcentaje, precio, MONTANIA, cantidad);
@@ -472,18 +472,19 @@ void menuSencillo(int comando) {
                 cout << "Duracion: " << viajes_antes[i]->getDuracion() << endl;
                 cout << "Distancia_recorrida: " << viajes_antes[i]->getDistancia() << endl;
                 cout << "Precio total: " << viajes_antes[i]->getprecioTotal() << endl;
-				cout << "Vehiculo" << endl;
-                DtVehiculo *vehiculo_usado = viajes_antes[i]->getvehiculo();              
+				cout << endl;
+				cout << "Vehiculo" << viajes_antes[i]->getvehiculo() << endl;
+               // DtVehiculo *vehiculo_usado = viajes_antes[i]->getvehiculo();              
                	
                 
-                DtMonopatin *monopatin_usado = dynamic_cast<DtMonopatin*>(vehiculo_usado);
-                DtBicicleta *bicicleta_usado = dynamic_cast<DtBicicleta*>(vehiculo_usado);
+               // DtMonopatin *monopatin_usado = dynamic_cast<DtMonopatin*>(vehiculo_usado);
+               // DtBicicleta *bicicleta_usado = dynamic_cast<DtBicicleta*>(vehiculo_usado);
                 
-                if(monopatin_usado != NULL){
-                    cout << monopatin_usado->gettieneLuces();
-                }else{
-                    cout << bicicleta_usado->getcantCambios();                //cout ¿?
-                }
+               // if(monopatin_usado != NULL){
+                //    cout << monopatin_usado->gettieneLuces();
+                //}else{
+                //    cout << bicicleta_usado->getcantCambios();                //cout ¿?
+               // }
 				i++;
             };
 			for (int i = 0; i < cantViajes; i++) {
