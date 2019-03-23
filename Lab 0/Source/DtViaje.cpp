@@ -17,3 +17,7 @@ float DtViaje::getprecioTotal(){
 DtVehiculo *DtViaje::getvehiculo(){
     return this->vehiculo;
 }
+
+DtViaje::~DtViaje(){
+	delete this->vehiculo;
+}

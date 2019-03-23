@@ -21,7 +21,7 @@ public:
 	void setprecioBase(float);
 	//Def
 	float virtual darPrecioViaje(int, int) = 0;
-
+	virtual ~Vehiculo() = default;
 };
 
 #endif

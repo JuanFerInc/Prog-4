@@ -21,7 +21,7 @@ public:
     float getprecioTotal();
     DtVehiculo *getvehiculo();          //¿Pointer o no pointer? Eso es la cuestion
     
-
+    ~DtViaje();
 	
 };
 #endif

@@ -52,7 +52,7 @@ bool DtFecha::operator<(const DtFecha& fechita) {
 			return false;
 		}
 		else {
-			if (this->d < fechita.a) {
+			if (this->d < fechita.d) {
 				return true;
 			}
 			else return false;
