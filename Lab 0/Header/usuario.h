@@ -17,6 +17,7 @@ private:
 public:
 	//constructor
 	Usuario();
+	//Ususario(ci,nombre,fecha)
 	Usuario(std::string, std::string, DtFecha);
 
 	//getters

@@ -11,7 +11,7 @@ Usuario::Usuario(std::string ci, std::string nombre1, DtFecha fecha) {
 	cedula = ci;
 	nombre = nombre1;
 	fechaingreso = fecha;
-	for (int i = 1; i < 100; i++) {
+	for (int i = 0; i < 100; i++) {
 		Viajes[i] = NULL;
 	}
 }
@@ -88,17 +88,21 @@ int Usuario::contarViajes(const DtFecha& fechita) {
 }
 
 Viaje** Usuario::arregloViajesMenores(const DtFecha& fechita, int cantViajes) {
-	Viaje **nuevoViaje = new Viaje*[cantViajes];
+	Viaje **nuevoViaje = NULL;
 	int j = 0;
+	if (cantViajes > 0) {
+		nuevoViaje = new Viaje*[cantViajes];
+		for (int i = 0; i < 100; i++) {
+			if (Viajes[i] != NULL) {
+				if (this->Viajes[i]->getfecha() < fechita) {
+					nuevoViaje[j] = Viajes[i];
 
-	for (int i = 0; i < 100; i++) {
-		if (this->Viajes[i]->getfecha() < fechita) {
-			nuevoViaje[j] = Viajes[i];
-
-			j++;
+					j++;
+				}
+			}
 		}
-
 	}
+
 	return nuevoViaje;
 }
 

@@ -30,14 +30,6 @@ int DtFecha::getAnio(){
 }
 
 //Otras
-
-DtFecha DtFecha::operator=(DtFecha fechita){
-	DtFecha aux;
-	aux.d = fechita.d;
-	aux.m = fechita.m;
-	aux.a = fechita.a;
-	return aux;
-}
 bool DtFecha::operator==(DtFecha fecha) {
 	bool iguales = false;
 	if ((this->d == fecha.d) && (this->m == fecha.m) && (this->a == fecha.a)) {
@@ -46,15 +38,26 @@ bool DtFecha::operator==(DtFecha fecha) {
 	return iguales;
 }
 bool DtFecha::operator<(const DtFecha& fechita) {
-	bool res = false;
-	if (this->a <= fechita.a) {
-		if (this->m <= fechita.m) {
-			if (this->d < fechita.d) {
-				res = true;
+	if (this->a < fechita.a) {
+		return true;
+	}
+	else if (fechita.a < this->a) {
+		return false;
+	}
+	else {
+		if (this->m < fechita.m) {
+			return true;
+		}
+		else if (fechita.m < this->m) {
+			return false;
+		}
+		else {
+			if (this->d < fechita.a) {
+				return true;
 			}
+			else return false;
 		}
 	}
-	return res;
 
 }
 

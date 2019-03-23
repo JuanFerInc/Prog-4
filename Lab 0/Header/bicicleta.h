@@ -11,6 +11,7 @@ class Bicicleta: public Vehiculo{
 		int cantCambios;
 	public:	
 		//Constructor
+		//Bicicleta(nroSerie,porcentajeBateria,precioBase,tipoBici,cantCambios)
 		Bicicleta(int,float,float,TipoBici, int);
 
 		//Get

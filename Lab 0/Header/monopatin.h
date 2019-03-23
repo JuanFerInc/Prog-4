@@ -11,6 +11,7 @@ class Monopatin: public Vehiculo{
 	public:	
 		//Constructor
 		Monopatin();
+		//Monopatin(nroSerie,porcentajeBateria,precioBase,tieneLuces)
 		Monopatin(int, float, float,bool);
 		//Get
 		bool gettieneLuces();
