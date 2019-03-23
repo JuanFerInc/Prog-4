@@ -3,17 +3,25 @@
 
 #include "DtViajeBase.h"
 #include "DtVehiculo.h"
+#include "DtMonopatin.h"
 
 class DtViaje : public DtViajeBase {
 private:
 	float precioTotal;
-	DtVehiculo vehiculo;
+	DtVehiculo *vehiculo;              //Same abajo
 public:
 
 	//Constructora
 	DtViaje();
-	DtViaje(DtFecha, int, int, float, DtVehiculo);
-	//Como es dt
-	bool sonIguales(DtViaje* a_comparar);
+	//DtViaje(fecha,duracion,distancia,precioTotal,vehiculo)
+	DtViaje(DtFecha, int, int, float, DtVehiculo*);
+	
+    
+	//Getters
+    float getprecioTotal();
+    DtVehiculo *getvehiculo();          //¿Pointer o no pointer? Eso es la cuestion
+    
+
+	
 };
 #endif

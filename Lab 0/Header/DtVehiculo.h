@@ -1,23 +1,26 @@
 #ifndef DTVEHICULO_H
 #define DTVEHICULO_H
-
-class DtMonopatin;
+#include <iostream>
 
 class DtVehiculo {
 	private:
 		int nroSerie;
 		float porcentaje;
 		float precioBase;
-	protected:
+	public:
 		//Constructor
 		DtVehiculo();
-		DtVehiculo(int , float , float);
-	public:
+		//DtVehiculo(nroSerie ,porcentaje ,precioBase)
+		DtVehiculo( int ,  float ,  float);
+
+
 		//Getters
 		int getnroSerie() const;
 		float getporcentajeBateria() const;
-		float virtual getprecioBase() const;
-};
+		float getprecioBase() const;
+		friend std::ostream& operator<<(std::ostream&, DtVehiculo*);
+		virtual void print(std::ostream&)=0;
 
-#include "DtMonopatin.h"
+		virtual ~DtVehiculo() = default;
+};		
 #endif 

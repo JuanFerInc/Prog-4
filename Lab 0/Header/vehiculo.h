@@ -9,6 +9,7 @@ private:
 public:
 	//Cons
 	Vehiculo();
+	//Vehiculo(nroSerie,porcentajeBateria,percioBase)
 	Vehiculo(int, float, float);
 	//Get
 	int getnroSerie();
@@ -19,7 +20,7 @@ public:
 	void setporcentajeBateria(float);
 	void setprecioBase(float);
 	//Def
-	 float darPrecioViaje(int, int);
+	float virtual darPrecioViaje(int, int) = 0;
 
 };
 

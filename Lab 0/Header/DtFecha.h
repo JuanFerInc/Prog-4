@@ -17,7 +17,7 @@ public:
 
 	//Otras
 
-	DtFecha operator=(DtFecha);
+
 	bool operator==(DtFecha);
 	bool operator<(const DtFecha&);
 };

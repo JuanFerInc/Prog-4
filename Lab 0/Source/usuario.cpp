@@ -11,7 +11,7 @@ Usuario::Usuario(std::string ci, std::string nombre1, DtFecha fecha) {
 	cedula = ci;
 	nombre = nombre1;
 	fechaingreso = fecha;
-	for (int i = 1; i < 100; i++) {
+	for (int i = 0; i < 100; i++) {
 		Viajes[i] = NULL;
 	}
 }
@@ -43,15 +43,15 @@ void Usuario::setFechaIngreso(DtFecha fecha) {
 }
 
 //Otras
-bool Usuario::agregarViaje(Viaje via) {
-	int i = 0;
+bool Usuario::agregarViaje(Viaje* via) {
 	bool insertado = false;
+	int i = 0;
 	while ((i < 100) && (Viajes[i] != NULL)) {
 		i++;
 	}
 	if (i < 100) {
+		Viajes[i] = via;
 		insertado = true;
-		*Viajes[i] = via;
 	}
 	return insertado;
 }
@@ -62,15 +62,19 @@ void Usuario::eliminarViaje(Viaje via) {
 		i++;
 	}
 	if (i < 100) {
+		delete Viajes[i];
 		Viajes[i] = NULL;
 	}
 }
 void Usuario::eliminarViaje(DtFecha fechita) {
 	for (int i = 0; i < 100; i++) {
-		if (Viajes[i]->getfecha() == fechita) {
-			delete Viajes[i];
-			Viajes[i] = NULL;
+		if (Viajes[i] != NULL) {
+			if (Viajes[i]->getfecha() == fechita) {
+				delete Viajes[i];
+				Viajes[i] = NULL;
+			}
 		}
+		
 	}
 }
 
@@ -85,13 +89,26 @@ int Usuario::contarViajes(const DtFecha& fechita) {
 	}
 	return cantViajes;
 }
-DtViaje** Usuario::arregloViajesMenores(const DtFecha&, int) {
-	
 
+Viaje** Usuario::arregloViajesMenores(const DtFecha& fechita, int cantViajes) {
+	Viaje **nuevoViaje = NULL;
+	int j = 0;
+	if (cantViajes > 0) {
+		nuevoViaje = new Viaje*[cantViajes];
+		for (int i = 0; i < 100; i++) {
+			if (Viajes[i] != NULL) {
+				if (this->Viajes[i]->getfecha() < fechita) {
+					nuevoViaje[j] = Viajes[i];
 
+					j++;
+				}
+			}
+		}
+	}
 
-
+	return nuevoViaje;
 }
+
 //Destructor
 Usuario:: ~Usuario() {
 	for (int i = 0; i < 100; i++) {

@@ -38,7 +38,7 @@ ODIR    = Obj
 
 TESTDIR = Test
 
-MODULOS = bicicleta DtBicicleta DtFecha DtMonopatin DtVehiculo DtViaje DtViajesBase monopatin TipoBici usuario vehiculo viaje
+MODULOS = bicicleta DtBicicleta DtFecha DtMonopatin DtVehiculo DtViaje DtViajeBase monopatin usuario vehiculo viaje
 
 # cadena de archivos, con directorio y extensión
 HS   = $(MODULOS:%=$(HDIR)/%.h)
