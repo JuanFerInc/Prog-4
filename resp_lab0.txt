@@ -1,7 +1,7 @@
-a. ¿Cuáles son las dependencias circulares que fueron necesarias solucionar para que el
+﻿a. ¿Cuáles son las dependencias circulares que fueron necesarias solucionar para que el
 programa compile?
 
-a.Las dependencias circulares que fueron necesarias solucionar fueron las de la clase A con la clase B, de la clase A con la clase c y de la clase B con la clase C.
+a.Las dependencias circulares que fueron necesarias para solucionar fueron las de la clase A con la clase B, de la clase A con la clase c y de la clase B con la clase C.
 
 b. ¿Qué es forward declaration? 
 
