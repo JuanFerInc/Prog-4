@@ -6,7 +6,7 @@
 
 using namespace std;
 
-class IVenta{
+class IEmpleado{
     public:
 		virtual set<int>* mesasDeMozo(int nroEmpleado) = 0; 
 };

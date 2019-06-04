@@ -1,42 +1,40 @@
-#ifndef VENTA_H
-#define VENTA_H
+#ifndef COMIDA_H
+#define COMIDA_H
 
 #include <iostream>
-#include <strings>
 
 #include "../Header/IObserver.h"
 #include "../Header/Factura.h"
 
 #include "../Header/DtEstado.h"
 #include "../Header/DtComida.h"
-#include "../Header/DtComidaVendida"
+#include "../Header/DtComidaVendida.h"
+#include "../Header/MenuProducto.h"
 
+using namespace std;
 
 class Comida{
 private:
-    int precioÇ;
+    int precio;
     string descripcion;
     string codigo;
 public:
-    virtual bool esProducto()=0;
-    virtual DtComida darDataType()=0;
-    bool sonIguales(codigo);
+//seters
+
+	void setPrecio(int precio);
+	void setDescripcion(string desc);
+	void setCodigo(string codigo);
+//geters
+
+	int getPrecio();
+	string getDescripcion();
+	string getCodigo();
+
+//Otras
+    virtual bool esProducto() = 0;
+    virtual DtComida darDataType() = 0;
+    bool sonIguales(string codigo);
     void darDeBajaComida();
 
-}
-
-class Producto: public Comida{
-public:
-    bool esProducto()
-    DtComida darDataType()
-    asociarAMenu(m:Menu, cantidad:int)
-    
-}
-
-class Menu:public Comida{
-    
-public:
-    bool esProducto()
-    DtComida darDataType()
-    
-}
+};
+#endif

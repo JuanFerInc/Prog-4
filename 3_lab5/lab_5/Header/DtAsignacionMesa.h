@@ -2,7 +2,7 @@
 #define DTASIGNACIONMESA_H	
 
 #include <set>
-#include "../Header/DtEmpleado.h"
+#include "../Header/DtMozo.h"
 
 class DtAsignacionMesa {
 private:

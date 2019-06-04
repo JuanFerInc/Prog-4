@@ -8,11 +8,11 @@ class Cancelar : public Estado {
 private:
 	Cancelar* instancia;
 
-	void Cancelar();
+	void cancelar();
 public:
-	Cancelar getInstance();
+	Cancelar* getInstance();
 	Estado* siguienteEstado();	//Devuelve null (turvio sino)
-	Estado* cancelar();			//Devuelve null (turvio sino)
+	Estado* cancelarPedido();			//Devuelve null (turvio sino)
 	DtEstado darEstadoActual();
 };
 #endif

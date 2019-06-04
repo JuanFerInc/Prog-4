@@ -2,8 +2,8 @@
 #define IVENTA_H
 
 #include <iostream>
-#include "../Header/DtFactura"
-#include "../Header/DtComida"
+#include "../Header/DtFactura.h"
+#include "../Header/DtComida.h"
 
 class IVenta{
     public:
@@ -14,14 +14,14 @@ class IVenta{
         virtual void agregarPorPrimeraVez() =0;
         virtual void descartarAgregado() =0;
         virtual void liberarnroMesa() =0;
-        virtual DtComida* productosEnVentaEnMesa(int nroMesa) =0; (To be continued)
+        virtual set<DtComida> productosEnVentaEnMesa(int nroMesa) =0;
         virtual bool cantidadEsMayor() =0;
         virtual void disminuirCantidad() =0;
         virtual void eliminarComidaDeVenta() =0;
         virtual void descartarEliminacion() =0;
         virtual void quitarComidaVenta(string codigo) =0;
         virtual void agregarMesaAVenta(int nroMesa) =0;
-        virtual int* mostrarMesasSeleccionadas() =0; (to be continued)
+        virtual set<int> mostrarMesasSeleccionadas() =0;
         virtual void descartarVentasEnMesa() =0;
         virtual void mesasAsignadas(int nroEmpleado) =0;
         virtual void confirmarVentaEnMesas() =0;

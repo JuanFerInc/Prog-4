@@ -10,6 +10,7 @@ private:
 	set<DtFactura> factura;
 
 public:
+	DtFacturaResumen(const DtFacturaResumen &dtfr);
 	int getTotal();
 	set<DtFactura> getFactura();
 };

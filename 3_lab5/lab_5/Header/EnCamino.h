@@ -10,11 +10,11 @@ class EnCamino : public Estado {
 private:
 	EnCamino* instancia;
 
-	void EnCamino();
+	void enCamino();
 public:
 	EnCamino getInstance();
-	Recibido* siguienteEstado();
-	Cancelar* cancelar();
+	Estado* siguienteEstado();
+	Estado* cancelarPedido();
 	DtEstado darEstadoActual();
 };
 #endif

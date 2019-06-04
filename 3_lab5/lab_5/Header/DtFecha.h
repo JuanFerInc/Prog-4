@@ -6,6 +6,7 @@ private:
 	int dia, mes, anio;
 
 public: 
+	DtFecha(const DtFecha &fecha);
 	int getDia();
 	int getMes();
 	int getAnio();

@@ -4,7 +4,6 @@
 #include <iostream>
 #include <set>
 #include "../Header/DtComida.h"
-#include "../Header/DtEmpleado.h"
 #include "../Header/DtFecha.h"
 #include "../Header/DtHora.h"
 
@@ -22,6 +21,7 @@ private:
 	int descuento;
 
 public: 
+	DtFactura(const DtFactura &dtf);
 	string getCodigo();
 	DtFecha getFecha();
 	DtHora getHora();
@@ -32,26 +32,6 @@ public:
 	int getDescuento();
 
 };
-
-class DtFacturaDomicilio : public DtFactura {
-private:
-	DtDelivery delivery;
-public:
-	DtDelivery getDelivery();
-
-};
-
-
-class DtFacturaLocal : public DtFactura {
-private:
-	DtMozo mozo;
-public:
-	DtMozo getMozo();
-
-};
-
-
-
 
 
 #endif // !DTFACTURA_H

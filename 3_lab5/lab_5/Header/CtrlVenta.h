@@ -9,21 +9,25 @@
 #include "../Header/DtComida.h"
 #include "../Header/DtFactura.h"
 #include "../Header/Empleado.h"
+#include "../Header/Venta.h"
+#include "../Header/Mesa.h"
 
 using namespace std;
 
 class CtrlVenta: public IVenta {
 private:
+	static CtrlVenta* instancia;
 	string codigo;
 	int nroMesa, cantidad, nroEmpleado;
-	CtrlVenta* instancia;
-	set<int> Mesas;
+	set<int> Mesas;										//Wtf is this (manuel)
 	map<string, DtComida> Comidas;
+	map<string, Venta*> coleccionDeVenta;
+	map<int, Mesa*> coleccionDeMesa;
 
-
+	void ctrlVenta();
 	
 public:
-	CtrlVenta* getInstance();
+	static CtrlVenta* getInstance();
 	void ingresarNroMesa(int nroMesa);
 	void seleccionarComida(string codigo, int cantidad);
 	bool existeComidaEnVenta();
@@ -31,14 +35,18 @@ public:
 	void agregarPorPrimeraVez();
 	void descartarAgregado();
 	void liberarnroMesa();
-	DtComida* productosEnVentaEnMesa(int nroMesa); (To be continued)
+	set<DtComida> productosEnVentaEnMesa(int nroMesa);
 	bool cantidadEsMayor();
 	void disminuirCantidad();
 	void eliminarComidaDeVenta();
 	void descartarEliminacion();
+
+	//tira una expeccion si alguna de las ventas que cointiene la comida asociada al coidgo no fue facturada
 	void quitarComidaVenta(string codigo);
+	
+	
 	void agregarMesaAVenta(int nroMesa);
-	int* mostrarMesasSeleccionadas(); (to be continued)
+	set<int> mostrarMesasSeleccionadas();
 	void descartarVentasEnMesa();
 	void mesasAsignadas(int nroEmpleado);
 	void confirmarVentaEnMesas();

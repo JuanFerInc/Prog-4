@@ -10,6 +10,9 @@
 #include "../Header/Comida.h"
 #include "../Header/IObserver.h"
 #include "../Header/DtEstado.h"
+#include "../Header/VentaComida.h"
+#include "../Header/Cliente.h"
+
 
 
 using namespace std;
@@ -17,14 +20,17 @@ using namespace std;
 
 class Venta{
 private:
+	Factura* linkFactura;
     string nroVenta;
     static int IVA;
     int subtotoal;
     bool facturado;
+	set<VentaComida*> comidaContenida;
+
 public:
 //setters
 	void setNroVenta(string nroVenta);
-	void setIVA(int iva);
+	static void setIVA(int iva);
 	void setSubtotal(int subtotal);
 	void setFacturado(bool facturado);
 
@@ -33,35 +39,18 @@ public:
 	int getIVA();
 	int getSubtotal();
 	bool getFacturado();
-};
-
-
-class Domicilio : public Venta {
-public:
-	void agregar(IObserver observer);
-	void eliminar(IObserver observer);
-	void cancelarPedido();
-	void siguienteEstado();
-	DtEstadoTerminado darDatatypeTermnado(DtEstado estado);
+	set<VentaComida> getComidaContenida();
 	
-};
-
-class Local :public Venta {
-
-public:
-	bool hayComidaEnVenta(string codigo);
-	set<DtComida> productosEnVenta();
-	bool cantEsMayor(string codigo,int cantidad);
-	void decrementarCantidad(string codigo,int cantidad);
-	void eliminarComida(string codigo);
-	bool tieneComida(string codigo);
+	//otras
+	//quita VentaProducto del set y lo elmina
 	void borrarVentaProducto(string codigo);
-	void desvincular( VentaComida vp);
-	set<DtComidaVendida> darComidas();
-	void aumentarCantidad(string codigo,int cantidad);
-	void finalizarVenta(Factura factura);
-	bool noEstaFacturada();
-	void agregarComida(Comida c,int cantidad);
+
+	//retorna true sii la venta tiene una comida con el codigo
+	bool tieneComida(string codigo);
+
+
 };
+
+
 
 #endif

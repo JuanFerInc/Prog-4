@@ -14,19 +14,11 @@ private:
 	string nombre;
 
 public:
+//geters
 	int getNroEmpleado();
 	string getNombre();
 
 };
 
-class DtDelivery : public DtEmpleado {
-private:
-	TipoTransporte transporte;
-public:
-	TipoTransporte getTransporte();
-};
-
-class DtMozo :public DtEmpleado {
-};
 
 #endif // !

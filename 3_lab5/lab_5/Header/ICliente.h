@@ -3,12 +3,13 @@
 
 #include <iostream>
 
+#include "../Header/DtEstadoTerminado.h"
 using namespace std;
 
-class IVenta{
+class ICliente{
     public:
-        virtual void verActualizacion(string tel, string clave) =0;
-        
+        virtual set<DtEstadoTerminado> verActualizacion(string tel) =0;
+		virtual set<set<DtEstadoTerminado>> verTodasActualizaciones() = 0;
 
 };
 

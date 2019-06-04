@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="utf-8"?>
+﻿<?xml version="1.0" encoding="utf-8"?>
 <Project DefaultTargets="Build" ToolsVersion="15.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <ItemGroup Label="ProjectConfigurations">
     <ProjectConfiguration Include="Debug|Win32">
@@ -20,44 +20,86 @@
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Header\Cancelar.h" />
+    <ClInclude Include="Header\Cliente.h" />
     <ClInclude Include="Header\Comida.h" />
     <ClInclude Include="Header\CtrlCliente.h" />
     <ClInclude Include="Header\CtrlEmpleado.h" />
     <ClInclude Include="Header\CtrlProducto.h" />
     <ClInclude Include="Header\CtrlVenta.h" />
+    <ClInclude Include="Header\Delivery.h" />
+    <ClInclude Include="Header\Domicilio.h" />
+    <ClInclude Include="Header\DtApartamento.h" />
     <ClInclude Include="Header\DtAsignacionMesa.h" />
     <ClInclude Include="Header\DtCliente.h" />
     <ClInclude Include="Header\DtComida.h" />
     <ClInclude Include="Header\DtComidaVendida.h" />
+    <ClInclude Include="Header\DtDelivery.h" />
     <ClInclude Include="Header\DtDireccion.h" />
     <ClInclude Include="Header\DtEmpleado.h" />
     <ClInclude Include="Header\DtEstado.h" />
+    <ClInclude Include="Header\DtEstadoTerminado.h" />
     <ClInclude Include="Header\DtFactura.h" />
+    <ClInclude Include="Header\DtFacturaDomicilio.h" />
+    <ClInclude Include="Header\DtFacturaLocal.h" />
     <ClInclude Include="Header\DtFacturaResumen.h" />
     <ClInclude Include="Header\DtFecha.h" />
     <ClInclude Include="Header\DtHora.h" />
+    <ClInclude Include="Header\DtMenu.h" />
+    <ClInclude Include="Header\DtMenuVentas.h" />
+    <ClInclude Include="Header\DtMozo.h" />
+    <ClInclude Include="Header\DtProducto.h" />
     <ClInclude Include="Header\DtProductoMenu.h" />
+    <ClInclude Include="Header\DtProductoVenta.h" />
     <ClInclude Include="Header\Empleado.h" />
     <ClInclude Include="Header\EnCamino.h" />
     <ClInclude Include="Header\Estado.h" />
+    <ClInclude Include="Header\Fabrica.h" />
     <ClInclude Include="Header\Factura.h" />
+    <ClInclude Include="Header\Formulario.h" />
     <ClInclude Include="Header\ICliente.h" />
     <ClInclude Include="Header\IEmpleado.h" />
     <ClInclude Include="Header\IObserver.h" />
     <ClInclude Include="Header\IProducto.h" />
     <ClInclude Include="Header\IVenta.h" />
+    <ClInclude Include="Header\Local.h" />
+    <ClInclude Include="Header\Menu.h" />
+    <ClInclude Include="Header\MenuProducto.h" />
+    <ClInclude Include="Header\Mesa.h" />
+    <ClInclude Include="Header\Mozo.h" />
     <ClInclude Include="Header\Pedido.h" />
+    <ClInclude Include="Header\Producto.h" />
     <ClInclude Include="Header\Recibido.h" />
     <ClInclude Include="Header\TipoTransporte.h" />
     <ClInclude Include="Header\Venta.h" />
+    <ClInclude Include="Header\VentaComida.h" />
   </ItemGroup>
   <ItemGroup>
+    <ClCompile Include="Source\Comida.cpp" />
+    <ClCompile Include="Source\CtrlCliente.cpp" />
+    <ClCompile Include="Source\CtrlProducto.cpp" />
     <ClCompile Include="Source\CtrlVenta.cpp" />
+    <ClCompile Include="Source\DtComida.cpp" />
+    <ClCompile Include="Source\DtFactura.cpp" />
+    <ClCompile Include="Source\DtFacturaDomicilio.cpp" />
+    <ClCompile Include="Source\DtFacturaLocal.cpp" />
+    <ClCompile Include="Source\DtFacturaResumen.cpp" />
+    <ClCompile Include="Source\DtFecha.cpp" />
+    <ClCompile Include="Source\DtHora.cpp" />
+    <ClCompile Include="Source\DtMenu.cpp" />
+    <ClCompile Include="Source\DtProducto.cpp" />
+    <ClCompile Include="Source\DtProductoMenu.cpp" />
+    <ClCompile Include="Source\DtProductoVenta.cpp" />
+    <ClCompile Include="Source\main.cpp" />
+    <ClCompile Include="Source\MenuProducto.cpp" />
+    <ClCompile Include="Source\Mesa.cpp" />
+    <ClCompile Include="Source\Producto.cpp" />
+    <ClCompile Include="Source\Venta.cpp" />
+    <ClCompile Include="Source\VentaComida.cpp" />
   </ItemGroup>
   <PropertyGroup Label="Globals">
     <VCProjectVersion>15.0</VCProjectVersion>
-    <ProjectGuid>{BE60FD59-B57C-4487-8826-D92BAEB81E02}</ProjectGuid>
-    <RootNamespace>lab5</RootNamespace>
+    <ProjectGuid>{E913B03D-E7C7-47D0-9023-59FCFB8F148C}</ProjectGuid>
+    <RootNamespace>My3lab5</RootNamespace>
     <WindowsTargetPlatformVersion>10.0.17763.0</WindowsTargetPlatformVersion>
   </PropertyGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.Default.props" />

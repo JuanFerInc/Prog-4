@@ -10,11 +10,11 @@ class Pedido: public Estado{
 private: 
 	Pedido* instancia;
 
-	void Pedido();
+	void pedido();
 public:
 	Pedido getInstance();
-	EnCamino* siguienteEstado();
-	Cancelar* cancelar();
+	Estado* siguienteEstado();
+	Estado* cancelarPedido();
 	DtEstado darEstadoActual();
 };
 #endif

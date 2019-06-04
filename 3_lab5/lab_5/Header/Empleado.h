@@ -2,44 +2,27 @@
 #define EMPLEADO_H
 
 #include <iostream>
-#include <strings>
 
-#include "../Header/IObserver.h"
-#include "../Header/Factura.h"
-
-#include "../Header/DtEstado.h"
-#include "../Header/DtEmpleado.h"
-#include "../Header/DtEmpleadoVendida"
+#include "../Header/Mesa.h"
+#include "../Header/TipoTransporte.h"
 
 using namespace std;
 
 class Empleado  {
 private:
-    int numEmpleado;
+    int nroEmpleado;
     string nombre;
 public:
-    virtual string getNombre()=0;
-    virtual int getnumEmpleado()=0;
-    
 
-}
+//seters
+	void setNroEmpleado(int nroEmpleado);
+	void setNombre(string nombre);
 
-class Dlivery: public Empleado{
-private
-    TipoDeTransporte TipoTransporte;
-public:
-    string getNombre();
-    int getnumEmpleado();
-}
+//geters
+	int getNroEmpleado();
+	string getNombre();
 
-class Mozo:public Empleado{
-public:
-    int* mesas;
-public:
-    int* getMesas()
-    string getNombre();
-    int getnumEmpleado();
-    
-}
+
+};
 
 #endif

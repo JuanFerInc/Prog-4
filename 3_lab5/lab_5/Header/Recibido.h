@@ -3,17 +3,16 @@
 
 
 #include "../Header/Estado.h"
-#include "../Header/Cancelar.h"
 
 class Recibido : public Estado {
 private:
 	Recibido* instancia;
 
-	void Recibido();
+	void recibido();
 public:
 	Recibido getInstance();
 	Estado* siguienteEstado();	//Devuelve null (turvio sino)
-	Cancelar* cancelar();		//Devuelve null (turvio sino)
+	Estado* cancelarPedido();		//Devuelve null (turvio sino)
 	DtEstado darEstadoActual();
 };
 #endif

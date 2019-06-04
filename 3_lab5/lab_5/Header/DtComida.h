@@ -2,6 +2,7 @@
 #define DTCOMIDA_H
 
 #include <map>
+#include <set>
 
 using namespace std;
 
@@ -11,44 +12,14 @@ private:
 	int precioTotal;
 
 public:
+	DtComida(string codigo, string descripcion, int precioTotal);
 	string getCodigo();
 	string getDescripcion();
 	int getPrecioTotal();
-	
+	virtual void print(std::ostream&) = 0;
+
+	virtual ~DtComida() = default;
 
 };
-
-class DtMenu: public DtComida {
-private:
-	map<string, DtProductoVentas> ProductosDeMenu;
-
-public:
-	map<string, DtProductoVentas> getProductosDeMenu();
-
-};
-
-class DtMenuVentas: public DtMenu {
-private:
-	int cantidad;
-
-public:
-	int getCantidad();
-
-};
-
-
-class DtProducto : public DtComida {
-private:
-
-};
-
-class DtProductoVentas : public DtProducto {
-private:
-	int cantidad;
-
-public:
-	int getCantidad();
-};
-
 
 #endif
