@@ -24,10 +24,11 @@ private:
 	map<string, Venta*> coleccionDeVenta;
 	map<int, Mesa*> coleccionDeMesa;
 
-	void ctrlVenta();
+	CtrlVenta();
 	
 public:
 	static CtrlVenta* getInstance();
+
 	void ingresarNroMesa(int nroMesa);
 	void seleccionarComida(string codigo, int cantidad);
 	bool existeComidaEnVenta();

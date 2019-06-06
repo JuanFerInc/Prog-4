@@ -22,6 +22,7 @@ public:
 	
 	//Otras
 	DtProductoVenta darInfo();
+	void desvincularProductoDeMenu();
 
 };
 #endif

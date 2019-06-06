@@ -15,9 +15,9 @@
 
 using namespace std;
 
-class CtrlProducto:public IProducto {
+class CtrlProducto :public IProducto {
 private:
-	CtrlProducto* instance;
+	static CtrlProducto* instance;
 	DtProducto infoProducto;
 	DtMenu infoMenu;
 	string codigo;
@@ -27,7 +27,7 @@ private:
 	void ctrlProducto();
 
 public:
-	CtrlProducto* getInstancie();
+	static CtrlProducto* getInstancie();
 	bool masDeUnProducto();
 	void agregarProducto(string codigo, string descripcion, int precio);
 	void aceptarAltaProducto();
@@ -43,7 +43,7 @@ public:
 	void confirmarBaja();
 	Comida *pedirComida(string codigo);
 
-	
+
 };
 
 #endif

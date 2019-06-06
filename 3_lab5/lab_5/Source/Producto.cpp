@@ -16,3 +16,11 @@ DtMenu Menu::darDataType() {
 	DtMenu datamenu(this->getCodigo(), this->getDescripcion(), this->getPrecio(), datosProductos);
 
 	return datamenu;
+}
+	
+void Producto::darDeBajaComida() {
+	set<MenuProducto*>::iterator iter;
+	for (iter = this->esContenidoEn.begin(); iter != this->esContenidoEn.begin(); iter++) {
+		(*iter)->desvincular
+	}
+}

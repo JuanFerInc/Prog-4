@@ -16,3 +16,11 @@ DtProductoVenta MenuProducto::darInfo() {
 DtProducto MenuProducto::getDtProducto() {
 
 }
+
+
+void MenuProducto::desvincularProductoDeMenu(){
+	if (this->linkMenu->desvincularM(this)) {
+		delete linkMenu;
+	}
+	
+}

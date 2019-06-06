@@ -11,4 +11,8 @@ public:
 	//otra
 	bool esProducto();
 	DtMenu darDataType();
+	bool desvincularM();
+	void darDeBajaComida();
+
+
 };

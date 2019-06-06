@@ -19,44 +19,52 @@ public:
 	void setTodo(int nuevo) {
 		this->todo = nuevo;
 	}
-	friend bool operator< (const algo &uno, const algo &dos) {
-		return uno.todo < dos.todo;
+	virtual void printmesomthing() {
+		cout << "not pure" << endl;
 	}
 };
-class B {
+
+
+class B:public algo {
 private :
 	string nombre;
 public:
-	B(string n) {
+	B(string n, int todo):algo(todo) {
 		this->nombre = n;
 	}
 	string getNombre() {
 		return this->nombre;
 	}
-	
+	void printmesomthing() {
+		cout << "yay "<< this->getTodo() << endl;
+	}
 };
 
+algo *test(int total) {
+	
+	static B a("Juan", total);
+	a.setTodo(total);
+	algo*res = &a;
+	//cout << total << endl;
+	//cout << a.getTodo() <<endl;
+	return res;
+}
 
 int main() {
 	
+	algo *uno = test(100);
 	
-	set<algo> a;
-	
-	algo uno = 1;
-	algo dos = 2;
+	algo *dos;
 
-	a.insert(uno);
-	a.insert(dos);
-
-	set<algo>::iterator ptr;
-
-	algo p = 0;
-
-	for (ptr = a.begin(); ptr != a.end(); ptr++) {
-		p = *ptr;
-		cout << p.getTodo() << endl;
+	for (int i = 0 ; i < 10000000; i++) {
+		 dos = test(i);
 	}
 	
+
+
+	uno->printmesomthing();
+	dos->printmesomthing();
+
 
 	system("pause");
 

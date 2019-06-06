@@ -25,6 +25,7 @@ private:
     static int IVA;
     int subtotoal;
     bool facturado;
+protected:
 	set<VentaComida*> comidaContenida;
 
 public:
@@ -42,6 +43,7 @@ public:
 	set<VentaComida> getComidaContenida();
 	
 	//otras
+
 	//quita VentaProducto del set y lo elmina
 	void borrarVentaProducto(string codigo);
 

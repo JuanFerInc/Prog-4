@@ -2,6 +2,7 @@
 
 using namespace std;
 
+
 CtrlVenta* CtrlVenta::getInstance() {
 	if (instancia == NULL) {
 		instancia = new CtrlVenta();
