@@ -1,9 +1,6 @@
 #include "../Header/DtFactura.h"
 
 
-/*
-		DTFACTURA
-*/
 
 DtFactura::DtFactura(const DtFactura &dtf) {
 	this->codigo = dtf.codigo;
@@ -33,21 +30,4 @@ float DtFactura::getmontoTotal(){
 float DtFactura::getSubtotalIVA(){
 }
 int DtFactura::getDescuento(){
-}
-
-
-
-/*
-		DTFACTURADOMICILIO
-*/
-DtDelivery DtFacturaDomicilio::getDelivery() {
-
-}
-
-
-/*
-		DTFACTURALOCAL
-*/
-DtMozo DtFacturaLocal::getMozo() {
-
 }

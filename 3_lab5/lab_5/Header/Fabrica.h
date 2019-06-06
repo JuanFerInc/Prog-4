@@ -21,7 +21,5 @@ public:
 	IProducto* getIProducto();
 	IEmpleado* getIEmpleado();
 	ICliente* getICliente();
-
-
 };
 #endif

@@ -11,9 +11,10 @@
 #include "../Header/DtComidaVendida.h"
 #include "../Header/MenuProducto.h"
 
+using namespace std;
 
 class Comida{
-private:
+protected:
     int precio;
     string descripcion;
     string codigo;
@@ -31,7 +32,7 @@ public:
 
 //Otras
     virtual bool esProducto() = 0;
-    virtual DtComida darDataType() = 0;
+    virtual DtComida* darDataType() = 0;
     bool sonIguales(string codigo);
     void darDeBajaComida();
 

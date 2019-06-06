@@ -25,3 +25,4 @@ bool DtHora::operator<(const DtHora& a) {
 		}
 		else return true;
 }
+

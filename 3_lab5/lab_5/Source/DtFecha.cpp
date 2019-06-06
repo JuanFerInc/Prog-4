@@ -1,3 +1,4 @@
+
 #include <string>
 #include "../Header/DtFecha.h"
 
@@ -58,5 +59,4 @@ bool DtFecha::operator<(const DtFecha& fechita) {
 			else return false;
 		}
 	}
-
 }

@@ -17,6 +17,8 @@ public:
 	int getPrecioTotal();
 	int getCantidad();
 
+	DtComidaVendida(int cantidad,string descripcion,int  precioTotalCalculable,string precio);
+
 };
 
 

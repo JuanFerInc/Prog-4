@@ -25,10 +25,69 @@ void Local::agregarComida(Comida* c, int cantidad) {
 //REVISAR LOS PUNTEROS
 set<DtComida> Local::productosEnVenta() {
 	set<VentaComida*>::iterator i;
-	set<DtComida*> res;
+	set<DtComida> res;
 	for (i = comidaContenida.begin(); i != comidaContenida.end(); i++) {
-		DtComida* re = (*i)->pedirDatatypeAComida();
-		res.insert(re);
-
+		DtComida* c = (*i)->pedirDatatypeAComida();
+		DtProducto* pepe = dynamic_cast<DtProducto*> (c);
+		if (pepe != NULL) {
+			DtProducto dtestatico = (*pepe);
+			res.insert(dtestatico);
+		}else{
+			DtMenu* pep = dynamic_cast<DtMenu*> (c);
+			DtMenu dtestatico = (*pep);
+			res.insert(dtestatico);
+		}
+		delete c;
+		
 	}
+	return res;
+}
+
+bool Local::cantEsMayor(string codigo, int cantidad) {
+	set<VentaComida*>::iterator i;
+	bool mayor = false;
+	for (i = comidaContenida.begin(); i != comidaContenida.end(); i++) {
+		if ((*i)->esMayor(codigo, cantidad)) {
+			mayor = true;
+		}
+	}
+	return mayor;
+}
+
+void Local::decrementarCantidad(string codigo, int cantidad) {
+	set<VentaComida*>::iterator i;
+	for (i = comidaContenida.begin(); i != comidaContenida.end(); i++) {
+		(*i)->bajarCantidad(codigo,cantidad);
+	}
+}
+
+void Local::eliminarComida(string codigo) {
+	set<VentaComida*>::iterator i;
+	set<VentaComida*>::iterator iterAEliminar;
+	VentaComida* r;
+	for (i = comidaContenida.begin(); i != comidaContenida.end(); i++) {
+		if ((*i)->esComidaAEliminar(codigo) != NULL) {
+			iterAEliminar = i;
+			r = (*i)->esComidaAEliminar(codigo);
+		}
+	}
+	comidaContenida.erase(iterAEliminar);
+	delete r;
+
+
+}
+
+set<DtComidaVendida> Local::darComidas() {
+	set<VentaComida*>::iterator i;
+	set<DtComidaVendida> res;
+	for (i = comidaContenida.begin(); i != comidaContenida.end(); i++) {
+		DtComidaVendida data = (*i)->darDtComidayCantidad();
+		res.insert(data);
+	}
+	return res;
+}
+
+void Local::finalizarVenta(Factura* factura) {
+	this->facturado = true;
+	this->linkFactura = factura;
 }

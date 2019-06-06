@@ -1,13 +1,20 @@
-DtFactura Mesa::facturar(int descuento){
+#include "../Header/Venta.h"
 
-set<DtComidaVendida* Venta::darComidas(){
-    set<DtComidaVendida>* retorno = new set<DtComidaVendida>;       probablemente esta mal
-    
-    
-    for (ptr = ar.begin(); ptr < ar.end(); ptr++) 
-        cout << *ptr << " "; 
-      
-    return 0;
-        
-        comidaContenida
+void Venta::borrarVentaProducto(string codigo) {
+	set<VentaComida*>::iterator iter;
+	
+	iter = comidaContenida.begin();
+	bool found = false;
+	VentaComida *aux = NULL;
+
+	while ((iter != comidaContenida.end()) && (!found)) {
+	
+		if ( (*iter)->tieneMismo(codigo)) {
+			found = true;
+			aux = *iter;
+			comidaContenida.erase(iter);
+			delete aux;
+		}
+	}
 }
+

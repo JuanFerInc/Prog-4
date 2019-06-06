@@ -19,18 +19,20 @@ using namespace std;
 
 
 class Venta{
-private:
+protected:
 	Factura* linkFactura;
     string nroVenta;
     static int IVA;
     int subtotoal;
     bool facturado;
-protected: 
+protected:
 	set<VentaComida*> comidaContenida;
+
 public:
 //setters
 	void setNroVenta(string nroVenta);
-	void setIVA(int iva);
+	static void setIVA(int iva);
+
 	void setSubtotal(int subtotal);
 	void setFacturado(bool facturado);
 
@@ -40,6 +42,14 @@ public:
 	int getSubtotal();
 	bool getFacturado();
 	set<VentaComida> getComidaContenida();
+
+	//otras
+
+	//quita VentaProducto del set y lo elmina
+	void borrarVentaProducto(string codigo);
+
+	//retorna true sii la venta tiene una comida con el codigo
+	bool tieneComida(string codigo);
 
 };
 

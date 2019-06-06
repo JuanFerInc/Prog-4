@@ -2,19 +2,19 @@
 
 
 
-/*
-DtFactura Mesa::facturar(int descuento){
-    set<DtComidaVendida>* setsito = linkVenta->darComidas();
-    int subtotal = linkVenta->getSubtotal, num = linkVenta->getNroVenta;
-    string nombre = linkMozo->getNombre; 
-    
-    Factura* fac = new Factura(descuento, setsito, num, subtotal);
-    linkVenta->finalizarVenta(fac);
-    
-    DtFactura retorno = fac->generarDt()
-    return retorno;
+
+DtFactura Mesa::facturar(int descuento) {
+	set<DtComidaVendida> sc;
+	sc = this->linkLocal->darComidas();
+	string nv = this->linkLocal->getNroVenta();
+	int st = this->linkLocal->getSubtotal();
+	string nombreMozo = this->linkMozo->getNombre();
+	Factura* f = new Factura(descuento, sc, nv, nombreMozo);
+	DtFactura res = f->generarDtFactura();
+	this->linkLocal->finalizarVenta(f);
+
 }
-*/
+
 
 bool Mesa::hayComidaEnMesa(string codigo) {
 	return (this->linkLocal->hayComidaEnVenta(codigo));
@@ -34,3 +34,14 @@ set<DtComida> Mesa::productosEnVentaEnMesa() {
 	return c;
 }
 
+bool Mesa::cantEsMayorEnMesa(string codigo, int cantidad) {
+	return (this->linkLocal->cantEsMayor(codigo, cantidad));
+}
+
+void Mesa::decrementarCantidadEnMesaDeComida(string codigo, int cantidad) {
+	this->linkLocal->decrementarCantidad(codigo, cantidad);
+}
+
+void Mesa::eliminarComidaDeMesa(string codigo) {
+	this->linkLocal->eliminarComida(codigo);
+}

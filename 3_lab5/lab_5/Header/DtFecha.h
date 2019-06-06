@@ -21,5 +21,4 @@ public:
 	bool operator==(DtFecha);
 	bool operator<(const DtFecha&);
 };
-
 #endif

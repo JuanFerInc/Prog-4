@@ -21,7 +21,7 @@ private:
     int subtotal;
     string nombreMozo;
 public:
-    
+	Factura(int descuento, set<DtComidaVendida> sc, string nv, string nombre);
     
     //Geters
     DtFecha getFecha();

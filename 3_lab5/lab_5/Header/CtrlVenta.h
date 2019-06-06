@@ -13,12 +13,11 @@
 #include "../Header/Mesa.h"
 #include "../Header/CtrlProducto.h"
 
-
 using namespace std;
 
 class CtrlVenta: public IVenta {
 private:
-	CtrlVenta* instancia;
+	static CtrlVenta* instancia;
 	string codigo;
 	int nroMesa, cantidad, nroEmpleado;
 	set<int> Mesas;										//Wtf is this (manuel)
@@ -26,10 +25,8 @@ private:
 	map<string, Venta*> coleccionDeVenta;
 	map<int, Mesa*> coleccionDeMesa;
 
-	void ctrlVenta();
-	
 public:
-	CtrlVenta* getInstance();
+	static CtrlVenta* getInstance();
 	void ingresarNroMesa(int nroMesa);
 	void seleccionarComida(string codigo, int cantidad);
 	bool existeComidaEnVenta();
@@ -42,7 +39,10 @@ public:
 	void disminuirCantidad();
 	void eliminarComidaDeVenta();
 	void descartarEliminacion();
+
+	//tira una expeccion si alguna de las ventas que cointiene la comida asociada al coidgo no fue facturada
 	void quitarComidaVenta(string codigo);
+
 	void agregarMesaAVenta(int nroMesa);
 	set<int> mostrarMesasSeleccionadas();
 	void descartarVentasEnMesa();
