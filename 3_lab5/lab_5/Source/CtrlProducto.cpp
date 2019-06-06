@@ -24,3 +24,26 @@ Comida* CtrlProducto::pedirComida(string codigo) {
 	return i->second;
 }
 
+void CtrlProducto::confirmarBaja() {
+	CtrlVenta *cv = CtrlVenta::getInstance();
+	
+	map<string,Comida*>::iterator iter = coleccionDeComida.find(codigo);
+	
+	Comida*c = iter->second;
+
+	try {
+		cv->quitarComidaVenta(iter->second->getCodigo());
+		
+		c->darDeBajaComida();
+		coleccionDeComida.erase(iter);
+		delete c;
+	}
+	catch(int x){
+		if (x == 1) {
+			cout << "existe una venta no facturada que tiene el producto que queres eliminar en quitarComidaVenta() ctrlVenta" << endl;
+		}
+		else {
+			throw(x);
+		}
+	}
+}
