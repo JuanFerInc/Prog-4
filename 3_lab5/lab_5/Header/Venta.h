@@ -32,6 +32,7 @@ public:
 //setters
 	void setNroVenta(string nroVenta);
 	static void setIVA(int iva);
+
 	void setSubtotal(int subtotal);
 	void setFacturado(bool facturado);
 
@@ -41,7 +42,7 @@ public:
 	int getSubtotal();
 	bool getFacturado();
 	set<VentaComida> getComidaContenida();
-	
+
 	//otras
 
 	//quita VentaProducto del set y lo elmina
@@ -49,7 +50,6 @@ public:
 
 	//retorna true sii la venta tiene una comida con el codigo
 	bool tieneComida(string codigo);
-
 
 };
 

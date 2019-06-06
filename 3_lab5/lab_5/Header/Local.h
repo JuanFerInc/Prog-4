@@ -15,5 +15,6 @@ public:
 	void aumentarCantidad(string codigo, int cantidad);
 	void finalizarVenta(Factura factura);
 	bool noEstaFacturada();
-	void agregarComida(Comida c, int cantidad);
+	void agregarComida(Comida* c, int cantidad);
+
 };

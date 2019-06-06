@@ -1,5 +1,9 @@
 #include "../Header/Mesa.h"
 
+
+
+/*
+s
 DtFactura Mesa::facturar(int descuento){
     set<DtComidaVendida>* setsito = linkVenta->darComidas();
     int subtotal = linkVenta->getSubtotal, num = linkVenta->getNroVenta;
@@ -10,4 +14,24 @@ DtFactura Mesa::facturar(int descuento){
     
     DtFactura retorno = fac->generarDt()
     return retorno;
+}
+
+*/
+
+bool Mesa::hayComidaEnMesa(string codigo) {
+	return (this->linkLocal->hayComidaEnVenta(codigo));
+}
+
+void Mesa::aumentarCantidadComidaEnMesa(string codigo, int cantidad) {
+	this->linkLocal->aumentarCantidad(codigo, cantidad);
+}
+
+void Mesa::agregarComidaEnMesa(Comida* c, int cantidad) {
+	this->linkLocal->agregarComida(c, cantidad);
+}
+
+set<DtComida> Mesa::productosEnVentaEnMesa() {
+	set<DtComida> c;
+	c = this->linkLocal->productosEnVenta();
+	return c;
 }

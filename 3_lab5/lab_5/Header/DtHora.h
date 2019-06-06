@@ -7,7 +7,13 @@ private:
 
 public:
 	DtHora(const DtHora &hora);
+//geters
+
 	int getMinuto();
 	int getHora();
+
+//otras
+
+	bool operator<(const DtHora& a);
 };
 #endif

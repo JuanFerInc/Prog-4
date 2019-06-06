@@ -17,11 +17,9 @@ private:
 	void fabrica();
 public:
 	Fabrica* getInstance();
-	IVenta getIVenta();
-	IProducto getIProducto();
-	IEmpleado getIEmpleado();
-	ICliente getICliente();
-
-
+	IVenta* getIVenta();
+	IProducto* getIProducto();
+	IEmpleado* getIEmpleado();
+	ICliente* getICliente();
 };
 #endif

@@ -11,6 +11,7 @@
 #include "../Header/Empleado.h"
 #include "../Header/Venta.h"
 #include "../Header/Mesa.h"
+#include "../Header/CtrlProducto.h"
 
 using namespace std;
 
@@ -24,11 +25,8 @@ private:
 	map<string, Venta*> coleccionDeVenta;
 	map<int, Mesa*> coleccionDeMesa;
 
-	CtrlVenta();
-	
 public:
 	static CtrlVenta* getInstance();
-
 	void ingresarNroMesa(int nroMesa);
 	void seleccionarComida(string codigo, int cantidad);
 	bool existeComidaEnVenta();
@@ -44,8 +42,7 @@ public:
 
 	//tira una expeccion si alguna de las ventas que cointiene la comida asociada al coidgo no fue facturada
 	void quitarComidaVenta(string codigo);
-	
-	
+
 	void agregarMesaAVenta(int nroMesa);
 	set<int> mostrarMesasSeleccionadas();
 	void descartarVentasEnMesa();

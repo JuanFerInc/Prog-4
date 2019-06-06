@@ -13,8 +13,6 @@ public:
 	void asociarAMenu(Menu m, int cantidad); //cantidad es DtProductoMenu.getCantidad()
 	bool esProducto();
 	DtProducto darDataType();
-
 	void darDeBajaComida();
-
 
 };

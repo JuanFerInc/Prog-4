@@ -27,7 +27,7 @@ public:
 //Otras
 	bool hayComidaEnMesa(string codigo);
 	void aumentarCantidadComidaEnMesa(string codigo, int cantidad);
-	void agregarComidaEnMesa(Comida c, int cantidad);
+	void agregarComidaEnMesa(Comida* c, int cantidad);
 	set<DtComida> productosEnVentaEnMesa();
 	bool cantEsMayorEnMesa(string codigo, int cantidad);
 	void decrementarCantidadEnMesaDeComida(string codigo, int cantidad);

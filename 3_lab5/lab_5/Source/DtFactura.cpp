@@ -1,6 +1,7 @@
 #include "../Header/DtFactura.h"
 
 
+
 DtFactura::DtFactura(const DtFactura &dtf) {
 	this->codigo = dtf.codigo;
 	this->fecha = dtf.fecha;

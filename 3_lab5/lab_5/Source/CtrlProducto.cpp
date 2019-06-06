@@ -18,3 +18,9 @@ void CtrlProducto::ingresarCodigo(string codigo) {
 void CtrlProducto::cancelarBaja() {
 	this->codigo.clear();
 }
+Comida* CtrlProducto::pedirComida(string codigo) {
+	map<string, Comida*>::iterator i;
+	i = coleccionDeComida.find(codigo);
+	return i->second;
+}
+
