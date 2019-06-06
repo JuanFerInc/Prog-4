@@ -10,7 +10,7 @@ VentaComida::VentaComida(Comida* c, int cantidad) {
 }
 
 bool VentaComida::ventaContieneComida(string codigo) {
-	return sonIguales(codigo);
+	return linkComida->sonIguales(codigo);
 }
 
 void VentaComida::incrementarCantidad(string codigo, int cantidad) {

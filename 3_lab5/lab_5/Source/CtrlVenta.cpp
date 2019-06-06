@@ -26,13 +26,14 @@ void CtrlVenta::quitarComidaVenta(string codigo) {
 	map<string, Venta*>::iterator iter;
 	bool facturadas = true;
 	for (iter = coleccionDeVenta.begin(); iter != coleccionDeVenta.end() && facturadas; iter++) {
-		if (iter->second->tieneComida(codigo)){
+		if (iter->second->tieneComida(codigo)) {
 			if (!iter->second->getFacturado()) {
 				facturadas = false;
 			}
 		}
 
 	}
+
 
 	if (facturadas) {
 		map<string, Venta*>::iterator iter;
@@ -43,6 +44,7 @@ void CtrlVenta::quitarComidaVenta(string codigo) {
 	else {
 		throw(1);
 	}
+}
 
 void CtrlVenta::ingresarNroMesa(int nroMesa) {
 	this->nroMesa = nroMesa;

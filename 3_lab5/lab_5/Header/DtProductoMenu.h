@@ -11,8 +11,12 @@ private:
 	int cantidad;
 
 public:
+	//const
 	DtProductoMenu(const DtProductoMenu &dt);
-	string getCodigo();
-	int getCantidad();
+	DtProductoMenu(string codigo, int cantidad);
+
+	//Get
+	string getCodigo() const;
+	int getCantidad() const;
 };
 #endif

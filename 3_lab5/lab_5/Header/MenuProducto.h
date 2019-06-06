@@ -3,9 +3,10 @@
 
 #include "../Header/DtProductoVenta.h"
 #include "../Header/Menu.h"
-#include "../Header/Producto.h"
 
 using namespace std;
+class Producto;
+
 
 class MenuProducto {
 private:
@@ -14,6 +15,8 @@ private:
 	int cantidad;
 
 public:
+	//Constructor
+	MenuProducto(Menu* m, int cantidad,Producto* p);
 	//seter
 	void setCantidad(int cant);
 	//geter
@@ -26,4 +29,7 @@ public:
 
 
 };
+
+
+#include "../Header/Producto.h"
 #endif

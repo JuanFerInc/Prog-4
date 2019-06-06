@@ -2,39 +2,43 @@
 #define COMIDA_H
 
 #include <iostream>
+#include <string>
 
-#include "../Header/IObserver.h"
-#include "../Header/Factura.h"
-
-#include "../Header/DtEstado.h"
 #include "../Header/DtComida.h"
-#include "../Header/DtComidaVendida.h"
-#include "../Header/MenuProducto.h"
+
 
 using namespace std;
 
 class Comida{
 private:
-    int precio;
     string descripcion;
     string codigo;
 public:
-//seters
+	//Const
+	Comida(string codigo, string descripcion);
+	//seters
 
-	void setPrecio(int precio);
 	void setDescripcion(string desc);
 	void setCodigo(string codigo);
-//geters
+
+	//geters
 
 	int getPrecio();
 	string getDescripcion();
 	string getCodigo();
 
-//Otras
+
+	//Virutal
     virtual bool esProducto() = 0;
-    virtual DtComida darDataType() = 0;
-    bool sonIguales(string codigo);
+    virtual DtComida *darDataType() = 0;
+ 
+	//Otras  
+	bool sonIguales(string codigo);
     void darDeBajaComida();
+	
+
+
+	virtual ~Comida() = 0;
 
 };
 #endif
