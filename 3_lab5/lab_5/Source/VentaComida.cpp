@@ -22,3 +22,37 @@ void VentaComida::incrementarCantidad(string codigo, int cantidad) {
 void VentaComida::aumentoCantidad(int cantidad) {
 	this->cantidad = this->cantidad + cantidad;
 }
+
+
+DtComida* VentaComida::pedirDatatypeAComida() {
+	return (this->linkComida->darDataType());
+}
+
+bool VentaComida::esMayor(string codigo, int cantidad) {
+	if (this->linkComida->sonIguales(codigo)) {
+		return (this->cantidad > cantidad);
+	}
+	return false;
+}
+
+void VentaComida::bajarCantidad(string codigo, int cantidad) {
+	if (this->linkComida->sonIguales(codigo)) {
+		this->cantidad = this->cantidad - cantidad;
+	}
+}
+
+VentaComida* VentaComida::esComidaAEliminar(string codigo) {
+	if (this->linkComida->sonIguales()) {
+		return this;
+	}
+	return NULL;
+}
+
+DtComidaVendida* VentaComida::darDtComidayCantidad() {
+	int cantidad = this->getCantidad();
+	DtComida* data = this->linkComida->darDataType();
+	int precioTotal = cantidad * data->getPrecioTotal();
+	DtComidaVendida* res = new DtComidaVendida(cantidad, data->getDescripcion(), precioTotal, data->getPrecioTotal);
+	return res;
+}
+

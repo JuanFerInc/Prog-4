@@ -16,11 +16,11 @@ public:
 	//otra
 	void asociarmeAMenuProducto(MenuProducto *mp);
 	bool esProducto();
-	DtComida *darDataType();
+	DtMenu* darDataType();
 	bool desvincularM();
 	void darDeBajaComida();
-
 };
 
 #include "../Header/MenuProducto.h"
+
 #endif // ! MENU_H

@@ -6,11 +6,12 @@
 
 #include "../Header/DtComida.h"
 
-
 using namespace std;
 
 class Comida{
-private:
+
+protected:
+    int precio;
     string descripcion;
     string codigo;
 public:

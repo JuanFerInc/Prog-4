@@ -13,7 +13,7 @@ public:
 	void desvincular(VentaComida vp);
 	set<DtComidaVendida> darComidas();
 	void aumentarCantidad(string codigo, int cantidad);
-	void finalizarVenta(Factura factura);
+	void finalizarVenta(Factura* factura);
 	bool noEstaFacturada();
 	void agregarComida(Comida* c, int cantidad);
 

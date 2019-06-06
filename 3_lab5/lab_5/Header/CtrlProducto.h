@@ -43,6 +43,7 @@ public:
 	void agregarProductoMenu(string codigo, int cantidad);
 	void aceptarAltaMenu();
 	void cancelarAltaMenu();
+
 	//Baja de Producto
 	set<DtComida> listaDeComidaDisponible();
 	void ingresarCodigo(string codigo);

@@ -68,7 +68,6 @@ void CtrlProducto::aceptarAltaMenu() {
 void CtrlProducto::cancelarAltaMenu() {
 	infoMP.clear();
 }
-
 //Baja de Producto
 set<DtComida> CtrlProducto::listaDeComidaDisponible() {
 	map<string,Comida*>::iterator iter;
@@ -86,6 +85,7 @@ void CtrlProducto::ingresarCodigo(string codigo) {
 void CtrlProducto::cancelarBaja() {
 	this->codigo.clear();
 }
+
 void CtrlProducto::confirmarBaja() {
 	CtrlVenta *cv = CtrlVenta::getInstance();
 
@@ -111,10 +111,8 @@ void CtrlProducto::confirmarBaja() {
 }
 
 
-
 Comida* CtrlProducto::pedirComida(string codigo) {
 	map<string, Comida*>::iterator i;
 	i = coleccionDeComida.find(codigo);
 	return i->second;
 }
-

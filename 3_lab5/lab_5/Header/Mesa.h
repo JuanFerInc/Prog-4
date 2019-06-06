@@ -6,6 +6,7 @@
 #include "../Header/DtComida.h"
 #include "../Header/Local.h"
 #include "../Header/DtFactura.h"
+#include "../Header/Mozo.h"
 
 
 
@@ -14,8 +15,10 @@ using namespace std;
 
 class Mesa {
 private:
+	Mozo* linkMozo;
 	Local* linkLocal;
 	int nroMesa;
+
 
 public:
 //seters

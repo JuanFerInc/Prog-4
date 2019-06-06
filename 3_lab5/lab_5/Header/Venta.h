@@ -19,7 +19,7 @@ using namespace std;
 
 
 class Venta{
-private:
+protected:
 	Factura* linkFactura;
     string nroVenta;
     static int IVA;

@@ -20,8 +20,7 @@ public:
 	//Polymorphic
 	bool esProducto();	
 
-	DtComida *darDataType();
-
+	DtProducto *darDataType();
 	void darDeBajaComida();
 
 };
