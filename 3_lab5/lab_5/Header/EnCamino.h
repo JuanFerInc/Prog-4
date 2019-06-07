@@ -8,11 +8,11 @@
 
 class EnCamino : public Estado {
 private:
-	EnCamino* instancia;
+	static EnCamino* instancia;
 
-	void enCamino();
+	EnCamino();
 public:
-	EnCamino getInstance();
+	static EnCamino* getInstance();
 	Estado* siguienteEstado();
 	Estado* cancelarPedido();
 	DtEstado darEstadoActual();

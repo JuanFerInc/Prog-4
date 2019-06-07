@@ -12,6 +12,9 @@ private:
 	DtDireccion direccion;
 
 public:
+	//contructor por copia
+	DtCliente(const DtCliente &c);
+	//geters
 	string getTelefono();
 	string getNombre();
 	DtDireccion getDireccion();

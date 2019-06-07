@@ -8,19 +8,25 @@ using namespace std;
 class DtMenu;
 
 class DtComida {
-private:
+protected:
 	string codigo, descripcion;
 	int precioTotal;
 
 public:
-	DtComida(string codigo, string descripcion, int precioTotal)const;
-	DtComida(const DtMenu &m);
-	string getCodigo()const;
-	string getDescripcion()const;
-	int getPrecioTotal()const;
-	virtual void print(std::ostream&) = 0;
+
+	DtComida(string codigo, string descripcion, int precioTotal);
+
+	//geters
+	string getCodigo() const;
+	string getDescripcion() const;
+	int getPrecioTotal() const;
+	virtual iostream& operator<<(std::ostream& out, DtComida* dt) = 0;
 
 	virtual ~DtComida() = default;
+	//Contructor por copia
+	DtComida(const DtComida &comida);
+
+
 
 };
 #include "../Header/DtMenu.h"

@@ -26,7 +26,7 @@ private:
 	set<DtProductoMenu> infoMP;
 	map<string, Comida*> coleccionDeComida;
 
-	void ctrlProducto();
+	CtrlProducto();
 
 public:
 	static CtrlProducto* getInstancie();
@@ -53,6 +53,7 @@ public:
 	//Ingresa los datos del nuevo menu que se ingresa al sistema
 	//Pre: No existe instancia de menu con el mismo codigo en el sistema
 	//Post: El sistema recuerda los datos del menu
+
 	set<DtProducto> agregarMenu(string codigo, string descripcion);
 
 	//Ingresa al sistema los productos que seran asociado al menu
@@ -72,7 +73,6 @@ public:
 	//codigo y la cantidad de dicho producto que estan en el menu
 	//Post: El sistema olvida los datos del Menu y los productos recordad. 
 	void cancelarAltaMenu();
-
 
 	//Baja de Producto
 	set<DtComida> listaDeComidaDisponible();

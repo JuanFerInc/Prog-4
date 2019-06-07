@@ -11,16 +11,17 @@ public:
 	//Contructor
 	Producto(string codigo, string descripcion, int precio);
 	//geters
-	set<MenuProducto*> getEsContenidoEn();
 	int getPrecio();
+	set<MenuProducto*> getEsContenidoEn();
+
+	int getPrecio();
+
 	//set
 	void setPrecio(int precio);
 	//Otras
 	void asociarAMenu(Menu *m, int cantidad); 
 	
 	//Polymorphic
-	
-
 	DtProducto *darDataType();
 	void darDeBajaComida();
 	void desvincular(MenuProducto *mp);

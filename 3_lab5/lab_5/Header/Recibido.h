@@ -6,11 +6,11 @@
 
 class Recibido : public Estado {
 private:
-	Recibido* instancia;
+	static Recibido* instancia;
 
-	void recibido();
+	Recibido();
 public:
-	Recibido getInstance();
+	static Recibido* getInstance();
 	Estado* siguienteEstado();	//Devuelve null (turvio sino)
 	Estado* cancelarPedido();		//Devuelve null (turvio sino)
 	DtEstado darEstadoActual();

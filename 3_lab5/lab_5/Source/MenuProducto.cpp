@@ -10,6 +10,13 @@ MenuProducto::MenuProducto(Menu *m, int cantidad,Producto *p) {
 
 	m->asociarmeAMenuProducto(this);
 
+
+}
+DtProductoVenta MenuProducto::darInfo() {
+	DtProducto producto = linkProducto->darDataType();
+	
+
+
 }
 void MenuProducto::setCantidad(int cant) {
 	this->cantidad = cant;

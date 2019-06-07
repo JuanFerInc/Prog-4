@@ -59,6 +59,16 @@ void CtrlProducto::aceptarAltaMenu() {
 		c = iterComida->second;
 		Producto *p = dynamic_cast<Producto*>(c);
 		if (p == NULL) {
+
+
+	for (iter = infoMP.begin(); iter != infoMP.end(); iter++) {
+		iterComida = coleccionDeComida.find(iter->getCodigo());
+		c = iterComida->second;
+		Producto *p = dynamic_cast<Producto*>(c);
+		if (p) {
+			p->asociarAMenu(m, iter->getCantidad());
+		}
+		else {
 			throw (2);
 		}
 
@@ -73,7 +83,7 @@ void CtrlProducto::aceptarAltaMenu() {
 	c = m;
 
 	coleccionDeComida.insert(make_pair(codigo, c));
-
+	
 	infoMP.clear();
 
 }

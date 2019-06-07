@@ -15,6 +15,7 @@ using namespace std;
 class CtrlEmpleado: public IEmpleado {
 private:
 	static CtrlEmpleado* instancia;
+
 	map<int, Empleado*> coleccionDeEmpleado;
 	
 	
@@ -38,7 +39,6 @@ public:
 	void elegirVehiculo(TipoTransporte vehiculo);
 	void cancelarEmpleado();
 	void confirmarEmpleado();
-	
 	
 };
 #endif

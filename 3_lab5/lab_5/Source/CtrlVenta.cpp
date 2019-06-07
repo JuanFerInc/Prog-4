@@ -65,6 +65,32 @@ void CtrlVenta::quitarComidaVenta(string codigo) {
 	}
 }
 
+
+
+void CtrlVenta::quitarComidaVenta(string codigo) {
+	map<string, Venta*>::iterator iter;
+	bool facturadas = true;
+	for (iter = coleccionDeVenta.begin(); iter != coleccionDeVenta.end() && facturadas; iter++) {
+		if (iter->second->tieneComida(codigo)) {
+			if (!iter->second->getFacturado()) {
+				facturadas = false;
+			}
+		}
+
+	}
+
+
+	if (facturadas) {
+		map<string, Venta*>::iterator iter;
+		for (iter = coleccionDeVenta.begin(); iter != coleccionDeVenta.end(); iter++) {
+			iter->second->borrarVentaProducto(codigo);
+		}
+	}
+	else {
+		throw(1);
+	}
+}
+
 void CtrlVenta::ingresarNroMesa(int nroMesa) {
 	this->nroMesa = nroMesa;
 }
@@ -136,6 +162,4 @@ set<int> CtrlVenta::mesasAsignadas(int nroEmpleado) {
 	CtrlEmpleado *ce = CtrlEmpleado::getInstance(); 
 	return ce->mesasDeMozo(nroEmpleado);
 }
-void CtrlVenta::confirmarVentaEnMesas() {
 
-}

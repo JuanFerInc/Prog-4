@@ -2,6 +2,15 @@
 #include "../Header/Mozo.h"
 #include "../Header/Delivery.h"
 
+
+
+CtrlEmpleado* CtrlEmpleado::getInstance() {
+	if (instancia == NULL) {
+		instancia = new CtrlEmpleado();
+	}
+	return instancia;
+};
+
 set<int> CtrlEmpleado::mesasDeMozo(int nroEmpleado) {
 	map<int, Empleado*>::iterator iter;
 	iter = coleccionDeEmpleado.find(nroEmpleado);

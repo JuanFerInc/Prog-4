@@ -1,10 +1,12 @@
 #include "../Header/DtHora.h"
 
+//Constructor por copia
 DtHora::DtHora(const DtHora &hora) {
 	this->hora = hora.hora;
 	this->minuto = hora.minuto;
 }
 
+//geters
 int DtHora::getMinuto() {
 	return this->minuto;
 }
@@ -16,7 +18,8 @@ int DtHora::getHora() {
 bool DtHora::operator<(const DtHora& a) {
 	if (a.hora < this->hora) {
 		return false;
-	}else{ 
+	}
+	else {
 		if (a.hora == this->hora) {
 			if (a.minuto <= this->minuto) {
 				return false;
@@ -24,5 +27,16 @@ bool DtHora::operator<(const DtHora& a) {
 			else return true;
 		}
 		else return true;
+	}
 }
 
+void DtHora::print(ostream& out) {
+	out << "La hora es:" << this->hora << endl;
+	out << "Los minutos son" << this->minuto << endl;
+}
+
+DtHora DtHora::operator=(const DtHora& a) {
+	this->hora = a.hora;
+	this->minuto = a.minuto;
+	return (*this);
+}

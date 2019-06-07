@@ -13,7 +13,11 @@ private:
 	string etapaActual;
 
 public:
-	string getEtapaActual();
+	//Contructor por copia
+	DtEstado(const DtEstado &e);
+
+	DtEstado(string c);
+	string getEtapaActual() const;
 };
 
 #endif

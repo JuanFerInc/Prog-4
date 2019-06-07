@@ -25,6 +25,7 @@ private:
 	map<string, DtComida> Comidas;
 	map<string, Venta*> coleccionDeVenta;
 	map<int, Mesa*> coleccionDeMesa;
+	CtrlVenta();
 
 public:
 	static CtrlVenta* getInstance();

@@ -19,11 +19,14 @@ public:
 	
 	//seters
 	void setDescripcion(string desc);
+	
 	void setCodigo(string codigo);
 
 	//geters
 	virtual int getPrecio() = 0;
+
 	string getDescripcion();
+
 	string getCodigo();
 
 
@@ -32,9 +35,8 @@ public:
  
 	//Otras  
 	bool sonIguales(string codigo);
-    virtual void darDeBajaComida() = 0;
-	
 
+    virtual void darDeBajaComida() = 0;
 
 	virtual ~Comida() = 0;
 
