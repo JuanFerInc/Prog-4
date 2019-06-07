@@ -20,6 +20,18 @@ void Producto::darDeBajaComida() {
 	set<MenuProducto*>::iterator iter;
 	for (iter = this->esContenidoEn.begin(); iter != this->esContenidoEn.begin(); iter++) {
 		(*iter)->desvincularProductoDeMenu();
+		delete (*iter);//posible mismo error que en menu
 	}
 }
 
+void Producto::desvincular(MenuProducto *mp) {
+	set<MenuProducto*>::iterator iter;
+	bool found = false;
+	iter = this->esContenidoEn.begin();
+	while (!found && (iter != esContenidoEn.end())) {
+		if (*iter == mp) {
+			found = true;
+			esContenidoEn.erase(iter);
+		}
+	}
+}

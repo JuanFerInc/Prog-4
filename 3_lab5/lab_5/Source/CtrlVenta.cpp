@@ -4,7 +4,6 @@
 #include "../Header/Mesa.h"
 
 
-
 using namespace std;
 
 CtrlVenta* CtrlVenta::getInstance() {
@@ -20,8 +19,6 @@ DtFactura CtrlVenta::generarFactura(int nromesa, int descuento){
 	return (i->second->facturar(descuento));
 }
 
-
-
 void CtrlVenta::quitarComidaVenta(string codigo) {
 	map<string, Venta*>::iterator iter;
 	bool facturadas = true;
@@ -31,9 +28,7 @@ void CtrlVenta::quitarComidaVenta(string codigo) {
 				facturadas = false;
 			}
 		}
-
 	}
-
 
 	if (facturadas) {
 		map<string, Venta*>::iterator iter;
@@ -46,8 +41,6 @@ void CtrlVenta::quitarComidaVenta(string codigo) {
 	}
 }
 
-
-
 void CtrlVenta::quitarComidaVenta(string codigo) {
 	map<string, Venta*>::iterator iter;
 	bool facturadas = true;
@@ -64,7 +57,7 @@ void CtrlVenta::quitarComidaVenta(string codigo) {
 	if (facturadas) {
 		map<string, Venta*>::iterator iter;
 		for (iter = coleccionDeVenta.begin(); iter != coleccionDeVenta.end(); iter++) {
-			iter->second->borrarVentaProducto(codigo);
+			iter->second->borrarVentaComida(codigo);
 		}
 	}
 	else {
@@ -104,12 +97,6 @@ void CtrlVenta::agregarPorPrimeraVez() {
 
 }
 
-void CtrlVenta::descartarAgregado() {
-}
-
-void CtrlVenta::liberarnroMesa() {
-}
-
 set<DtComida> CtrlVenta::productosEnVentaEnMesa(int nroMesa) {
 	map<int, Mesa*>::iterator i;
 	i = coleccionDeMesa.find(nroMesa);
@@ -136,5 +123,19 @@ void CtrlVenta::eliminarComidaDeVenta() {
 	i->second->eliminarComidaDeMesa(codigo);
 }
 
-void CtrlVenta::descartarEliminacion() {}
+void CtrlVenta::agregarMesaAVenta(int nroMesa) {
+	Mesas.insert(nroMesa);
+}
+set<int> CtrlVenta::mostrarMesasSeleccionadas() {
+	return this->Mesas;
+}
+void CtrlVenta::descartarVentasEnMesa() {
+	Mesas.clear();
+}
+set<int> CtrlVenta::mesasAsignadas(int nroEmpleado) {
+	CtrlEmpleado *ce = CtrlEmpleado::getInstance(); 
+	return ce->mesasDeMozo(nroEmpleado);
+}
+void CtrlVenta::confirmarVentaEnMesas() {
 
+}

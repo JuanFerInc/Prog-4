@@ -11,31 +11,28 @@ using namespace std;
 class Comida{
 
 protected:
-    int precio;
     string descripcion;
     string codigo;
 public:
 	//Const
 	Comida(string codigo, string descripcion);
+	
 	//seters
-
 	void setDescripcion(string desc);
 	void setCodigo(string codigo);
 
 	//geters
-
-	int getPrecio();
+	virtual int getPrecio() = 0;
 	string getDescripcion();
 	string getCodigo();
 
 
 	//Virutal
-    virtual bool esProducto() = 0;
     virtual DtComida *darDataType() = 0;
  
 	//Otras  
 	bool sonIguales(string codigo);
-    void darDeBajaComida();
+    virtual void darDeBajaComida() = 0;
 	
 
 

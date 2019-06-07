@@ -8,7 +8,7 @@ using namespace std;
 
 class IEmpleado{
     public:
-		virtual set<int>* mesasDeMozo(int nroEmpleado) = 0; 
+		virtual set<int> mesasDeMozo(int nroEmpleado) = 0; 
 };
 
 #endif

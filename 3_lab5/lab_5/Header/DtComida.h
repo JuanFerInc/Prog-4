@@ -5,6 +5,7 @@
 #include <set>
 
 using namespace std;
+class DtMenu;
 
 class DtComida {
 private:
@@ -12,14 +13,15 @@ private:
 	int precioTotal;
 
 public:
-	DtComida(string codigo, string descripcion, int precioTotal);
-	string getCodigo();
-	string getDescripcion();
-	int getPrecioTotal();
+	DtComida(string codigo, string descripcion, int precioTotal)const;
+	DtComida(const DtMenu &m);
+	string getCodigo()const;
+	string getDescripcion()const;
+	int getPrecioTotal()const;
 	virtual void print(std::ostream&) = 0;
 
 	virtual ~DtComida() = default;
 
 };
-
+#include "../Header/DtMenu.h"
 #endif

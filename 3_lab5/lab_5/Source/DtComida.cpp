@@ -10,3 +10,8 @@ DtComida::DtComida(string codigo, string descripcion, int precioTotal) {
 	this->precioTotal = precioTotal;
 
 }
+DtComida::DtComida(const DtMenu&m) {
+	this->codigo = m.getCodigo();
+	this->descripcion = m.getDescripcion();
+
+}

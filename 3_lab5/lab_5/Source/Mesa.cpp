@@ -1,9 +1,5 @@
 #include "../Header/Mesa.h"
 
-
-
-
-
 DtFactura Mesa::facturar(int descuento) {
 	set<DtComidaVendida> sc;
 	sc = this->linkLocal->darComidas();
@@ -15,8 +11,6 @@ DtFactura Mesa::facturar(int descuento) {
 	this->linkLocal->finalizarVenta(f);
 
 }
-
-
 
 bool Mesa::hayComidaEnMesa(string codigo) {
 	return (this->linkLocal->hayComidaEnVenta(codigo));

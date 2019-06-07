@@ -22,7 +22,7 @@ public:
 	int getNroEmpleado();
 	string getNombre();
 
-
+	virtual ~Empleado() = 0;
 };
 
 #endif
