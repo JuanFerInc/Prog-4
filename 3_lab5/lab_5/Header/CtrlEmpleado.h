@@ -20,10 +20,10 @@ private:
 	
 	
 	string nombreEmpleado;
-	int genNroEmpleados = 0;
+	int genNroEmpleados ;
 	bool esMozo = false;
-	TipoTransporte tipoTransporteEmpleado = PIE;
-	set<TipoTransporte> setTransporte { BICI, MOTO, PIE };
+	TipoTransporte tipoTransporteEmpleado;
+	set<TipoTransporte> setTransporte;
 
 
 

@@ -10,6 +10,8 @@ DtFactura Mesa::facturar(int descuento) {
 	DtFactura res = f->generarDtFactura();
 	this->linkLocal->finalizarVenta(f);
 
+
+	return res;
 }
 
 bool Mesa::hayComidaEnMesa(string codigo) {

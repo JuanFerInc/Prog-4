@@ -1,0 +1,15 @@
+Comida sonIguales()
+Venta borarVentaProducto()
+ventaComida added .cpp
+			tienemismo()
+CtrlVenta quitarcomidaenventa()
+CtrlProducto ConfirmarBaja
+menuProducto desvincularproductodemenu
+menu desvincularM			
+
+
+ERRORES
+1 existe una venta no facturada que tiene el producto que queres eliminar en quitarComidaVenta() ctrlVenta
+2 intento ingresar a un Menu como un producto que contiene el Menu
+3 el Codigo no pertenece a un producto
+4 El numero de empelado corresponde a un Delivery

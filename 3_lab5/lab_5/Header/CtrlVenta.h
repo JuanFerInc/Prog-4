@@ -34,13 +34,13 @@ public:
 	bool existeComidaEnVenta();
 	void incrementarCantidad();
 	void agregarPorPrimeraVez();
-	void descartarAgregado() = 0;
-	void liberarnroMesa()=0;
+	void descartarAgregado();
+	void liberarnroMesa();
 	set<DtComida> productosEnVentaEnMesa(int nroMesa);
 	bool cantidadEsMayor();
 	void disminuirCantidad();
 	void eliminarComidaDeVenta();
-	void descartarEliminacion() = 0;
+	void descartarEliminacion();
 
 	//tira una expeccion si alguna de las ventas que cointiene la comida asociada al coidgo no fue facturada
 	void quitarComidaVenta(string codigo);

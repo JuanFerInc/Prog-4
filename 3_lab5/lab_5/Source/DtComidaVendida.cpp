@@ -2,7 +2,7 @@
 
 //getters
 
-String DtComidaVendida::getNombre() {
+string DtComidaVendida::getNombre() {
     return(this->nombre);
 }
 
@@ -11,7 +11,7 @@ int DtComidaVendida::getPrecio() {
 }
 
 int DtComidaVendida::getPrecioTotal() {
-    int c=this->precio()*this->cantidad();
+    int c= this->precio*this->cantidad;
     return (c);
 }
 
@@ -19,17 +19,15 @@ int DtComidaVendida::getCantidad() {
     return(this->cantidad);
 }
 
-DtComidaVendida::DtComidaVendida(int cantidad, string descripcion, int precioTotalCalculable, string precio) {
+DtComidaVendida::DtComidaVendida(int cantidad, string descripcion, int precio) {
     this->nombre=descripcion;
     this->precio=precio;
-    this->precioTotal=precioTotalCalculable;
     this->cantidad=cantidad;
 } 
 
 DtComidaVendida::DtComidaVendida(const DtComidaVendida& dcv) {
     this->nombre=dcv.nombre;
     this->precio=dcv.precio;
-    this->precioTotal=dcv.precioTotal;
     this->cantidad=dcv.cantidad;
 }
 

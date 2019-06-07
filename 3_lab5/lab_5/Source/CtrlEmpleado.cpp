@@ -3,6 +3,12 @@
 #include "../Header/Delivery.h"
 
 
+CtrlEmpleado::CtrlEmpleado() {
+	this->setTransporte =  { BICI, MOTO, PIE };
+	esMozo = false;
+	tipoTransporteEmpleado = PIE;
+	this->genNroEmpleados = 0;
+}
 
 CtrlEmpleado* CtrlEmpleado::getInstance() {
 	if (instancia == NULL) {

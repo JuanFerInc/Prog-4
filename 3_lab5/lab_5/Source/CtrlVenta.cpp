@@ -57,7 +57,7 @@ void CtrlVenta::quitarComidaVenta(string codigo) {
 	if (facturadas) {
 		map<string, Venta*>::iterator iter;
 		for (iter = coleccionDeVenta.begin(); iter != coleccionDeVenta.end(); iter++) {
-			iter->second->borrarVentaComida(codigo);
+			iter->second->borrarVentaProducto(codigo);
 		}
 	}
 	else {
@@ -163,3 +163,12 @@ set<int> CtrlVenta::mesasAsignadas(int nroEmpleado) {
 	return ce->mesasDeMozo(nroEmpleado);
 }
 
+void CtrlVenta::descartarAgregado() {
+	
+}
+void CtrlVenta::liberarnroMesa() {
+
+}
+void CtrlVenta::descartarEliminacion() {
+
+}
