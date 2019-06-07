@@ -1,4 +1,12 @@
 #include "../Header/Local.h"
+#include "../Header/DtProducto.h"
+#include "../Header/DtMenu.h"
+
+Local::Local(map<int, Mesa> set):Venta() {
+	this->setsito = set;
+}
+
+
 
 bool Local::hayComidaEnVenta(string codigo) {
 	set<VentaComida*>::iterator i;

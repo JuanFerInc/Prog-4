@@ -37,7 +37,6 @@ public:
 	//Retora true si la comida asociada a la venta comida tiene el mismo codigo
 	bool tieneMismo(string codigo);
 
-	void desvincularVentaComida();
 	DtComidaVendida* darDtComidayCantidad();
 
 };

@@ -1,6 +1,6 @@
 #include "../Header/Venta.h"
 
-void Venta::borrarVentaProducto(string codigo) {
+void Venta::borrarVentaComida(string codigo) {
 	set<VentaComida*>::iterator iter;
 	
 	iter = comidaContenida.begin();
@@ -16,5 +16,11 @@ void Venta::borrarVentaProducto(string codigo) {
 			delete aux;
 		}
 	}
+}
+
+Venta::Venta() {
+	linkFactura = NULL;
+	int subtotal = 0;
+	facturado = false;
 }
 

@@ -13,15 +13,17 @@ public:
 	//geters
 	int getPrecio();
 	set<MenuProducto*> getEsContenidoEn();
+
+	int getPrecio();
+
 	//set
 	void setPrecio(int precio);
 	//Otras
 	void asociarAMenu(Menu *m, int cantidad); 
 	
 	//Polymorphic
-	bool esProducto();	
-
 	DtProducto *darDataType();
 	void darDeBajaComida();
+	void desvincular(MenuProducto *mp);
 
 };

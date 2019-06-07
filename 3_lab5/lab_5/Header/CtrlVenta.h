@@ -12,6 +12,7 @@
 #include "../Header/Venta.h"
 #include "../Header/Mesa.h"
 #include "../Header/CtrlProducto.h"
+#include "../Header/CtrlEmpleado.h"
 
 using namespace std;
 
@@ -33,21 +34,22 @@ public:
 	bool existeComidaEnVenta();
 	void incrementarCantidad();
 	void agregarPorPrimeraVez();
-	void descartarAgregado();
-	void liberarnroMesa();
+	void descartarAgregado() = 0;
+	void liberarnroMesa()=0;
 	set<DtComida> productosEnVentaEnMesa(int nroMesa);
 	bool cantidadEsMayor();
 	void disminuirCantidad();
 	void eliminarComidaDeVenta();
-	void descartarEliminacion();
+	void descartarEliminacion() = 0;
 
 	//tira una expeccion si alguna de las ventas que cointiene la comida asociada al coidgo no fue facturada
 	void quitarComidaVenta(string codigo);
-
+	
+	//Iniciar Venta en Mesa
 	void agregarMesaAVenta(int nroMesa);
 	set<int> mostrarMesasSeleccionadas();
 	void descartarVentasEnMesa();
-	void mesasAsignadas(int nroEmpleado);
+	set<int> mesasAsignadas(int nroEmpleado);
 	void confirmarVentaEnMesas();
 	DtFactura generarFactura(int nromesa, int descuento);
 	void cancelarPedido(int nroVenta);

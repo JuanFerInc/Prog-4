@@ -20,12 +20,16 @@ public:
 	//seter
 	void setCantidad(int cant);
 	//geter
+	int getPrecio();
 	int getCantidad();
 	DtProducto getDtProducto();
 	
 	//Otras
 	DtProductoVenta darInfo();
 	void desvincularProductoDeMenu();
+	//notifica al producto que tiene que desvincularse del mp
+	void notificarProducto();
+
 
 
 };

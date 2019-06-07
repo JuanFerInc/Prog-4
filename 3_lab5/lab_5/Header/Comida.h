@@ -16,27 +16,27 @@ protected:
 public:
 	//Const
 	Comida(string codigo, string descripcion);
+	
 	//seters
-
 	void setDescripcion(string desc);
+	
 	void setCodigo(string codigo);
 
 	//geters
-
 	virtual int getPrecio() = 0;
+
 	string getDescripcion();
+
 	string getCodigo();
 
 
 	//Virutal
-    virtual bool esProducto() = 0;
     virtual DtComida *darDataType() = 0;
  
 	//Otras  
 	bool sonIguales(string codigo);
-    void darDeBajaComida();
-	
 
+    virtual void darDeBajaComida() = 0;
 
 	virtual ~Comida() = 0;
 

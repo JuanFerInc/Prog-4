@@ -1,5 +1,18 @@
 #include "../Header/Menu.h"
 
+Menu::Menu(string nombre, string descripcion):Comida(nombre,descripcion) {
+}
+set<MenuProducto* > Menu::getProductosContenidos() {
+	return this->productosContenidos;
+}
+int Menu::getPrecio() {
+	set<MenuProducto*>::iterator iter;
+	int total = 0;
+	for (iter = productosContenidos.begin(); iter != productosContenidos.end(); iter++) {
+		total= total+(*iter)->getPrecio();
+	}
+	return round(total*0.9);
+}
 
 DtMenu* Menu::darDataType() {
 
@@ -20,14 +33,27 @@ DtMenu* Menu::darDataType() {
 }
 
 void Menu::darDeBajaComida() {
-
+	set<MenuProducto*>::iterator iter;
+	for (iter = productosContenidos.begin(); iter != productosContenidos.end(); iter++) {
+		(*iter)->notificarProducto();
+		delete (*iter); //peude ser que tenga que borrar del set o cambiar la forma de borrarlo
+	}
+	
 }
 
 void Menu::asociarmeAMenuProducto(MenuProducto *mp) {
 	productosContenidos.insert(mp);
 }
 
-bool Menu::desvincularM() {
+bool Menu::desvincularM(MenuProducto *mp) {
 	set<MenuProducto*>::iterator iter;
-	for (iter = this->productosContenidos.begin(); iter != this->productosContenidos.end(); iter++) {}
+	bool res = false;
+	for (iter = productosContenidos.begin(); iter != productosContenidos.end(); iter++) {
+		if (mp == *iter) {
+			productosContenidos.erase(iter);
+		}
+	}
+
+	return productosContenidos.empty();
+	
 }

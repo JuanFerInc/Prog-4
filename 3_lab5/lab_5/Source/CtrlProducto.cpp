@@ -46,6 +46,19 @@ void CtrlProducto::aceptarAltaMenu() {
 	Menu *m = new Menu(this->codigo, this->descripcion);
 	Comida *c;
 
+	//verificamos que todos los codigod pasados corresponden a un producto
+	for (iter = infoMP.begin(); iter != infoMP.end(); iter++) {
+		iterComida = coleccionDeComida.find(iter->getCodigo());
+
+		if (iterComida == coleccionDeComida.end()) {
+			cout << iter->getCodigo() << endl;
+			throw(3);
+		}
+
+
+		c = iterComida->second;
+		Producto *p = dynamic_cast<Producto*>(c);
+		if (p == NULL) {
 
 
 	for (iter = infoMP.begin(); iter != infoMP.end(); iter++) {
@@ -60,9 +73,18 @@ void CtrlProducto::aceptarAltaMenu() {
 		}
 
 	}
+	for (iter = infoMP.begin(); iter != infoMP.end(); iter++) {
+		iterComida = coleccionDeComida.find(iter->getCodigo());
+		c = iterComida->second;
+		Producto *p = dynamic_cast<Producto*>(c);
+		p->asociarAMenu(m, iter->getCantidad());
+	}
+
 	c = m;
 
 	coleccionDeComida.insert(make_pair(codigo, c));
+	
+	infoMP.clear();
 
 }
 void CtrlProducto::cancelarAltaMenu() {
@@ -75,7 +97,19 @@ set<DtComida> CtrlProducto::listaDeComidaDisponible() {
 
 	//puede ser ++iter
 	for (iter = coleccionDeComida.begin(); iter != coleccionDeComida.end();iter++) {
-		res.insert(iter->second->darDataType());
+		DtComida *c = iter->second->darDataType();
+		DtProducto *p = dynamic_cast<DtProducto*>(c);
+		DtMenu *m = dynamic_cast<DtMenu*>(c);
+		if (p != NULL) {
+			DtProducto resp = *p;
+			res.insert(resp);
+		}
+		else {
+			DtMenu resm = *m;
+			res.insert(resm);
+		}
+
+		
 	}
 	return res;
 }

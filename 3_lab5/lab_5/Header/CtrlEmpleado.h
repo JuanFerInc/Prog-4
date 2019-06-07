@@ -7,18 +7,38 @@
 
 #include "../Header/Empleado.h"
 #include "../Header/IEmpleado.h"
+#include "../Header/TipoTransporte.h"
+
 
 using namespace std;
 
 class CtrlEmpleado: public IEmpleado {
 private:
 	static CtrlEmpleado* instancia;
-	map<int, Empleado> coleccionDeEmpleado;
+
+	map<int, Empleado*> coleccionDeEmpleado;
+	
+	
+	string nombreEmpleado;
+	int genNroEmpleados;
+	bool esMozo;
+	TipoTransporte tipoTransporteEmpleado;
+	set<TipoTransporte> setTransporte;
+
+
 
 	CtrlEmpleado();
 public:
 	static CtrlEmpleado* getInstance();
-	set<int>* mesasDeMozo(int nroEmpleado);
+	set<int> mesasDeMozo(int nroEmpleado);
+
+
+	//Alta Empleado
+	void agregarMozo(string nombre);
+	set<TipoTransporte> agregarDelivery(string nombre);
+	void elegirVehiculo(TipoTransporte vehiculo);
+	void cancelarEmpleado();
+	void confirmarEmpleado();
 	
 };
 #endif

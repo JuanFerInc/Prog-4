@@ -15,6 +15,6 @@ public:
 	//geters
 	DtMozo getMozo();
 	set<int> getMesasDelMozo();
-
+	void print(std::ostream& out);
 };
 #endif

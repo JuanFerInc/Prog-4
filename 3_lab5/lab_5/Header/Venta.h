@@ -4,15 +4,12 @@
 #include <iostream>
 #include <set>
 
-#include "../Header/DtComida.h"
-#include "../Header/DtComidaVendida.h"
-#include "../Header/Factura.h"
-#include "../Header/Comida.h"
-#include "../Header/IObserver.h"
-#include "../Header/DtEstado.h"
-#include "../Header/VentaComida.h"
-#include "../Header/Cliente.h"
 
+
+#include "../Header/Factura.h"
+
+
+#include "../Header/VentaComida.h"
 
 
 using namespace std;
@@ -25,10 +22,10 @@ protected:
     static int IVA;
     int subtotoal;
     bool facturado;
-protected:
 	set<VentaComida*> comidaContenida;
 
 public:
+	Venta();
 //setters
 	void setNroVenta(string nroVenta);
 	static void setIVA(int iva);
@@ -46,13 +43,12 @@ public:
 	//otras
 
 	//quita VentaProducto del set y lo elmina
-	void borrarVentaProducto(string codigo);
+	void borrarVentaComida(string codigo);
 
 	//retorna true sii la venta tiene una comida con el codigo
 	bool tieneComida(string codigo);
 
 };
-
 
 
 #endif

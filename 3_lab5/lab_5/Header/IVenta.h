@@ -23,7 +23,7 @@ class IVenta{
         virtual void agregarMesaAVenta(int nroMesa) =0;
         virtual set<int> mostrarMesasSeleccionadas() =0;
         virtual void descartarVentasEnMesa() =0;
-        virtual void mesasAsignadas(int nroEmpleado) =0;
+        virtual set<int> mesasAsignadas(int nroEmpleado) =0;
         virtual void confirmarVentaEnMesas() =0;
         virtual DtFactura generarFactura(int nromesa,int descuento) =0;
         virtual void cancelarPedido(int nroVenta) =0;

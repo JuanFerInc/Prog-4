@@ -5,6 +5,7 @@
 #include <set>
 
 using namespace std;
+class DtMenu;
 
 class DtComida {
 protected:
@@ -12,6 +13,7 @@ protected:
 	int precioTotal;
 
 public:
+
 	DtComida(string codigo, string descripcion, int precioTotal);
 
 	//geters
@@ -27,5 +29,5 @@ public:
 
 
 };
-
+#include "../Header/DtMenu.h"
 #endif

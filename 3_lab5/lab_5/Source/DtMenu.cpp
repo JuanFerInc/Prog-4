@@ -6,6 +6,7 @@
 DtMenu::DtMenu(string codigo, string descripcion, int precioTotal, set<DtProductoVenta>datosProductos) : DtComida(codigo, descripcion, precioTotal) {
 	this->productosDeMenu = datosProductos;
 }
+
 //Constructor por copia
 DtMenu::DtMenu(const DtMenu &m):DtComida(m.getCodigo(), m.getDescripcion(), m.getPrecioTotal()) {
 	this->productosDeMenu = m.productosDeMenu;

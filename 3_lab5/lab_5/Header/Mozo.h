@@ -2,9 +2,11 @@
 
 class Mozo :public Empleado {
 public:
-	set<Mesa> mesas;
+	map<int,Mesa> mesas;
 public:
-	set<Mesa> getMesas();
+	Mozo(string nombre, int nroEmpleado);
+
+	set<int> getMesas();
 
 
 };
