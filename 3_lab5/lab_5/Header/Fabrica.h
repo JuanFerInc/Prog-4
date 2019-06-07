@@ -12,11 +12,11 @@ using namespace std;
 
 class Fabrica{
 private:
-	Fabrica* instancia;
+	static Fabrica* instancia;
 
 	void fabrica();
 public:
-	Fabrica* getInstance();
+	static Fabrica* getInstance();
 	IVenta* getIVenta();
 	IProducto* getIProducto();
 	IEmpleado* getIEmpleado();

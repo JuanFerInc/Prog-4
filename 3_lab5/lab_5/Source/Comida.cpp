@@ -9,6 +9,7 @@ Comida::Comida(string codigo, string descripcion) {
 	this->descripcion = descripcion;
 	this->codigo = codigo;
 	this->cantitatUnidadesFacturadas = 0;
+
 }
 
 void Comida::setDescripcion(string desc) {

@@ -22,6 +22,9 @@ public:
 	static CtrlCliente* getInstance();
 	set<DtEstadoTerminado> verActualizacion(string tel);
 	set<set<DtEstadoTerminado>> verTodasActualizaciones();
+	DtCliente agregarCliente(string telefono, string nombre, DtDireccion dirrecion);
+	void aceptarCliente();
+	void cancelarCliente();
 
 };
 #endif

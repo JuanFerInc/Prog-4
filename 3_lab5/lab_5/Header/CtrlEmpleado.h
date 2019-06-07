@@ -20,8 +20,8 @@ private:
 	
 	
 	string nombreEmpleado;
-	int genNroEmpleados ;
-	bool esMozo = false;
+	int genNroEmpleados;
+	bool esMozo;
 	TipoTransporte tipoTransporteEmpleado;
 	set<TipoTransporte> setTransporte;
 

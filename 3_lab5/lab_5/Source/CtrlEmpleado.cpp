@@ -2,7 +2,6 @@
 #include "../Header/Mozo.h"
 #include "../Header/Delivery.h"
 
-
 CtrlEmpleado::CtrlEmpleado() {
 	this->setTransporte =  { BICI, MOTO, PIE };
 	esMozo = false;
