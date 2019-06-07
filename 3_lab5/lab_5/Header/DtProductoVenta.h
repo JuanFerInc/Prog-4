@@ -8,7 +8,11 @@ private:
 public:
 
 	DtProductoVenta(DtProducto producto, int cantidad);
+	//geters
 	int getCantidad();
+	//impresion
+	void operator<<(ostream& out);
+
 
 
 };

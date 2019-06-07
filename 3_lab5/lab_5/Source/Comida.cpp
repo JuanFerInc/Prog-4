@@ -6,9 +6,6 @@
 
 using namespace std;
 
-
 bool Comida::sonIguales(string codigo) {
 	return codigo == this->codigo;
 }
-
-

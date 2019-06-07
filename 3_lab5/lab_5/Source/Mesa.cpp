@@ -3,6 +3,7 @@
 
 
 
+
 DtFactura Mesa::facturar(int descuento) {
 	set<DtComidaVendida> sc;
 	sc = this->linkLocal->darComidas();
@@ -14,6 +15,7 @@ DtFactura Mesa::facturar(int descuento) {
 	this->linkLocal->finalizarVenta(f);
 
 }
+
 
 
 bool Mesa::hayComidaEnMesa(string codigo) {
@@ -32,6 +34,7 @@ set<DtComida> Mesa::productosEnVentaEnMesa() {
 	set<DtComida> c;
 	c = this->linkLocal->productosEnVenta();
 	return c;
+
 }
 
 bool Mesa::cantEsMayorEnMesa(string codigo, int cantidad) {

@@ -10,7 +10,11 @@ private:
 	set<int> mesasDelMozo;
 
 public:
-	int getMozo();
+	//constructor por copia
+	DtAsignacionMesa(const DtAsignacionMesa &dtasig);
+	//geters
+	DtMozo getMozo();
 	set<int> getMesasDelMozo();
+
 };
 #endif

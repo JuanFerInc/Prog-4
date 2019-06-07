@@ -14,13 +14,14 @@ using namespace std;
 
 class CtrlCliente: public ICliente{
 private:
-	CtrlCliente* instancia;
-	map<string, Cliente*> collecionDeClientes;
+	static CtrlCliente* instancia;
+	map<string, Cliente*> coleccionDeClientes;
 
-	CtrlCliente ctrlCliente();
+	CtrlCliente();
 public:
-	CtrlCliente* getInstance();
+	static CtrlCliente* getInstance();
 	set<DtEstadoTerminado> verActualizacion(string tel);
 	set<set<DtEstadoTerminado>> verTodasActualizaciones();
+
 };
 #endif

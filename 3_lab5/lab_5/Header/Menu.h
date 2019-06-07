@@ -1,17 +1,27 @@
+#ifndef  MENU_H
+#define MENU_H
+
+
 #include "../Header/Comida.h"
-#include "../Header/DtMenu.h"
+class MenuProducto;
 
 class Menu :public Comida {
 private:
 	set<MenuProducto*> productosContenidos;
 public:
+	Menu(string nombre, string descripcion);
 	//geters
+	int getPrecio();
 	set<MenuProducto*> getProductosContenidos();
 
 	//otra
+	void asociarmeAMenuProducto(MenuProducto *mp);
 	bool esProducto();
 	DtMenu* darDataType();
 	bool desvincularM();
 	void darDeBajaComida();
-
 };
+
+#include "../Header/MenuProducto.h"
+
+#endif // ! MENU_H

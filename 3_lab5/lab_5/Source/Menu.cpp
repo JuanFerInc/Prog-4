@@ -23,6 +23,9 @@ void Menu::darDeBajaComida() {
 
 }
 
+void Menu::asociarmeAMenuProducto(MenuProducto *mp) {
+	productosContenidos.insert(mp);
+}
 
 bool Menu::desvincularM() {
 	set<MenuProducto*>::iterator iter;

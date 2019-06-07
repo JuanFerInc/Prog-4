@@ -8,11 +8,11 @@
 
 class Pedido: public Estado{
 private: 
-	Pedido* instancia;
+	static Pedido* instancia;
 
-	void pedido();
+	Pedido();
 public:
-	Pedido getInstance();
+	static Pedido* getInstance();
 	Estado* siguienteEstado();
 	Estado* cancelarPedido();
 	DtEstado darEstadoActual();

@@ -23,6 +23,7 @@ void VentaComida::aumentoCantidad(int cantidad) {
 	this->cantidad = this->cantidad + cantidad;
 }
 
+
 DtComida* VentaComida::pedirDatatypeAComida() {
 	return (this->linkComida->darDataType());
 }
@@ -54,3 +55,4 @@ DtComidaVendida* VentaComida::darDtComidayCantidad() {
 	DtComidaVendida* res = new DtComidaVendida(cantidad, data->getDescripcion(), precioTotal, data->getPrecioTotal);
 	return res;
 }
+

@@ -12,12 +12,12 @@ using namespace std;
 
 class CtrlEmpleado: public IEmpleado {
 private:
-	CtrlEmpleado* instancia;
+	static CtrlEmpleado* instancia;
 	map<int, Empleado> coleccionDeEmpleado;
 
-	void ctrlEmpleado();
+	CtrlEmpleado();
 public:
-	CtrlEmpleado* getInstance();
+	static CtrlEmpleado* getInstance();
 	set<int>* mesasDeMozo(int nroEmpleado);
 	
 };

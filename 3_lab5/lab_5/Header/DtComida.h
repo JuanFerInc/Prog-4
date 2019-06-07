@@ -7,18 +7,24 @@
 using namespace std;
 
 class DtComida {
-private:
+protected:
 	string codigo, descripcion;
 	int precioTotal;
 
 public:
 	DtComida(string codigo, string descripcion, int precioTotal);
-	string getCodigo();
-	string getDescripcion();
-	int getPrecioTotal();
-	virtual void print(std::ostream&) = 0;
+
+	//geters
+	string getCodigo() const;
+	string getDescripcion() const;
+	int getPrecioTotal() const;
+	virtual iostream& operator<<(std::ostream& out, DtComida* dt) = 0;
 
 	virtual ~DtComida() = default;
+	//Contructor por copia
+	DtComida(const DtComida &comida);
+
+
 
 };
 

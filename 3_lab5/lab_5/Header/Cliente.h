@@ -28,6 +28,6 @@ public:
 	set<DtEstadoTerminado> getActualizaciones();
 
 //Otras
-	void notificar();
+	void notificar(DtEstadoTerminado data);
 };
 #endif
