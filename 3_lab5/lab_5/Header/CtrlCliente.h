@@ -8,7 +8,6 @@
 #include "../Header/Cliente.h"
 #include "../Header/Estado.h"
 #include "../Header/DtEstadoTerminado.h"
-#include "../Header/DtCliente.h"
 
 
 using namespace std;
@@ -16,7 +15,6 @@ using namespace std;
 class CtrlCliente: public ICliente{
 private:
 	static CtrlCliente* instancia;
-	string telefono;
 	map<string, Cliente*> coleccionDeClientes;
 
 	CtrlCliente();
@@ -28,11 +26,5 @@ public:
 	void aceptarCliente();
 	void cancelarCliente();
 
-
-	//Venta a Domicilio
-	bool existeCliente(string telefono);
-	Cliente* pedirCliente();
-	Cliente* pedirCliente(string telefono);
-	
 };
 #endif

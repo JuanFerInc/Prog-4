@@ -13,26 +13,18 @@
 #include "../Header/Mesa.h"
 #include "../Header/CtrlProducto.h"
 #include "../Header/CtrlEmpleado.h"
-#include "../Header/DtDelivery.h"
-#include "../Header/DtFacturaDomicilio.h"
-#include "../Header/CtrlCliente.h"
-#include "../Header/Recibido.h"
-#include "../Header/Pedido.h"
-
 
 using namespace std;
 
 class CtrlVenta: public IVenta {
 private:
 	static CtrlVenta* instancia;
-	string codigo, nroEmpleado;
-	int nroMesa, cantidad, nroVenta;
+	string codigo;
+	int nroMesa, cantidad, nroEmpleado;
 	set<int> Mesas;										//Wtf is this (manuel)
 	map<string, DtComida> Comidas;
 	map<string, Venta*> coleccionDeVenta;
 	map<int, Mesa*> coleccionDeMesa;
-	set<DtProductoMenu> coleccionProductosADomicilio;
-	bool retiraEnElLocal;
 	CtrlVenta();
 
 public:
@@ -62,16 +54,6 @@ public:
 	DtFactura generarFactura(int nromesa, int descuento);
 	void cancelarPedido(int nroVenta);
 	void ultimasActualizaciones();
-
-	//Venta a Domicilio
-	bool iniciarVentaADomicilio(string tel);
-	void seleccionarComida2(string codigo, int cantidad);
-	set<DtDelivery> listarRepartidores();
-	void seleccionarRepartidor(int nroEmpleado);
-	void cancelarVentaADomicilio();
-	void confirmarVentaADomicilio();
-	DtFacturaDomicilio facturarVentaADomicilio(int descuento);
-
 };
 
 #endif 

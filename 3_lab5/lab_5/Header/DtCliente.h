@@ -18,5 +18,7 @@ public:
 	string getTelefono();
 	string getNombre();
 	DtDireccion getDireccion();
+	friend std::ostream& operator<<(std::ostream& out, DtCliente*info);
+	void print(std::ostream& out);
 };
 #endif

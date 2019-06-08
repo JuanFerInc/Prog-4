@@ -1,8 +1,9 @@
 #ifndef DTASIGNACIONMESA_H
 #define DTASIGNACIONMESA_H	
 
-#include <set>
+
 #include "../Header/DtMozo.h"
+#include <set>
 
 class DtAsignacionMesa {
 private:
@@ -16,5 +17,6 @@ public:
 	DtMozo getMozo();
 	set<int> getMesasDelMozo();
 	void print(std::ostream& out);
+	friend std::ostream& operator<<(std::ostream& out, DtAsignacionMesa*info);
 };
 #endif

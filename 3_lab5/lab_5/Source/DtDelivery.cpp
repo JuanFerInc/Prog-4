@@ -1,6 +1,13 @@
-#include "../Header/DtDelivery.h"
+#include "../header/DtDelivery.h"
+#include <string>
 
-//Venta a Domicilio
-DtDelivery::DtDelivery(string nombre, int nroEmpleado, TipoTransporte tipo):DtEmpleado(nombre, nroEmpleado) {
-	this->transporte = tipo;
+TipoTransporte DtDelivery::getTransporte() {
+	return(this->transporte);
+}
+
+void DtDelivery::print(std::ostream& out) {
+	using namespace std;
+	out << "numero de empleado: " << this->getNroEmpleado << endl;
+	out << "nombre: " << this->getNombre << endl;
+	out << "tipo de transporte: " << this->transporte << endl;
 }

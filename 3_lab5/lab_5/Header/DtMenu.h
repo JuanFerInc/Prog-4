@@ -14,7 +14,6 @@ public:
 	//geters
 
 	map<string, DtProductoVenta*> getProductosDeMenu();
-	
-	iostream operator<<(std::ostream& out, DtMenu* dt);
+	virtual void print(std::ostream& out);
 };
 
