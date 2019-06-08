@@ -6,6 +6,6 @@ private:
 public:
 	DtMenuVentas(string codig, string descripcion, int precio, int cantidad);
 	int getCantidad();
-
+	void print(std::ostream& out);
 
 };

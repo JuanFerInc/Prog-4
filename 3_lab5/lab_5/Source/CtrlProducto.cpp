@@ -101,7 +101,6 @@ void CtrlProducto::aceptarAltaMenu() {
 	coleccionDeComida.insert(make_pair(codigo, c));
 	
 	infoMP.clear();
-	
 }
 
 void CtrlProducto::cancelarAltaMenu(){

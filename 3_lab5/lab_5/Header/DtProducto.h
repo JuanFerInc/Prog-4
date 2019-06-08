@@ -6,7 +6,6 @@ public:
 
 	DtProducto(const DtProducto& producto);
 	DtProducto(string codigo, string descripcion, int precioTotal);
-	ostream& operator<<(ostream& out, DtProducto* prod);
-	void print(std::ostream& out);
+	virtual void print(std::ostream& out);
 
 };

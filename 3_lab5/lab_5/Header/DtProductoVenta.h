@@ -12,7 +12,7 @@ public:
 	//geters
 	int getCantidad();
 	//impresion
-	void operator<<(ostream& out);
+	void print(std::ostream& out);
 
 
 

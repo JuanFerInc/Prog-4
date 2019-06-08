@@ -4,6 +4,7 @@
 #include <set>
 #include "../Header/DtFactura.h"
 
+
 class DtFacturaResumen {
 private:
 	int total;
@@ -14,5 +15,7 @@ public:
 	DtFacturaResumen(const DtFacturaResumen &dtfr);
 	int getTotal();
 	set<DtFactura> getFactura();
+	void print(std::ostream& out);
+	friend std::ostream& operator<<(std::ostream& out, DtFacturaResumen*info);
 };
 #endif

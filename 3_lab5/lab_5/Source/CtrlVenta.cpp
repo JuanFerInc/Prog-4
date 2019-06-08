@@ -171,6 +171,7 @@ void CtrlVenta::liberarnroMesa() {
 void CtrlVenta::descartarEliminacion() {
 
 
+
 }
 DtFacturaResumen CtrlVenta::resumenDelDia(int d, int m, int a) {
 	map<string, Venta*>::iterator iter;
@@ -188,4 +189,6 @@ DtFacturaResumen CtrlVenta::resumenDelDia(int d, int m, int a) {
 			aux = NULL;
 		}
 	}
+
+
 }

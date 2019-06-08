@@ -10,6 +10,7 @@
 #include "../Header/TipoTransporte.h"
 #include  "../Header/DtAsignacionMesa.h"
 
+
 using namespace std;
 
 class CtrlEmpleado: public IEmpleado {
@@ -40,6 +41,6 @@ public:
 	void confirmarEmpleado();
 
 	set<DtAsignacionMesa> asignarAuto();
-	
+
 };
 #endif

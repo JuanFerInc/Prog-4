@@ -23,7 +23,7 @@ private:
 	static CtrlVenta* instancia;
 	string codigo;
 	int nroMesa, cantidad, nroEmpleado;
-	set<int> Mesas;
+	set<int> Mesas;										
 	map<string, DtComida> Comidas;
 	map<string, Venta*> coleccionDeVenta;
 	map<int, Mesa*> coleccionDeMesa;
@@ -57,11 +57,13 @@ public:
 	DtFactura generarFactura(int nromesa, int descuento);
 	void cancelarPedido(int nroVenta);
 	void ultimasActualizaciones();
+
 	DtFacturaResumen resumenDelDia(int d, int m, int a);
 
 
 	//retorna un puter a coleccion de mesa
 	map<int, Mesa*> *getColeccionDeMesa();
+
 };
 
 #endif 

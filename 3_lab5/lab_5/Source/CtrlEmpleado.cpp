@@ -82,3 +82,4 @@ set<DtAsignacionMesa> asignarAuto() {
 
 	for()
 }
+

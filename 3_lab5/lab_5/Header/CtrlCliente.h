@@ -8,7 +8,6 @@
 #include "../Header/Cliente.h"
 #include "../Header/Estado.h"
 #include "../Header/DtEstadoTerminado.h"
-#include "../Header/DtCliente.h"
 
 
 using namespace std;
