@@ -18,8 +18,6 @@ public:
 
 	DtEstado(string c);
 	string getEtapaActual() const;
-	virtual void print(std::ostream&);
-	friend std::ostream& operator<<(std::ostream& out, DtEstado*info);
 };
 
 #endif

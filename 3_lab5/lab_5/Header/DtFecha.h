@@ -20,7 +20,5 @@ public:
 
 	bool operator==(DtFecha);
 	bool operator<(const DtFecha&);
-	friend std::ostream& operator<<(std::ostream& out, DtFecha*info);
-	void print(std::ostream& out);
 };
 #endif
