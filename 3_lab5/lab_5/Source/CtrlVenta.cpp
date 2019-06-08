@@ -172,47 +172,20 @@ void CtrlVenta::descartarEliminacion() {
 
 
 }
-
-//Venta a Domicilio
-
-bool CtrlVenta::iniciarVentaADomicilio(string tel) {
-	this->retiraEnElLocal = true;
-	CtrlCliente* c = CtrlCliente::getInstance();
-	bool ( c->existeCliente(tel) );
-}
-
-void CtrlVenta::seleccionarComida2(string codigo, int cantidad) {
-	DtProductoMenu c = DtProductoMenu(codigo, cantidad);
-	this->coleccionProductosADomicilio.insert(c);
-}
-
-set<DtDelivery> CtrlVenta::listarRepartidores() {
-	CtrlEmpleado* c = CtrlEmpleado::getInstance();
-	return c->darRepartidores();
-}
-
-void CtrlVenta::seleccionarRepartidor(int nroEmpleado) {
-	this->retiraEnElLocal = false;
-	this->nroEmpleado = nroEmpleado;
-}
-
-void CtrlVenta::cancelarVentaADomicilio() {
-	this->coleccionProductosADomicilio.clear();
-}
-
-void CtrlVenta::confirmarVentaADomicilio() {
-	CtrlCliente* ctrlC = CtrlCliente::getInstance();
-	Cliente* cl = ctrlC->pedirCliente();
-	Domicilio* dom;
-	if (retiraEnElLocal) {
-		Recibido* recibido = Recibido::getInstance();
-		dom = new Domicilio(cl, recibido);
+DtFacturaResumen CtrlVenta::resumenDelDia(int d, int m, int a) {
+	map<string, Venta*>::iterator iter;
+	set<DtFactura> facturas;
+	Factura* aux;
+	DtFecha pepe(d, m, a);
+	int total = 0;
+	for (iter = coleccionDeVenta.begin(); iter != coleccionDeVenta.end(); iter++) {
+		if (iter->second->getFacturado()) {
+			aux = iter->second->getLinkFactura();
+			if (aux->getFecha() == pepe) {
+				facturas.insert(aux->generarDtFactura());
+				total = total + aux->getTotal();
+			}
+			aux = NULL;
+		}
 	}
-	else {
-		Pedido* pedido = Pedido::getInstance();
-		dom = new Domicilio(cl, pedido);
-	}
-	Venta* res = dom;
-	coleccionDeVenta.insert(make_pair(to_string(nroVenta),res));
-	nroVenta = nroVenta + 1;
 }

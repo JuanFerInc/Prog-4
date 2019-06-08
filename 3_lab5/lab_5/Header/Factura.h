@@ -4,6 +4,7 @@
 
 #include <set>
 #include <iostream>
+
 #include "../Header/DtFecha"
 #include "../Header/DtHora"
 #include "../Header/DtComidaVendida"
@@ -31,7 +32,7 @@ public:
     string getNroFactura();
     int getSubtotal();
     string getNombreMozo();
-    
+	int getTotal();
     //Posta
     DtFactura generarDtFactura();
 }

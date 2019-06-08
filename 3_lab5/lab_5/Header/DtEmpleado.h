@@ -14,7 +14,6 @@ private:
 	string nombre;
 
 public:
-	DtEmpleado(string nombre, int nroEmp);
 //geters
 	int getNroEmpleado();
 	string getNombre();

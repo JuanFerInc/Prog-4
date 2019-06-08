@@ -38,15 +38,13 @@ bool DtHora::operator<(const DtHora& a) {
 	}
 }
 
-
-std::ostream& operator<<(std::ostream& out, DtHora*info) {
+ostream& operator<<(ostream& out, DtHora*info) {
 	info->print(out);
 	return out;
 }
-
 void DtHora::print(ostream& out) {
-	out << "La hora es:" << this->hora << endl;
-	out << "Los minutos son" << this->minuto << endl;
+	out << "La hora es: " << this->hora << endl;
+	out << "Los minutos son: " << this->minuto << endl;
 }
 
 DtHora DtHora::operator=(const DtHora& a) {

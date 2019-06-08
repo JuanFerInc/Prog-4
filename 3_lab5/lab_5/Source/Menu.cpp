@@ -1,4 +1,5 @@
 #include "../Header/Menu.h"
+#include "../Header/DtMenuVentas.h"
 
 Menu::Menu(string nombre, string descripcion):Comida(nombre,descripcion) {
 }
@@ -61,5 +62,6 @@ bool Menu::desvincularM(MenuProducto *mp) {
 }
 
 DtComida *Menu::darDataVenta() {
-
+	DtMenuVentas *res = new DtMenuVentas(this->codigo, this->descripcion, this->getPrecio(), this->cantitatUnidadesFacturadas);
+	return res;
 }

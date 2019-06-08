@@ -7,6 +7,8 @@
 
 
 #include "../Header/Factura.h"
+
+
 #include "../Header/VentaComida.h"
 
 
@@ -37,7 +39,7 @@ public:
 	int getSubtotal();
 	bool getFacturado();
 	set<VentaComida> getComidaContenida();
-
+	Factura* getLinkFactura();
 	//otras
 
 	//quita VentaProducto del set y lo elmina

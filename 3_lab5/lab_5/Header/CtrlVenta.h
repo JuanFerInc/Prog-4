@@ -13,11 +13,7 @@
 #include "../Header/Mesa.h"
 #include "../Header/CtrlProducto.h"
 #include "../Header/CtrlEmpleado.h"
-#include "../Header/DtDelivery.h"
-#include "../Header/DtFacturaDomicilio.h"
-#include "../Header/CtrlCliente.h"
-#include "../Header/Recibido.h"
-#include "../Header/Pedido.h"
+#include "../Header/DtFacturaResumen.h"
 
 
 using namespace std;
@@ -25,30 +21,29 @@ using namespace std;
 class CtrlVenta: public IVenta {
 private:
 	static CtrlVenta* instancia;
-	string codigo, nroEmpleado;
-	int nroMesa, cantidad, nroVenta;
-	set<int> Mesas;										//Wtf is this (manuel)
+	string codigo;
+	int nroMesa, cantidad, nroEmpleado;
+	set<int> Mesas;
 	map<string, DtComida> Comidas;
 	map<string, Venta*> coleccionDeVenta;
 	map<int, Mesa*> coleccionDeMesa;
-	set<DtProductoMenu> coleccionProductosADomicilio;
-	bool retiraEnElLocal;
 	CtrlVenta();
 
 public:
 	static CtrlVenta* getInstance();
+
 	void ingresarNroMesa(int nroMesa);
 	void seleccionarComida(string codigo, int cantidad);
 	bool existeComidaEnVenta();
 	void incrementarCantidad();
 	void agregarPorPrimeraVez();
-	void descartarAgregado() = 0;
-	void liberarnroMesa()=0;
+	void descartarAgregado();
+	void liberarnroMesa();
 	set<DtComida> productosEnVentaEnMesa(int nroMesa);
 	bool cantidadEsMayor();
 	void disminuirCantidad();
 	void eliminarComidaDeVenta();
-	void descartarEliminacion() = 0;
+	void descartarEliminacion();
 
 	//tira una expeccion si alguna de las ventas que cointiene la comida asociada al coidgo no fue facturada
 	void quitarComidaVenta(string codigo);
@@ -62,16 +57,11 @@ public:
 	DtFactura generarFactura(int nromesa, int descuento);
 	void cancelarPedido(int nroVenta);
 	void ultimasActualizaciones();
+	DtFacturaResumen resumenDelDia(int d, int m, int a);
 
-	//Venta a Domicilio
-	bool iniciarVentaADomicilio(string tel);
-	void seleccionarComida2(string codigo, int cantidad);
-	set<DtDelivery> listarRepartidores();
-	void seleccionarRepartidor(int nroEmpleado);
-	void cancelarVentaADomicilio();
-	void confirmarVentaADomicilio();
-	DtFacturaDomicilio facturarVentaADomicilio(int descuento);
 
+	//retorna un puter a coleccion de mesa
+	map<int, Mesa*> *getColeccionDeMesa();
 };
 
 #endif 

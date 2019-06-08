@@ -35,3 +35,7 @@ void Producto::desvincular(MenuProducto *mp) {
 		}
 	}
 }
+DtComida *Producto::darDataVenta() {
+	DtProductoVenta *res = new DtProductoVenta(this->codigo, this->descripcion, this->getPrecio(), this->cantitatUnidadesFacturadas);
+	return res;
+}

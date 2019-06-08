@@ -4,7 +4,7 @@ private:
 	int cantidad;
 
 public:
-	DtMenuVentas(int cantidad, DtProducto dataproducto);
+	DtMenuVentas(string codig, string descripcion, int precio, int cantidad);
 	int getCantidad();
 
 

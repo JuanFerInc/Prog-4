@@ -1,6 +1,7 @@
 #include"../Header/CtrlEmpleado.h"
 #include "../Header/Mozo.h"
 #include "../Header/Delivery.h"
+#include "../Header/CtrlVenta.h"
 
 CtrlEmpleado::CtrlEmpleado() {
 	this->setTransporte =  { BICI, MOTO, PIE };
@@ -72,15 +73,12 @@ void CtrlEmpleado::confirmarEmpleado() {
 	this->genNroEmpleados++;
 }
 
-//Venta a Domicilio
-set<DtDelivery> CtrlEmpleado::darRepartidores() {
-	map<int, Empleado*>::iterator i;
-	set<DtDelivery> res;
-	for (i = coleccionDeEmpleado.begin(); i != coleccionDeEmpleado.end(); i++) {
-		Empleado* c = i->second;
-		Delivery* re = dynamic_cast<Delivery*> (c);
-		if (re != NULL) {
-			res.insert(re->darDtDelivery());
-		}
-	}
+set<DtAsignacionMesa> asignarAuto() {
+	CtrlVenta *cv = CtrlVenta::getInstance();
+	map<int,Mesa*> *mesas = cv->getColeccionDeMesa();
+	
+	map<int, Empleado*>::iterator iterE;
+	map<int, Mesa*>::iterator iterM;
+
+	for()
 }

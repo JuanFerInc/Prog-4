@@ -8,9 +8,7 @@
 #include "../Header/Empleado.h"
 #include "../Header/IEmpleado.h"
 #include "../Header/TipoTransporte.h"
-#include "../Header/DtDelivery.h"
-#include "../Header/Delivery.h"
-
+#include  "../Header/DtAsignacionMesa.h"
 
 using namespace std;
 
@@ -19,7 +17,6 @@ private:
 	static CtrlEmpleado* instancia;
 
 	map<int, Empleado*> coleccionDeEmpleado;
-	
 	
 	string nombreEmpleado;
 	int genNroEmpleados;
@@ -42,8 +39,7 @@ public:
 	void cancelarEmpleado();
 	void confirmarEmpleado();
 
-	//Venta a Domicilio
-	set<DtDelivery> darRepartidores();
+	set<DtAsignacionMesa> asignarAuto();
 	
 };
 #endif

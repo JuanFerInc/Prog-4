@@ -101,13 +101,12 @@ void CtrlProducto::aceptarAltaMenu() {
 	coleccionDeComida.insert(make_pair(codigo, c));
 	
 	infoMP.clear();
+	
 }
 
 void CtrlProducto::cancelarAltaMenu(){
 	this->infoMP.clear();
-
 }
-
 
 //Baja de Producto
 set<DtComida> CtrlProducto::listaDeComidaDisponible() {
