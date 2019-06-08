@@ -8,6 +8,8 @@
 #include "../Header/Empleado.h"
 #include "../Header/IEmpleado.h"
 #include "../Header/TipoTransporte.h"
+#include "../Header/DtDelivery.h"
+#include "../Header/Delivery.h"
 
 
 using namespace std;
@@ -39,6 +41,9 @@ public:
 	void elegirVehiculo(TipoTransporte vehiculo);
 	void cancelarEmpleado();
 	void confirmarEmpleado();
+
+	//Venta a Domicilio
+	set<DtDelivery> darRepartidores();
 	
 };
 #endif

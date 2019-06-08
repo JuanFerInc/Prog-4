@@ -15,6 +15,7 @@ public:
 	//geters
 	string getNombreEdificio();
 	string getNumeroApartamento();
+
 	void print(std::ostream& out);
 };
 #endif

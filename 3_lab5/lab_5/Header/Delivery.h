@@ -8,5 +8,8 @@ private:
 	TipoTransporte tipoDeTransporte;
 public:
 	Delivery(string nombre, int nroEmpleado, TipoTransporte vehiculo);
+
+	//Venta a Domicilio
+	DtDelivery darDtDelivery();
 };
 

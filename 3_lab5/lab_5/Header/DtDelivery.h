@@ -4,7 +4,7 @@ class DtDelivery : public DtEmpleado {
 private:
 	TipoTransporte transporte;
 public:
+	DtDelivery(string nombre, int nroEmpleado, TipoTransporte tipo);
 	//geters
 	TipoTransporte getTransporte();
-	void print(std::ostream& out);
 };
