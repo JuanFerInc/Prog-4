@@ -1,8 +1,8 @@
 #include "../header/DtComidaVendida.h"
-
+#include <string>
 //getters
 
-String DtComidaVendida::getNombre() {
+string DtComidaVendida::getNombre() {
     return(this->nombre);
 }
 
@@ -11,7 +11,7 @@ int DtComidaVendida::getPrecio() {
 }
 
 int DtComidaVendida::getPrecioTotal() {
-    int c=this->precio()*this->cantidad();
+    int c= this->precio*this->cantidad;
     return (c);
 }
 
@@ -19,24 +19,27 @@ int DtComidaVendida::getCantidad() {
     return(this->cantidad);
 }
 
-DtComidaVendida::DtComidaVendida(int cantidad, string descripcion, int precioTotalCalculable, string precio) {
+DtComidaVendida::DtComidaVendida(int cantidad, string descripcion, int precio) {
     this->nombre=descripcion;
     this->precio=precio;
-    this->precioTotal=precioTotalCalculable;
     this->cantidad=cantidad;
 } 
 
 DtComidaVendida::DtComidaVendida(const DtComidaVendida& dcv) {
     this->nombre=dcv.nombre;
     this->precio=dcv.precio;
-    this->precioTotal=dcv.precioTotal;
     this->cantidad=dcv.cantidad;
+}
+
+std::ostream& operator<<(std::ostream& out, DtComidaVendida*info) {
+	info->print(out);
+	return out;
 }
 
 void DtComidaVendida::print(std::ostream& out) {
     using namespace std;
-    out << "Descripcion: " << this->getNombre() << endl;
-    out << "Precio: " << this->getPrecio() <<endl;
+    out << "Descripcion: " << this->nombre << endl;
+    out << "Precio: " << this->precio << endl;
     out << "PrecioTotal: " << this->getPrecioTotal() << endl;
-    out << "cantidad: " << this->getCantidad() << endl;
+    out << "cantidad: " << this->cantidad << endl;
 }

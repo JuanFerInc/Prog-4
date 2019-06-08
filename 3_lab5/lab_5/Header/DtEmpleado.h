@@ -17,6 +17,8 @@ public:
 //geters
 	int getNroEmpleado();
 	string getNombre();
+	friend std::ostream& operator<<(std::ostream& out, DtEmpleado*info);
+	virtual void print(std::ostream& out);
 
 };
 

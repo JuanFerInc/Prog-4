@@ -9,7 +9,7 @@ class DtComidaVendida {
 private:
 
 	string nombre;
-	int precio, precioTotal, cantidad;
+	int precio, cantidad;
 public: 
 
 	string getNombre();
@@ -17,8 +17,9 @@ public:
 	int getPrecioTotal();
 	int getCantidad();
 
-	DtComidaVendida(int cantidad,string descripcion,int  precioTotalCalculable,string precio);
-
+	DtComidaVendida(int cantidad,string descripcion,int precio);
+	void print(std::ostream& out);
+	friend std::ostream& operator<<(std::ostream& out, DtComidaVendida*info);
 };
 
 

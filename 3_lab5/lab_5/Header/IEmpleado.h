@@ -6,6 +6,7 @@
 
 using namespace std;
 
+
 class IEmpleado {
 public:
 	virtual set<int> mesasDeMozo(int nroEmpleado) = 0;
@@ -14,7 +15,6 @@ public:
 	virtual void confirmarEmpleado()=0;
 	virtual void agregarMozo(string nombre)=0;
 	virtual set<TipoTransporte> agregarDelivery(string nombre)=0;
-
 };
 
 #endif

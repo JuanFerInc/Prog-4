@@ -18,5 +18,7 @@ public:
 	//Get
 	string getCodigo() const;
 	int getCantidad() const;
+	friend std::ostream& operator<<(std::ostream& out, DtProductoMenu*info);
+	void print(std::ostream& out);
 };
 #endif

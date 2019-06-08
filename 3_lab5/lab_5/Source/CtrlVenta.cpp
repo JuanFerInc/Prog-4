@@ -162,4 +162,13 @@ set<int> CtrlVenta::mesasAsignadas(int nroEmpleado) {
 	CtrlEmpleado *ce = CtrlEmpleado::getInstance(); 
 	return ce->mesasDeMozo(nroEmpleado);
 }
+void CtrlVenta::descartarAgregado() {
+	
+}
+void CtrlVenta::liberarnroMesa() {
 
+}
+void CtrlVenta::descartarEliminacion() {
+
+
+}

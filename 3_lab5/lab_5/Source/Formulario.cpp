@@ -7,6 +7,7 @@
 #include "../Header/DtDireccion.h"
 #include "../Header/DtApartamento.h"
 
+
 using namespace std;
 //Los menus individuales tiran error x al menu posta
 void menu_admin(){
@@ -85,7 +86,7 @@ void menu_admin(){
 					cout << "Estos son los productos disponibles: " << endl;
 					for (iter = cosas.begin(); iter != cosas.end; iter++) {
 						DtProducto dt = *iter;
-						cout << dt << endl;
+						cout << &dt << endl;
 					}
 					while (!hayP) {
 						string codprod;
@@ -135,7 +136,7 @@ void menu_admin(){
 			cin >> seguro;
 			if (seguro == 'c') {
 				DtCliente clientepepe = interfazCliente->agregarCliente(tel,nombre, DtDireccion(numero,calle,ady));
-				cout << clientepepe << endl;
+				cout << &clientepepe << endl;
 			}
 			else if (seguro == 'a') {
 				cout << "Ingrese nombre del edificio colega" << endl;
@@ -143,7 +144,7 @@ void menu_admin(){
 				cout << "Ingerese el numero de apartamento" << endl;
 				cin >> eddy;
 				DtCliente clientepepe = interfazCliente->agregarCliente(tel,nombre,DtApartamento(ed, eddy, calle, ady,numero));
-				cout << clientepepe << endl;
+				cout << &clientepepe << endl;
 			}
 			else {
 				cout << "ingrese una casa o un apartamento [a/m]" << endl;
@@ -166,10 +167,29 @@ void menu_admin(){
 			while (seguir) {
 				cout << "Desea ingresar un mozo(m) o un delivery (d) " << endl;
 				cin >> seguro;
+				string x;
 				if (seguro == 'm') {
-					interfazEmpleado->agregarMozo();
+					cout << "Ingrese el nombre del mozo " << endl;
+					cin >> x;
+					interfazEmpleado->agregarMozo(x);
 				}else if  (seguro == 'd') {
-					 interfazCliente->(to be continued)
+					cout << "Ingrese el nombre del delivery" << endl;
+					cin >> x;
+					interfazEmpleado->agregarDelivery(x);
+					cout << "Los transportes disponible son: Pie (p), Bicicleta (b) o Motocicleta (m). Elija uno!" << endl;
+					cin >> seguro;
+					if (seguro == 'p') {
+						interfazEmpleado->elegirVehiculo('p');
+					}
+					else if (seguro == 'b') {
+						interfazEmpleado->elegirVehiculo('b');
+					}
+					else if (seguro== 'm') {
+						interfazEmpleado->elegirVehiculo('m');
+					} else {
+						cout << "Las opciones posibles son: Pie (p), Bicicleta (b) o Motocicleta (m)" << endl;
+						throw('x');
+					}
 				} else {
 					cout << "tigre, ingrese un mozo(m) o delivery (d)" << endl;
 					throw('x');

@@ -89,13 +89,11 @@ set<DtComidaVendida> Local::darComidas() {
 	set<VentaComida*>::iterator i;
 	set<DtComidaVendida> res;
 	for (i = comidaContenida.begin(); i != comidaContenida.end(); i++) {
-		DtComidaVendida data = (*i)->darDtComidayCantidad();
-		res.insert(data);
+		DtComidaVendida *data = (*i)->darDtComidayCantidad();
+		DtComidaVendida data2 = *data;
+		res.insert(data2);
+		delete data;
 	}
 	return res;
 }
 
-void Local::finalizarVenta(Factura* factura) {
-	this->facturado = true;
-	this->linkFactura = factura;
-}

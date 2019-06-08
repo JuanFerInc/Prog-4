@@ -13,7 +13,7 @@ DtMenu::DtMenu(const DtMenu &m):DtComida(m.getCodigo(), m.getDescripcion(), m.ge
 	
 }
 
-void DtMenu::print(std::ostream& out) {
+void DtMenu::print(std::ostream& out) {//tenes que castear a un dtmenuventa y si este no falla imprimir este tambien. tambien para producto
 	out << "El codigo es:" << this->codigo << endl;
 	out << "La descripcion es:" << this->descripcion << endl;
 	out << "El Precio Total es:" << this->precioTotal << endl;

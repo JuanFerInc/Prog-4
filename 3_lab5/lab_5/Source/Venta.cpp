@@ -24,3 +24,14 @@ Venta::Venta() {
 	facturado = false;
 }
 
+void Venta::finalizarVenta(Factura* factura) {
+	this->facturado = true;
+	this->linkFactura = factura;
+	set<VentaComida*>::iterator iter;
+
+
+
+	for (iter = comidaContenida.begin(); iter != comidaContenida.end(); iter++) {
+		(*iter)->incrementarCantidadUnidadesVendidas();
+	}
+}

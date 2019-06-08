@@ -20,7 +20,7 @@ public:
 	string getCodigo() const;
 	string getDescripcion() const;
 	int getPrecioTotal() const;
-	virtual iostream& operator<<(std::ostream& out, DtComida* dt) = 0;
+	virtual iostream& operator<<(std::ostream& out, DtComida* dt) = 0;//hay q ver 
 
 	virtual ~DtComida() = default;
 	//Contructor por copia

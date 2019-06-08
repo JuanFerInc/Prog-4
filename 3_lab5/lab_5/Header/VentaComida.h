@@ -39,5 +39,8 @@ public:
 
 	DtComidaVendida* darDtComidayCantidad();
 
+
+	void incrementarCantidadUnidadesVendidas();
+
 };
 #endif

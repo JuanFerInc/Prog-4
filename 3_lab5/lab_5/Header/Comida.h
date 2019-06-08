@@ -13,6 +13,8 @@ class Comida{
 protected:
     string descripcion;
     string codigo;
+	int cantitatUnidadesFacturadas;
+
 public:
 	//Const
 	Comida(string codigo, string descripcion);
@@ -38,6 +40,8 @@ public:
 
     virtual void darDeBajaComida() = 0;
 
+	//Franco no uses esta funcion
+	void incrementarCantidadUnidadesVendidas(int jorge);
 	virtual ~Comida() = 0;
 
 };

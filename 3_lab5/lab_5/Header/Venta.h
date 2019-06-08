@@ -43,8 +43,10 @@ public:
 	//otras
 
 	//quita VentaProducto del set y lo elmina
-	void borrarVentaComida(string codigo);
+	void borrarVentaProducto(string codigo);
+	void finalizarVenta(Factura* factura);
 
+	void borrarVentaComida(string codigo);
 	//retorna true sii la venta tiene una comida con el codigo
 	bool tieneComida(string codigo);
 

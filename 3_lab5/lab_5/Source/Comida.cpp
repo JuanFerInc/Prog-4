@@ -8,6 +8,8 @@ using namespace std;
 Comida::Comida(string codigo, string descripcion) {
 	this->descripcion = descripcion;
 	this->codigo = codigo;
+	this->cantitatUnidadesFacturadas = 0;
+
 }
 
 void Comida::setDescripcion(string desc) {
@@ -25,4 +27,8 @@ string Comida::getDescripcion() {
 
 bool Comida::sonIguales(string codigo) {
 	return codigo == this->codigo;
+}
+
+void Comida::incrementarCantidadUnidadesVendidas(int jorge) {
+	this->cantitatUnidadesFacturadas = this->cantitatUnidadesFacturadas + jorge;
 }

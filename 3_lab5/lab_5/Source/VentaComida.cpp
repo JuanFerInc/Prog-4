@@ -52,7 +52,10 @@ DtComidaVendida* VentaComida::darDtComidayCantidad() {
 	int cantidad = this->getCantidad();
 	DtComida* data = this->linkComida->darDataType();
 	int precioTotal = cantidad * data->getPrecioTotal();
-	DtComidaVendida* res = new DtComidaVendida(cantidad, data->getDescripcion(), precioTotal, data->getPrecioTotal);
+	DtComidaVendida* res = new DtComidaVendida(cantidad, data->getDescripcion(), data->getPrecioTotal);
 	return res;
 }
 
+void VentaComida::incrementarCantidadUnidadesVendidas() {
+	this->linkComida->incrementarCantidadUnidadesVendidas(this->cantidad);
+}
