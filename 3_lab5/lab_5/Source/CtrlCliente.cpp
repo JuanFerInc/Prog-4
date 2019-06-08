@@ -13,7 +13,7 @@ CtrlCliente* CtrlCliente::getInstance() {
 };
 
 set<DtEstadoTerminado> CtrlCliente::verActualizacion(string tel){
-	Cliente* cliente_pepe = this->collecionDeClientes.find(tel)->second;
+	Cliente* cliente_pepe = this->coleccionDeClientes.find(tel)->second;
 	set<DtEstadoTerminado> retorno = cliente_pepe->getActualizaciones();
 	return retorno;
 }
@@ -21,7 +21,7 @@ set<DtEstadoTerminado> CtrlCliente::verActualizacion(string tel){
 set<set<DtEstadoTerminado>> CtrlCliente::verTodasActualizaciones() {
 	map<string, Cliente*>::iterator iter;
 	set<set<DtEstadoTerminado>> res;
-	for (iter = collecionDeClientes.begin(); iter != collecionDeClientes.end(); iter++) {
+	for (iter = coleccionDeClientes.begin(); iter != coleccionDeClientes.end(); iter++) {
 
 		res.insert(	iter->second->getActualizaciones());
 	}

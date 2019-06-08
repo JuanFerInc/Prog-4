@@ -22,8 +22,11 @@ std::ostream& operator<<(std::ostream& out, DtAsignacionMesa*info) {
 
 void DtAsignacionMesa::print(std::ostream& out) {
 	using namespace std;
-	out << "Mozo: " << this->getMozo() << endl;
+	out << "Mozo: " << &this->mozo << endl;
 	out << "Mesas de un Mozo: ";
-	for()
+	set<int>::iterator iter;
+	for (iter = mesasDelMozo.begin(); iter != mesasDelMozo.end(); iter++) {
+		out << " " << (*iter) << endl;
+	}
 
 }

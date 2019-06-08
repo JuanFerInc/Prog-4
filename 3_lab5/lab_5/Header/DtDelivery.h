@@ -6,4 +6,5 @@ private:
 public:
 	//geters
 	TipoTransporte getTransporte();
+	void print(std::ostream& out);
 };

@@ -53,6 +53,7 @@ void CtrlProducto::agregarProductoMenu(string codigo, int cantidad) {
 }
 
 void CtrlProducto::aceptarAltaMenu() {
+
 	map<string, Comida*>::iterator iterComida;
 	set<DtProductoMenu>::iterator iter;
 
@@ -101,7 +102,6 @@ void CtrlProducto::aceptarAltaMenu() {
 	coleccionDeComida.insert(make_pair(codigo, c));
 	
 	infoMP.clear();
-	
 }
 
 void CtrlProducto::cancelarAltaMenu(){

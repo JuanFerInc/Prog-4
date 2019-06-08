@@ -39,7 +39,9 @@ public:
 	bool sonIguales(string codigo);
 
     virtual void darDeBajaComida() = 0;
+    
 	virtual DtComida* darDataVenta() = 0;
+
 	//Franco no uses esta funcion
 	void incrementarCantidadUnidadesVendidas(int jorge);
 	virtual ~Comida() = 0;
