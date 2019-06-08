@@ -26,7 +26,9 @@ class IProducto{
         virtual void ingresarCodigo(string codigo) =0;
         virtual void cancelarBaja() =0;
         virtual void confirmarBaja() =0;
-        virtual Comida* pedirComida(string codigo) =0;
+        virtual Comida* pedirComida(string codigo) =0;	
+		virtual bool existeComida(string codigo) = 0;
+		virtual DtComida* ingresarCodigo() = 0;
 };
 
 #endif

@@ -18,6 +18,7 @@ public:
 	int getNroEmpleado();
 	string getNombre();
 
+	DtAsignacionMesa asignarAuto();
 };
 
 

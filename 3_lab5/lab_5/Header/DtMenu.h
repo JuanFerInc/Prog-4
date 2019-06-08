@@ -6,6 +6,7 @@ private:
 	set<DtProductoVenta> productosDeMenu;
 
 public:
+	DtMenu();
 	//Contructor por copia
 	DtMenu(const DtMenu &m);
 

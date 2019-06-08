@@ -6,11 +6,12 @@
 #include <map>
 
 #include "../Header/IProducto.h"
-#include "../Header/DtProductoMenu.h"
-#include "../Header/DtProducto.h"
-#include "../Header/DtComida.h"
 #include "../Header/Menu.h"
 #include "../Header/Producto.h"
+#include "../Header/DtProductoMenu.h"
+#include "../Header/DtComida.h"
+#include "../Header/DtProducto.h"
+
 
 using namespace std;
 
@@ -30,6 +31,8 @@ private:
 
 public:
 	static CtrlProducto* getInstancie();
+	
+	
 	//Alta Producto
 
 	//retorna true sii este contiene al menos un producto
@@ -48,7 +51,7 @@ public:
 	// Se libera la memoria del sistema asociada al nuevo producto
 	//Pre: El sistema tiene los datos del nuevo producto
 	//Post: El sistema no tiene los datos del unevo producto
-	void cancelarAltaProducto() = 0;
+	void cancelarAltaProducto();
 
 	//Ingresa los datos del nuevo menu que se ingresa al sistema
 	//Pre: No existe instancia de menu con el mismo codigo en el sistema
@@ -80,6 +83,15 @@ public:
 	void cancelarBaja();
 	void confirmarBaja();
 	Comida *pedirComida(string codigo);
+
+	//Informacion de un producto
+
+	//retorna true si existe la comida
+	bool existeComida(string codigo);
+	
+	//retorna un DtMenuVentas o un DtProductoVentas que contiene la cantidad de comidas que se vendieron
+	//el nombre de la funcion esta mal, tenemos que arreglar
+	DtComida* ingresarCodigo();
 };
 
-#endif
+#endif,

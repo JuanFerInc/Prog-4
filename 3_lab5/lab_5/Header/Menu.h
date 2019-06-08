@@ -13,14 +13,22 @@ public:
 
 	//geters
 	int getPrecio();
+
 	set<MenuProducto*> getProductosContenidos();
+
 	int getPrecio();
+
 	//otra
 	void asociarmeAMenuProducto(MenuProducto *mp);
 
 	DtMenu* darDataType();
+
 	bool desvincularM(MenuProducto *mp);
+
 	void darDeBajaComida();
+
+	DtComida* darDataVenta();
+
 };
 
 #include "../Header/MenuProducto.h"

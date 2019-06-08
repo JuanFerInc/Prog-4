@@ -2,9 +2,11 @@
 
 Menu::Menu(string nombre, string descripcion):Comida(nombre,descripcion) {
 }
+
 set<MenuProducto* > Menu::getProductosContenidos() {
 	return this->productosContenidos;
 }
+
 int Menu::getPrecio() {
 	set<MenuProducto*>::iterator iter;
 	int total = 0;
@@ -56,4 +58,8 @@ bool Menu::desvincularM(MenuProducto *mp) {
 
 	return productosContenidos.empty();
 	
+}
+
+DtComida *Menu::darDataVenta() {
+
 }
