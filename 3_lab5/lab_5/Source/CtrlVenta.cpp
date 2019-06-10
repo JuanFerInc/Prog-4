@@ -115,7 +115,7 @@ void CtrlVenta::incrementarCantidad() {
 
 void CtrlVenta::agregarPorPrimeraVez() {
 	CtrlProducto* cp;
-	cp->getInstancie();
+	cp->getInstance();
 	Comida* c = cp->pedirComida(codigo);
 	map<int, Mesa*>::iterator i;
 	i = coleccionDeMesa.find(nroMesa);
@@ -170,8 +170,6 @@ void CtrlVenta::liberarnroMesa() {
 }
 void CtrlVenta::descartarEliminacion() {
 
-
-
 }
 DtFacturaResumen CtrlVenta::resumenDelDia(int d, int m, int a) {
 	map<string, Venta*>::iterator iter;
@@ -190,5 +188,75 @@ DtFacturaResumen CtrlVenta::resumenDelDia(int d, int m, int a) {
 		}
 	}
 
+}
+
+//Venta a Domicilio
+
+bool CtrlVenta::iniciarVentaADomicilio(string tel) {
+	this->retiraEnElLocal = true;
+	CtrlCliente* c = CtrlCliente::getInstance();
+	bool ( c->existeCliente(tel) );
+}
+
+void CtrlVenta::seleccionarComida2(string codigo, int cantidad) {
+	DtProductoMenu c = DtProductoMenu(codigo, cantidad);
+	this->coleccionProductosADomicilio.insert(c);
+}
+
+set<DtDelivery> CtrlVenta::listarRepartidores() {
+	CtrlEmpleado* c = CtrlEmpleado::getInstance();
+	return c->darRepartidores();
+}
+
+void CtrlVenta::seleccionarRepartidor(int nroEmpleado) {
+	this->retiraEnElLocal = false;
+	this->nroEmpleado = nroEmpleado;
+}
+
+void CtrlVenta::cancelarVentaADomicilio() {
+	this->coleccionProductosADomicilio.clear();
+}
+
+void CtrlVenta::confirmarVentaADomicilio() {
+	CtrlCliente* ctrlC = CtrlCliente::getInstance();
+	Cliente* cl = ctrlC->pedirCliente();
+	Domicilio* dom;
+	set<VentaComida*> comidaCont;
+	set<DtProductoMenu>::iterator i;
+	CtrlProducto* ctrlP = CtrlProducto::getInstance();
+	int subtot = 0;
+
+	for (i = coleccionProductosADomicilio.begin(); i != coleccionProductosADomicilio.end(); i++) {
+		string cod = i->getCodigo();
+		int cant = i->getCantidad();
+		Comida* com = ctrlP->pedirComida(cod);
+		VentaComida* vc = new VentaComida(com, cant);
+		subtot = subtot + vc->darPrecio();
+		comidaCont.insert(vc);
+	}
+	if (retiraEnElLocal) {
+		Recibido* recibido = Recibido::getInstance();
+		dom = new Domicilio(cl, recibido, to_string(nroVenta) ,comidaCont,subtot,NULL);
+	}
+	else {
+		Pedido* pedido = Pedido::getInstance();
+		CtrlEmpleado* ctrlE = CtrlEmpleado::getInstance();
+		Delivery* del = ctrlE->pedirDelivery();
+		dom = new Domicilio(cl, pedido, to_string(nroVenta), comidaCont, subtot, del);
+	}
+	Venta* res = dom;
+	coleccionDeVenta.insert(make_pair(to_string(nroVenta),res));
+	nroVenta = nroVenta + 1;
+	coleccionProductosADomicilio.clear();
+}
+
+DtFacturaDomicilio CtrlVenta::facturarVentaADomicilio(int descuento) {
+	map<string, Venta*>::iterator i;
+	i = coleccionDeVenta.find(to_string(nroVenta));
+	Venta* re = i->second;
+	Domicilio* dom = dynamic_cast<Domicilio*> (re);
+	Factura* fact = dom->crearFactura(descuento);
+	DtDelivery dt = dom->darDtDelivery();
+	return fact->darDtFacturaDomicilio(dt);
 
 }

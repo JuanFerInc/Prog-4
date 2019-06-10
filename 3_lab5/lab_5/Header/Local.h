@@ -4,8 +4,9 @@
 class Local :public Venta {
 private:
 	map<int, Mesa> setsito;
+	Mozo* linkMozo;
 public:
-	Local(map<int,Mesa>);
+	Local(map<int,Mesa>, Mozo* mozo);
 	
 	bool hayComidaEnVenta(string codigo);
 	set<DtComida> productosEnVenta();

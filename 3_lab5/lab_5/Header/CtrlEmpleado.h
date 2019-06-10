@@ -9,6 +9,9 @@
 #include "../Header/IEmpleado.h"
 #include "../Header/TipoTransporte.h"
 #include  "../Header/DtAsignacionMesa.h"
+#include "../Header/DtDelivery.h"
+#include "../Header/Delivery.h"
+
 
 
 using namespace std;
@@ -20,6 +23,7 @@ private:
 	map<int, Empleado*> coleccionDeEmpleado;
 	
 	string nombreEmpleado;
+	int nroEmpleado;
 	int genNroEmpleados;
 	bool esMozo;
 	TipoTransporte tipoTransporteEmpleado;
@@ -39,8 +43,11 @@ public:
 	void elegirVehiculo(TipoTransporte vehiculo);
 	void cancelarEmpleado();
 	void confirmarEmpleado();
-
+	
 	set<DtAsignacionMesa> asignarAuto();
+	//Venta a Domicilio
+	set<DtDelivery> darRepartidores();
+	Delivery* pedirDelivery();
 
 };
 #endif

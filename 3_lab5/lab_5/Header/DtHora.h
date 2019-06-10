@@ -25,6 +25,5 @@ public:
 	friend ostream& operator<<(ostream& out, DtHora*info);
 	bool operator<(const DtHora& a);
 	DtHora operator=(const DtHora& a);
-	friend std::ostream& operator<<(std::ostream& out, DtHora*info);
 };
 #endif

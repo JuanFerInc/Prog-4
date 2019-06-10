@@ -7,9 +7,8 @@
 
 
 #include "../Header/Factura.h"
-
-
 #include "../Header/VentaComida.h"
+#include "../Header/CtrlVenta.h"
 
 
 using namespace std;
@@ -26,6 +25,7 @@ protected:
 
 public:
 	Venta();
+	Venta(string nroVenta, set<VentaComida*> comidaContenida,int subtotal);
 //setters
 	void setNroVenta(string nroVenta);
 	static void setIVA(int iva);
@@ -44,12 +44,15 @@ public:
 
 	//quita VentaProducto del set y lo elmina
 	void borrarVentaProducto(string codigo);
+
+	//Asocia la venta con una factura
 	void finalizarVenta(Factura* factura);
 
 	void borrarVentaComida(string codigo);
 	//retorna true sii la venta tiene una comida con el codigo
 	bool tieneComida(string codigo);
 
+	virtual ~Venta() = 0;
 };
 
 

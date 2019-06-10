@@ -103,6 +103,7 @@ void CtrlProducto::aceptarAltaMenu() {
 	infoMP.clear();
 }
 
+
 void CtrlProducto::cancelarAltaMenu(){
 	this->infoMP.clear();
 }

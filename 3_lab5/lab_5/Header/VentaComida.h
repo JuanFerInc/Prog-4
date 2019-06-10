@@ -41,6 +41,8 @@ public:
 
 
 	void incrementarCantidadUnidadesVendidas();
+	//Venta a Domicilio
+	int darPrecio();
 
 };
 #endif

@@ -29,4 +29,29 @@ set<set<DtEstadoTerminado>> CtrlCliente::verTodasActualizaciones() {
 	return res;
 }
 
+//Venta a Domicilio
+bool CtrlCliente::existeCliente(string telefono) {
+	this->telefono = telefono;
+	map<string, Cliente*>::iterator i;
+	i = coleccionDeClientes.find(telefono);
+	if (i != coleccionDeClientes.end()) {
+		return true;
+	}
+	else {
+		return false;
+	}
+}
+
+Cliente* CtrlCliente::pedirCliente() {
+	map<string, Cliente*>::iterator i;
+	i = coleccionDeClientes.find(telefono);
+	return i->second;
+}
+
+Cliente* CtrlCliente::pedirCliente(string telefono) {
+	map<string, Cliente*>::iterator i;
+	i = coleccionDeClientes.find(telefono);
+	return i->second;
+}
+
 

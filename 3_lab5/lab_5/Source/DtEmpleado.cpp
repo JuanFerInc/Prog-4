@@ -1,21 +1,14 @@
-#include "../header/DtEmpleado.h"
-#include <string>
+#include "../Header/DtEmpleado.h"
 
-int DtEmpleado::getNroEmpleado() { 
-	return (this->nroEmpleado);
+DtEmpleado::DtEmpleado(string nombre, int nroEmp) {
+	this->nombre = nombre;
+	this->nroEmpleado = nroEmp;
 }
 
-string DtEmpleado::getNombre() {
-	return (this->nombre);
+int DtEmpleado::getNroEmpleado() const{
+	return this->nroEmpleado;
 }
 
-std::ostream& operator<<(std::ostream& out, DtEmpleado*info) {
-	info->print(out);
-	return out;
-}
-
-void DtEmpleado::print(std::ostream& out) {
-	using namespace std;
-	out << "numero de empleado: " << this->nroEmpleado << endl;
-	out << "nombre: " << this->nombre << endl;
+string DtEmpleado::getNombre() const {
+	return this->nombre;
 }

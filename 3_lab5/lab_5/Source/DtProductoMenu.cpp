@@ -1,26 +1,24 @@
 #include "../Header/DtProductoMenu.h"
-#include <string>
 
 DtProductoMenu::DtProductoMenu(const DtProductoMenu &dt) {
 	this->cantidad = dt.cantidad;
 	this->codigo = dt.codigo;
 }
 
+
 int DtProductoMenu::getCantidad() const {
+	return this->cantidad;
+
+DtProductoMenu::DtProductoMenu(string codigo, int cantidad) {
+	this->cantidad = cantidad;
+	this->codigo = codigo;
+
+}
+
+int DtProductoMenu::getCantidad() {
 	return this->cantidad;
 }
 
-string DtProductoMenu::getCodigo() const {
+string DtProductoMenu::getCodigo() {
 	return this->codigo;
-}
-
-std::ostream& operator<<(std::ostream& out, DtProductoMenu*info) {
-	info->print(out);
-	return out;
-}
-void DtProductoMenu::print(std::ostream& out) {
-	using namespace std;
-	out << "codigo: " << this->codigo << endl;
-	out << "cantidad: " << this->cantidad << endl;
-
 }

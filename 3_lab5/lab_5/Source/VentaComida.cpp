@@ -59,3 +59,11 @@ DtComidaVendida* VentaComida::darDtComidayCantidad() {
 void VentaComida::incrementarCantidadUnidadesVendidas() {
 	this->linkComida->incrementarCantidadUnidadesVendidas(this->cantidad);
 }
+
+//Venta a Domicilio
+
+int VentaComida::darPrecio() {
+	int p = this->linkComida->getPrecio();
+	int cant = this->cantidad;
+	return cant * p;
+}

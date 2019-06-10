@@ -30,9 +30,9 @@ private:
 	CtrlProducto();
 
 public:
-	static CtrlProducto* getInstancie();
-	
-	
+
+	static CtrlProducto* getInstance();
+
 	//Alta Producto
 
 	//retorna true sii este contiene al menos un producto
@@ -82,6 +82,7 @@ public:
 	void ingresarCodigo(string codigo);
 	void cancelarBaja();
 	void confirmarBaja();
+
 	Comida *pedirComida(string codigo);
 
 	//Informacion de un producto
@@ -92,6 +93,7 @@ public:
 	//retorna un DtMenuVentas o un DtProductoVentas que contiene la cantidad de comidas que se vendieron
 	//el nombre de la funcion esta mal, tenemos que arreglar
 	DtComida* ingresarCodigo();
+
 };
 
 #endif,

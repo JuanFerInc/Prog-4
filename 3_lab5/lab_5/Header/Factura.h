@@ -16,19 +16,18 @@ class Factura {
 private:
     DtFecha fecha;
     DtHora hora;
-    int descuento
-    DtComidaVendida comidaEnFactura;            
+	int descuento;
+    set<DtComida> comidaEnFactura;            
     string nroFactura;
     int subtotal;
-    string nombreMozo;
 public:
-	Factura(int descuento, set<DtComidaVendida> sc, string nv, string nombre);
+	Factura(int descuento, set<DtComidaVendida> sc, string nv);
     
     //Geters
     DtFecha getFecha();
     DtHora getHora();
     int getDescuento();
-    set<DtComidaVendida> getComidaEnFactura();            
+    set<DtComida> getComidaEnFactura();            
     string getNroFactura();
     int getSubtotal();
     string getNombreMozo();

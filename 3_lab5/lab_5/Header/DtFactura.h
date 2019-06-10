@@ -13,7 +13,7 @@ using namespace std;
 class DtFactura {
 private:
 
-	string codigo;
+	string codigo;			//Es el nroVenta
 	DtFecha fecha;
 	DtHora hora;
 	set<DtComida> comidaVendida;
@@ -22,6 +22,7 @@ private:
 
 public: 
 	DtFactura(const DtFactura &dtf);
+	DtFactura(string nroFactura, DtFecha fecha, DtHora hora, set<DtComida> comidaVendida, float subtotal, float montoTotal, float montoTotalIVA, int descuento);
 	string getCodigo();
 	DtFecha getFecha();
 	DtHora getHora();
@@ -30,8 +31,7 @@ public:
 	float getmontoTotal();
 	float getSubtotalIVA();
 	int getDescuento();
-	virtual void print(std::ostream& out);
-	friend std::ostream& operator<<(std::ostream& out, DtFactura*info);
+
 };
 
 
