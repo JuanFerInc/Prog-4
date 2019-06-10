@@ -1,5 +1,21 @@
 #include "../Header/Venta.h"
 
+
+Venta::Venta() {
+	linkFactura = NULL;
+	int subtotal = 0;
+	facturado = false;
+}
+
+Venta::Venta(string nroVenta, set<VentaComida*> comidaContenida, int subtotal) {
+	linkFactura = NULL;
+	int subtotal = subtotal;
+	facturado = false;
+	this->comidaContenida = comidaContenida;
+	this->nroVenta = nroVenta;
+}
+
+
 void Venta::borrarVentaComida(string codigo) {
 	set<VentaComida*>::iterator iter;
 	
@@ -18,11 +34,6 @@ void Venta::borrarVentaComida(string codigo) {
 	}
 }
 
-Venta::Venta() {
-	linkFactura = NULL;
-	int subtotal = 0;
-	facturado = false;
-}
 
 void Venta::finalizarVenta(Factura* factura) {
 	this->facturado = true;

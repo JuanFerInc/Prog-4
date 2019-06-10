@@ -1,6 +1,3 @@
-#ifndef DTFACTURADOMICILIO_H
-#define DTFACTURADOMICILIO_H
-
 #include "../Header/DtFactura.h"
 #include "../Header/DtDelivery.h"
 
@@ -8,9 +5,7 @@ class DtFacturaDomicilio : public DtFactura {
 private:
 	DtDelivery delivery;
 public:
+	DtFacturaDomicilio(DtDelivery delivery, string nroFactura, DtFecha fecha, DtHora hora, set<DtComida> comidaVendida , float subtotal , float montoTotal, float montoTotalIVA, int descuento);
 	DtDelivery getDelivery();
-	void print(std::ostream& out);
 
 };
-
-#endif

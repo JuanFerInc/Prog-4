@@ -10,9 +10,8 @@ DtProducto::DtProducto(const DtProducto& producto) :DtComida(producto.getCodigo(
 DtProducto::DtProducto(string codigo, string descripcion, int precioTotal) :DtComida(codigo, descripcion, precioTotal) {
 }
 
-void DtProducto::print(std::ostream& out) {
-	using namespace std;
-	out << "Codigo: " << this->codigo << endl;
-	out << "descripcion: " << this->descripcion << endl;
-	out << "precio total " << this->precioTotal << endl;
+void DtProducto::operator<<(ostream& out) {
+	out << "El codigo es:" << this->codigo << endl;
+	out << "La descripcion es:" << this->descripcion << endl;
+	out << "El Precio Total es:" << this->precioTotal << endl;
 }

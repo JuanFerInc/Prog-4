@@ -27,9 +27,10 @@ set<DtComidaVendida> DtEstadoTerminado::getComidasVendidas() {
 }
 //impresion
 void DtEstadoTerminado::print(ostream& out){
-	out << "Etapa actual" << this->getEtapaActual() << endl;
+	out << "sdasd" << this->getEtapaActual() << endl;
 	out << "El nombre es:" << this->nombre << endl;
 	out << "El telefono es:" << this->telefono << endl;
-	out << "La hora es:" << &this->hora << endl;
+	out << "La hora es:" << this->hora.getHora() << endl;
+	out << "Los minutos son:" << this->hora.getMinuto() << endl;
 	
 }

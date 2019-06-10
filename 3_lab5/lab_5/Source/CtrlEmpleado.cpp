@@ -71,3 +71,29 @@ void CtrlEmpleado::confirmarEmpleado() {
 	
 	this->genNroEmpleados++;
 }
+
+//Venta a Domicilio
+set<DtDelivery> CtrlEmpleado::darRepartidores() {
+	map<int, Empleado*>::iterator i;
+	set<DtDelivery> res;
+	for (i = coleccionDeEmpleado.begin(); i != coleccionDeEmpleado.end(); i++) {
+		Empleado* c = i->second;
+		Delivery* re = dynamic_cast<Delivery*> (c);
+		if (re != NULL) {
+			res.insert(re->darDtDelivery());
+		}
+	}
+}
+
+Delivery* CtrlEmpleado::pedirDelivery() {
+	map<int, Empleado*>::iterator i;
+	i = coleccionDeEmpleado.find(nroEmpleado);
+	Empleado* re = i->second;
+	Delivery* res = dynamic_cast<Delivery*> (re);
+	if (res != NULL) {
+		return res;
+	}
+	else {
+		throw (5);
+	}
+}

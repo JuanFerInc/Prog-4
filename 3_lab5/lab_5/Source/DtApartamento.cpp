@@ -15,13 +15,15 @@ DtApartamento::DtApartamento (const DtApartamento &apart) {
 	this->numeroApartamento = apart.numeroApartamento;
 }
 
+std::ostream& operator<<(std::ostream& out, DtApartamento*info) {
+	info->print(out);
+	return out;
+}
+
 void DtApartamento::print(std::ostream& out) {
 	using namespace std;
-	out << "nombre calle: " << this->getNombreCalle << endl;
-	out << "numero: " << this->getNumero << endl;
-	out << "calle adyacente: " << this->getCalleAdyacente << endl;
-	out << "Edificio: " << this->nombreEdificio << endl;
-	out << "Apartamento: " << this->numeroApartamento << endl;
+	out << "Edificio: " << this->getNombreEdificio() << endl;
+	out << "Apartamento: " << this->getNumeroApartamento() << endl;
 	
 }
 

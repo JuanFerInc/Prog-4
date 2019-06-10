@@ -8,6 +8,8 @@
 #include "../Header/Empleado.h"
 #include "../Header/IEmpleado.h"
 #include "../Header/TipoTransporte.h"
+#include "../Header/DtDelivery.h"
+#include "../Header/Delivery.h"
 
 
 using namespace std;
@@ -20,6 +22,7 @@ private:
 	
 	
 	string nombreEmpleado;
+	int nroEmpleado;
 	int genNroEmpleados;
 	bool esMozo;
 	TipoTransporte tipoTransporteEmpleado;
@@ -39,6 +42,10 @@ public:
 	void elegirVehiculo(TipoTransporte vehiculo);
 	void cancelarEmpleado();
 	void confirmarEmpleado();
+
+	//Venta a Domicilio
+	set<DtDelivery> darRepartidores();
+	Delivery* pedirDelivery();
 	
 };
 #endif

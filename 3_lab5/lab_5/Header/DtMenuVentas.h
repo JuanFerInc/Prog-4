@@ -6,6 +6,6 @@ private:
 public:
 	DtMenuVentas(int cantidad, DtProducto dataproducto);
 	int getCantidad();
-	void print(std::ostream& out);
+
 
 };

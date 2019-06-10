@@ -29,7 +29,7 @@ private:
 	CtrlProducto();
 
 public:
-	static CtrlProducto* getInstancie();
+	static CtrlProducto* getInstance();
 	//Alta Producto
 
 	//retorna true sii este contiene al menos un producto
@@ -79,7 +79,7 @@ public:
 	void ingresarCodigo(string codigo);
 	void cancelarBaja();
 	void confirmarBaja();
-	Comida *pedirComida(string codigo);
+	Comida* pedirComida(string codigo);
 };
 
 #endif

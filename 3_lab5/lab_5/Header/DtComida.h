@@ -20,8 +20,8 @@ public:
 	string getCodigo() const;
 	string getDescripcion() const;
 	int getPrecioTotal() const;
-	friend std::ostream& operator<<(std::ostream& out, DtComida* info);
-	virtual void print(std::ostream& out);
+	virtual iostream& operator<<(std::ostream& out, DtComida* dt) = 0;
+
 	virtual ~DtComida() = default;
 	//Contructor por copia
 	DtComida(const DtComida &comida);
