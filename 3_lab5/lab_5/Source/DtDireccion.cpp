@@ -7,6 +7,7 @@ DtDireccion::DtDireccion(string numero, string calle, string calleAdyacente) {
 	this->numero = numero;
 }
 
+
 DtDireccion::DtDireccion(const DtDireccion &direccion) {
 	this->nombreCalle = direccion.nombreCalle;
 	this->numero = direccion.numero;

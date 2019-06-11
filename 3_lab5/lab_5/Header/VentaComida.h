@@ -45,5 +45,7 @@ public:
 	int darPrecio();
 	DtComidaVendida pedirDatatypeDtComidaVendida();
 
+	string darCodigoDeComida();
+
 };
 #endif

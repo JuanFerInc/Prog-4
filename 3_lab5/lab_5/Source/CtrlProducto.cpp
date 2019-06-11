@@ -1,8 +1,12 @@
 #include "../Header/CtrlProducto.h"
 #include "../Header/CtrlVenta.h"
 
-CtrlProducto*CtrlProducto::getInstancie() {
-}
+
+CtrlProducto*CtrlProducto::getInstance() {
+	if (instance == NULL) {
+		instance = new CtrlProducto();
+
+	}
 
 
 CtrlProducto::CtrlProducto(){
@@ -183,7 +187,8 @@ bool CtrlProducto::existeComida(string codigo) {
 	}
 }
 
-DtComida* CtrlProducto::ingresarCodigo(){
+
+DtComida* CtrlProducto::ingresarCodigoParaInfo(){
 	map<string, Comida*>::iterator iter;
 	iter = coleccionDeComida.find(this->codigo);
 	DtComida* res = iter->second->darDataVenta();

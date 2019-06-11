@@ -17,7 +17,8 @@ private:
 	string telefono;
 	DtDireccion direccion;
 
-	set<Domicilio*> comprasHechas;
+
+	set<Domicilio*> comprasHechas;	//para que?
 	set<DtEstadoTerminado> actualizaciones;
 
 public:

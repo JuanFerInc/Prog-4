@@ -5,6 +5,11 @@ DtProductoMenu::DtProductoMenu(const DtProductoMenu &dt) {
 	this->codigo = dt.codigo;
 }
 
+
+
+int DtProductoMenu::getCantidad() const {
+	return this->cantidad;
+
 DtProductoMenu::DtProductoMenu(string codigo, int cantidad) {
 	this->cantidad = cantidad;
 	this->codigo = codigo;

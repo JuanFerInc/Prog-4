@@ -169,7 +169,4 @@ Delivery* CtrlEmpleado::pedirDelivery() {
 	}
 }
 
-void CtrlEmpleado::seleccionarRepartidor(string nroEmpleado) {
-	this->nroEmpleado = nroEmpleado;
-}
 

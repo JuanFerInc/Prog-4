@@ -25,7 +25,8 @@ protected:
 
 public:
 	Venta();
-	Venta(string nroVenta, set<VentaComida*> comidaContenida,int subtotal);
+
+	Venta(string nroVenta, set<VentaComida*> comidaContenida,int subtotal); //? no se usa en ningun lado
 //setters
 	void setNroVenta(string nroVenta);
 	static void setIVA(int iva);

@@ -5,7 +5,7 @@
 #include "../Header/Comida.h"
 #include "../Header/DtComida.h"
 #include "../Header/Local.h"
-#include "../Header/DtFactura.h"
+#include "../Header/DtFacturaLocal.h"
 #include "../Header/Mozo.h"
 
 
@@ -26,7 +26,7 @@ public:
 
 //geters
 	int getNroMesa();
-
+	Mozo* getMozo();
 //Otras
 	bool hayComidaEnMesa(string codigo);
 	void aumentarCantidadComidaEnMesa(string codigo, int cantidad);
@@ -35,7 +35,7 @@ public:
 	bool cantEsMayorEnMesa(string codigo, int cantidad);
 	void decrementarCantidadEnMesaDeComida(string codigo, int cantidad);
 	void eliminarComidaDeMesa(string codigo);
-	DtFactura facturar(int descuento);
+	DtFacturaLocal facturar(int descuento);
 	
 };
 #endif

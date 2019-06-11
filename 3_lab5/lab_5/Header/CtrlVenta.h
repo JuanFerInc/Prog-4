@@ -31,11 +31,14 @@ class CtrlVenta: public IVenta {
 private:
 	static CtrlVenta* instancia;
 	string codigo, nroEmpleado;
-	int nroMesa, cantidad, nroVenta;
-	set<int> Mesas;										//Wtf is this (manuel)
+
+	int nroMesa, cantidad, nroVenta,genNroVenta;
+	map<int, Mesa*> coleccionDeMesa;
+	set<int> Mesas;		
+	
 	map<string, DtComida> Comidas;
 	map<string, Venta*> coleccionDeVenta;
-	map<int, Mesa*> coleccionDeMesa;
+
 	set<DtProductoMenu> coleccionProductosADomicilio;
 	bool retiraEnElLocal;
 	CtrlVenta();
@@ -64,10 +67,19 @@ public:
 	set<int> mostrarMesasSeleccionadas();
 	void descartarVentasEnMesa();
 	set<int> mesasAsignadas(int nroEmpleado);
+
 	void confirmarVentaEnMesas();
 	DtFactura generarFactura(int nromesa, int descuento);
+	//Cancela el pedido a domicilio
 	void cancelarPedido(int nroVenta);
-	void ultimasActualizaciones();
+
+	//Retorna un DtFacturaResumen que contiene el total de sumar todas las
+	//facturas de ese dia y las facturas de ese dia
+	DtFacturaResumen resumenDelDia(int d, int m, int a);
+
+
+	//retorna un puter a coleccion de mesa
+	map<int, Mesa*> *getColeccionDeMesa();
 
 	//Retorna un DtFacturaResumen que contiene el total de sumar todas las
 	//facturas de ese dia y las facturas de ese dia

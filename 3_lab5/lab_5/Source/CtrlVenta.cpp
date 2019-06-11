@@ -5,7 +5,9 @@
 
 
 using namespace std;
-
+CtrlVenta::CtrlVenta() {
+	genNroVenta = 0;
+}
 CtrlVenta* CtrlVenta::getInstance() {
 	if (instancia == NULL) {
 		instancia = new CtrlVenta();
@@ -236,17 +238,19 @@ void CtrlVenta::confirmarVentaADomicilio() {
 	}
 	if (retiraEnElLocal) {
 		Recibido* recibido = Recibido::getInstance();
-		dom = new Domicilio(cl, recibido, to_string(nroVenta) ,comidaCont,subtot,NULL);
+		dom = new Domicilio(cl, recibido, to_string(genNroVenta) ,comidaCont,subtot,NULL);
 	}
 	else {
 		Pedido* pedido = Pedido::getInstance();
 		CtrlEmpleado* ctrlE = CtrlEmpleado::getInstance();
 		Delivery* del = ctrlE->pedirDelivery();
-		dom = new Domicilio(cl, pedido, to_string(nroVenta), comidaCont, subtot, del);
+		dom = new Domicilio(cl, pedido, to_string(genNroVenta), comidaCont, subtot, del);
 	}
 	Venta* res = dom;
-	coleccionDeVenta.insert(make_pair(to_string(nroVenta),res));
-	nroVenta = nroVenta + 1;
+	coleccionDeVenta.insert(make_pair(to_string(genNroVenta),res));
+	nroVenta = genNroVenta;//
+	genNroVenta = genNroVenta + 1;
+	
 	coleccionProductosADomicilio.clear();
 }
 
@@ -269,4 +273,32 @@ DtFactura CtrlVenta::facturarVentaADomicilioSinDelivery(int descuento) {
 	Domicilio* dom = dynamic_cast<Domicilio*> (re);
 	Factura* fact = dom->crearFactura(descuento);
 	return fact->darDtFacturaDomicilioSinDelivery();
+
 }
+
+void CtrlVenta::confirmarVentaEnMesas() {
+	set<int>::iterator iterNroMesa;
+	map<int, Mesa*>mesasParaAsociar;
+	map<int, Mesa*>::iterator iterMesa;
+
+	for (iterNroMesa = Mesas.begin(); iterNroMesa != Mesas.end(); iterNroMesa++) {
+		iterMesa = coleccionDeMesa.find(*iterNroMesa);
+		mesasParaAsociar.insert(make_pair(iterMesa->first, iterMesa->second));
+	}
+
+	iterMesa = coleccionDeMesa.begin();
+
+	Mozo *m = iterMesa->second->getMozo();
+	Venta *v = new Local(mesasParaAsociar,to_string(genNroVenta),m);
+	genNroVenta++;
+
+	coleccionDeVenta.insert(make_pair(v->getNroVenta(),v));
+}
+
+//obtengo venta
+//si es venta local tiro error
+//sino cancelo venta de domicilio
+void cancelarPedido(int nroVenta);
+
+
+

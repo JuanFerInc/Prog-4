@@ -6,8 +6,9 @@ private:
 	map<int, Mesa> setsito;
 	Mozo* linkMozo;
 public:
-	Local(map<int,Mesa>, Mozo* mozo);
+	Local(map<int,Mesa*> mesas, Mozo *mozo, string nroVenta);
 	
+
 	bool hayComidaEnVenta(string codigo);
 	set<DtComida> productosEnVenta();
 	bool cantEsMayor(string codigo, int cantidad);
