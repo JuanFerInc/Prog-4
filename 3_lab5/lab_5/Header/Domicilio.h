@@ -12,11 +12,9 @@ private:
 	Delivery* linkDelivery;
 public:
 	Domicilio(Cliente* cliente, Estado* estado, string nroVenta, set<VentaComida*> comidaContenida, int subtotal, Delivery* delivery);
-	void agregar(IObserver* observer);
-	void eliminar(IObserver* observer);
 	void cancelarPedido();
 	void siguienteEstado();
-	DtEstadoTerminado darDatatypeTermnado(DtEstado estado);
+	DtEstadoTerminado darDatatypeTerminado(DtEstado estado);
 	Factura* crearFactura(int descuento);
 	DtDelivery darDtDelivery();
 

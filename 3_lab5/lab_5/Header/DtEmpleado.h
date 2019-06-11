@@ -9,16 +9,17 @@ using namespace std;
 
 class DtEmpleado {
 private:
-
 	int nroEmpleado;
 	string nombre;
 
 public:
+	DtEmpleado();
 	DtEmpleado(string nombre, int nroEmp);
 //geters
 	int getNroEmpleado() const;
 	string getNombre() const;
 
+	//DtAsignacionMesa asignarAuto();
 };
 
 

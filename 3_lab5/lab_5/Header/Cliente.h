@@ -5,24 +5,29 @@
 
 #include "../Header/IObserver.h"
 #include "../Header/DtDireccion.h"
-#include "../Header/Domicilio.h"
+
 #include "../Header/DtEstadoTerminado.h"
 
 
 using namespace std;
-
+class Domicilio;
 class Cliente : public IObserver {
 private:
-	set<Domicilio*> comprasHechas;
+	string nombre;
 	string telefono;
 	DtDireccion direccion;
+
+	set<Domicilio*> comprasHechas;
 	set<DtEstadoTerminado> actualizaciones;
 
 public:
+	Cliente(string nombre,string telefono, DtDireccion direccion);
+
 //seters
 	void setTelefono(string tel);
 	void setDireccion(DtDireccion dir);
 //geters
+	string getNombre();
 	string getTelefono();
 	DtDireccion getDireccion();
 	set<DtEstadoTerminado> getActualizaciones();
@@ -30,4 +35,5 @@ public:
 //Otras
 	void notificar(DtEstadoTerminado data);
 };
+#include "../Header/Domicilio.h"
 #endif

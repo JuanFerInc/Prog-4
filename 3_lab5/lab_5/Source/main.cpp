@@ -2,10 +2,16 @@
 #include <string>
 #include <set>
 
+#include"../Header/CtrlProducto.h"
+
 using namespace std;
 
-main(){
+int main(){
+	
+
+
 	system("pause");
+
 
 
 

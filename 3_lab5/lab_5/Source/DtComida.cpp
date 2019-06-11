@@ -31,3 +31,15 @@ DtComida::DtComida(string codigo, string descripcion, int precioTotal) {
 
 }
 
+
+std::ostream& operator<<(std::ostream& out, DtComida*info) {
+	info->print(out);
+	return out;
+}
+
+void DtComida::print(std::ostream& out) {
+	using namespace std;
+	out << "Codigo: " << this->codigo << endl;
+	out << "descripcion: " << this->descripcion << endl;
+	out << "precio total " << this->precioTotal << endl;
+}

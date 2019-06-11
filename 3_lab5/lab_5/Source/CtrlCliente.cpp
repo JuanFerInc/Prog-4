@@ -54,4 +54,17 @@ Cliente* CtrlCliente::pedirCliente(string telefono) {
 	return i->second;
 }
 
+DtCliente CtrlCliente::agregarCliente(string telefono, string nombre, DtDireccion dirrecion) {
+	this->telefono = telefono;
+	this->nombre = nombre;
+	this->direccion = direccion;
+}
 
+void CtrlCliente::cancelarCliente() {
+}
+void CtrlCliente::aceptarCliente() {
+	Cliente *cliente = new Cliente(this->nombre, this->telefono, this->direccion);
+
+	coleccionDeClientes.insert(make_pair(this->telefono, cliente));
+
+}

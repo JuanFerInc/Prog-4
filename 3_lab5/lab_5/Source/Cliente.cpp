@@ -1,5 +1,10 @@
 #include "../Header/Cliente.h"
 
+Cliente::Cliente(string nombre, string telefono, DtDireccion direccion) {
+	this->nombre = nombre;
+	this->telefono = telefono;
+	this->direccion = direccion;
+}
 //setters
 void Cliente::setTelefono(string tel) {
     this->telefono = tel;

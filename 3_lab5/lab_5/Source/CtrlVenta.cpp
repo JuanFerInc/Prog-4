@@ -170,6 +170,23 @@ void CtrlVenta::liberarnroMesa() {
 }
 void CtrlVenta::descartarEliminacion() {
 
+}
+DtFacturaResumen CtrlVenta::resumenDelDia(int d, int m, int a) {
+	map<string, Venta*>::iterator iter;
+	set<DtFactura> facturas;
+	Factura* aux;
+	DtFecha pepe(d, m, a);
+	int total = 0;
+	for (iter = coleccionDeVenta.begin(); iter != coleccionDeVenta.end(); iter++) {
+		if (iter->second->getFacturado()) {
+			aux = iter->second->getLinkFactura();
+			if (aux->getFecha() == pepe) {
+				facturas.insert(aux->generarDtFactura());
+				total = total + aux->getMontoTotal();
+			}
+			aux = NULL;
+		}
+	}
 
 }
 
@@ -233,12 +250,23 @@ void CtrlVenta::confirmarVentaADomicilio() {
 	coleccionProductosADomicilio.clear();
 }
 
+//Si retiraEnLocal == true invoca facturarVentaADomicilioSinDelivery()
+//sino invoca facturarVentaADomicilio()
 DtFacturaDomicilio CtrlVenta::facturarVentaADomicilio(int descuento) {
 	map<string, Venta*>::iterator i;
-	i = coleccionDeVenta.find(to_string(nroVenta));
+	i = coleccionDeVenta.find(to_string(nroVenta-1));
 	Venta* re = i->second;
 	Domicilio* dom = dynamic_cast<Domicilio*> (re);
 	Factura* fact = dom->crearFactura(descuento);
 	DtDelivery dt = dom->darDtDelivery();
 	return fact->darDtFacturaDomicilio(dt);
+}
+
+DtFactura CtrlVenta::facturarVentaADomicilioSinDelivery(int descuento) {
+	map<string, Venta*>::iterator i;
+	i = coleccionDeVenta.find(to_string(nroVenta));
+	Venta* re = i->second;
+	Domicilio* dom = dynamic_cast<Domicilio*> (re);
+	Factura* fact = dom->crearFactura(descuento);
+	return fact->darDtFacturaDomicilioSinDelivery();
 }

@@ -8,8 +8,10 @@
 #include "../Header/Empleado.h"
 #include "../Header/IEmpleado.h"
 #include "../Header/TipoTransporte.h"
+#include  "../Header/DtAsignacionMesa.h"
 #include "../Header/DtDelivery.h"
 #include "../Header/Delivery.h"
+
 
 
 using namespace std;
@@ -19,7 +21,6 @@ private:
 	static CtrlEmpleado* instancia;
 
 	map<int, Empleado*> coleccionDeEmpleado;
-	
 	
 	string nombreEmpleado;
 	int nroEmpleado;
@@ -42,10 +43,12 @@ public:
 	void elegirVehiculo(TipoTransporte vehiculo);
 	void cancelarEmpleado();
 	void confirmarEmpleado();
-
+	
+	set<DtAsignacionMesa> asignarAuto();
 	//Venta a Domicilio
+	void seleccionarRepartidor(string nroEmpleado);
 	set<DtDelivery> darRepartidores();
 	Delivery* pedirDelivery();
-	
+
 };
 #endif

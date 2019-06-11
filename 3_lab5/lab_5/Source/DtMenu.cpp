@@ -23,3 +23,7 @@ void DtMenu::print(std::ostream& out) {
 		cout << "    " << c << endl;
 	}
 }
+
+set<DtProductoVenta> DtMenu::getProductosDeMenu() {
+	return this->productosDeMenu;
+}

@@ -25,5 +25,6 @@ public:
 	DtProducto *darDataType();
 	void darDeBajaComida();
 	void desvincular(MenuProducto *mp);
+	DtComida* darDataVenta();
 
 };

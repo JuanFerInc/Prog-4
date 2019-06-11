@@ -7,6 +7,7 @@ private:
 
 public:
 
+	DtProductoVenta(string codig, string descripcion, int precio, int cantidad);
 	DtProductoVenta(DtProducto producto, int cantidad);
 	//geters
 	int getCantidad();

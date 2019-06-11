@@ -27,3 +27,7 @@ void DtApartamento::print(std::ostream& out) {
 	
 }
 
+DtApartamento::DtApartamento(string nombreEdificio, string numeroApart, string calle, string adyacente, string numeroPuerta):DtDireccion(numeroPuerta, calle, adyacente) {
+	this->nombreEdificio = nombreEdificio;
+	this->numeroApartamento = numeroApart;
+}

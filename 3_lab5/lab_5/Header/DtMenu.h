@@ -6,6 +6,7 @@ private:
 	set<DtProductoVenta> productosDeMenu;
 
 public:
+	DtMenu();
 	//Contructor por copia
 	DtMenu(const DtMenu &m);
 
@@ -13,7 +14,7 @@ public:
 
 	//geters
 
-	map<string, DtProductoVenta*> getProductosDeMenu();
+	set<DtProductoVenta> getProductosDeMenu();
 	
 	iostream operator<<(std::ostream& out, DtMenu* dt);
 };

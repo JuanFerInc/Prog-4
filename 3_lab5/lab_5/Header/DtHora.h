@@ -12,6 +12,8 @@ private:
 
 public:
 	DtHora();
+	DtHora(int minuto, int hora);
+
 	DtHora(const DtHora &hora);
 //geters
 
@@ -20,6 +22,7 @@ public:
 
 //otras
 	void print(ostream& out);
+	friend ostream& operator<<(ostream& out, DtHora*info);
 	bool operator<(const DtHora& a);
 	DtHora operator=(const DtHora& a);
 };

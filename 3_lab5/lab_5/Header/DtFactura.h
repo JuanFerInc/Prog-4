@@ -17,12 +17,12 @@ private:
 	DtFecha fecha;
 	DtHora hora;
 	set<DtComida> comidaVendida;
-	float subtotal, montoTotal, montoTotalIVA;
+	float subtotal, montoTotal, montoTotalIVA; //montoTotal = subtotal* 0.descuento ; montoTotalIVA = montoTotal* 0.IVA
 	int descuento;
 
 public: 
 	DtFactura(const DtFactura &dtf);
-	DtFactura(string nroFactura, DtFecha fecha, DtHora hora, set<DtComida> comidaVendida, float subtotal, float montoTotal, float montoTotalIVA, int descuento);
+	DtFactura(string nroFactura, DtFecha fecha, DtHora hora, set<DtComidaVendida> comidaVendida, float subtotal, float montoTotal, float montoTotalIVA, int descuento);
 	string getCodigo();
 	DtFecha getFecha();
 	DtHora getHora();

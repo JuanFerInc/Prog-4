@@ -18,7 +18,7 @@ class Venta{
 protected:
 	Factura* linkFactura;
     string nroVenta;
-    static int IVA;
+    static int IVA ;
     int subtotoal;
     bool facturado;
 	set<VentaComida*> comidaContenida;
@@ -35,11 +35,11 @@ public:
 
 //getters
 	string getNroVenta();
-	int getIVA();
+	static int getIVA();
 	int getSubtotal();
 	bool getFacturado();
-	set<VentaComida> getComidaContenida();
-
+	set<VentaComida*> getComidaContenida();
+	Factura* getLinkFactura();
 	//otras
 
 	//quita VentaProducto del set y lo elmina

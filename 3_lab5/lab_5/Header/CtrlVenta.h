@@ -6,18 +6,23 @@
 #include <map>
 #include <set>
 #include "../Header/IVenta.h"
-#include "../Header/DtComida.h"
-#include "../Header/DtFactura.h"
+#include "../Header/CtrlProducto.h"
+#include "../Header/CtrlEmpleado.h"
+#include "../Header/CtrlCliente.h"
+
 #include "../Header/Empleado.h"
 #include "../Header/Venta.h"
 #include "../Header/Mesa.h"
-#include "../Header/CtrlProducto.h"
-#include "../Header/CtrlEmpleado.h"
-#include "../Header/DtDelivery.h"
-#include "../Header/DtFacturaDomicilio.h"
-#include "../Header/CtrlCliente.h"
 #include "../Header/Recibido.h"
 #include "../Header/Pedido.h"
+
+#include "../Header/DtComida.h"
+#include "../Header/DtFactura.h"
+#include "../Header/DtFacturaResumen.h"
+#include "../Header/DtDelivery.h"
+#include "../Header/DtFacturaDomicilio.h"
+
+
 
 
 using namespace std;
@@ -37,6 +42,7 @@ private:
 
 public:
 	static CtrlVenta* getInstance();
+
 	void ingresarNroMesa(int nroMesa);
 	void seleccionarComida(string codigo, int cantidad);
 	bool existeComidaEnVenta();
@@ -63,6 +69,14 @@ public:
 	void cancelarPedido(int nroVenta);
 	void ultimasActualizaciones();
 
+	//Retorna un DtFacturaResumen que contiene el total de sumar todas las
+	//facturas de ese dia y las facturas de ese dia
+	DtFacturaResumen resumenDelDia(int d, int m, int a);
+
+
+	//retorna un puter a coleccion de mesa
+	map<int, Mesa*> *getColeccionDeMesa();
+
 	//Venta a Domicilio
 	bool iniciarVentaADomicilio(string tel);
 	void seleccionarComida2(string codigo, int cantidad);
@@ -71,6 +85,7 @@ public:
 	void cancelarVentaADomicilio();
 	void confirmarVentaADomicilio();
 	DtFacturaDomicilio facturarVentaADomicilio(int descuento);
+	DtFactura facturarVentaADomicilioSinDelivery(int descuento);
 
 };
 

@@ -13,14 +13,14 @@ private:
     int nroEmpleado;
     string nombre;
 public:
-
+	Empleado(string nombre, int nroEmpleado);
 //seters
 	void setNroEmpleado(int nroEmpleado);
 	void setNombre(string nombre);
 
 //geters
-	int getNroEmpleado();
-	string getNombre();
+	int getNroEmpleado() const;
+	string getNombre() const;
 
 	virtual ~Empleado() = 0;
 };

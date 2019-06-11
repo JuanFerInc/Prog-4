@@ -67,3 +67,7 @@ int VentaComida::darPrecio() {
 	int cant = this->cantidad;
 	return cant * p;
 }
+
+DtComidaVendida VentaComida::pedirDatatypeDtComidaVendida() {
+	return DtComidaVendida(this->cantidad, this->linkComida->getDescripcion(), this->linkComida->getPrecio());
+}

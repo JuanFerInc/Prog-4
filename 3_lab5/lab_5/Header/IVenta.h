@@ -27,9 +27,27 @@ class IVenta{
         virtual void confirmarVentaEnMesas() =0;
         virtual DtFactura generarFactura(int nromesa,int descuento) =0;
         virtual void cancelarPedido(int nroVenta) =0;
-        virtual void ultimasActualizaciones() =0;
+        
+        
+        //Retorna un DtFacturaResumen que contiene el total de sumar todas las
+        //facturas de ese dia y las facturas de ese dia
+        virtual DtFacturaResumen resumenDelDia(int d, int m, int a) = 0;
+        
+        //retorna un puter a coleccion de mesa
+        virtual map<int, Mesa*> *getColeccionDeMesa() = 0;
+        
+        
+        
+        //Venta a Domicilio
+        virtual bool iniciarVentaADomicilio(string tel) = 0;
+        virtual void seleccionarComida2(string codigo, int cantidad) = 0;
+        virtual set<DtDelivery> listarRepartidores() = 0;
+        virtual void seleccionarRepartidor(int nroEmpleado) = 0;
+        virtual void cancelarVentaADomicilio() = 0;
+        virtual void confirmarVentaADomicilio() = 0;
+        virtual DtFacturaDomicilio facturarVentaADomicilio(int descuento) = 0;
+        virtual DtFactura facturarVentaADomicilioSinDelivery(int descuento) = 0;
+
 };
 
 #endif
-
-

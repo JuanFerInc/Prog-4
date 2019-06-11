@@ -1,6 +1,14 @@
 #include "../Header/DtHora.h"
 
 //Constructor por copia
+DtHora::DtHora() {
+
+}
+
+DtHora::DtHora(int minuto, int hora){
+	this->hora = hora;
+	this->minuto = minuto;
+}
 DtHora::DtHora(const DtHora &hora) {
 	this->hora = hora.hora;
 	this->minuto = hora.minuto;
@@ -28,6 +36,12 @@ bool DtHora::operator<(const DtHora& a) {
 		}
 		else return true;
 	}
+}
+
+
+std::ostream& operator<<(std::ostream& out, DtHora*info) {
+	info->print(out);
+	return out;
 }
 
 void DtHora::print(ostream& out) {
