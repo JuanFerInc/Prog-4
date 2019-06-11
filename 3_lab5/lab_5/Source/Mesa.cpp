@@ -1,13 +1,14 @@
 #include "../Header/Mesa.h"
 
-DtFactura Mesa::facturar(int descuento) {
+DtFacturaLocal Mesa::facturar(int descuento) {
 	set<DtComidaVendida> sc;
 	sc = this->linkLocal->darComidas();
-	string nv = this->linkLocal->getNroVenta();
+	string nroVenta = this->linkLocal->getNroVenta();
 	int st = this->linkLocal->getSubtotal();
 	string nombreMozo = this->linkMozo->getNombre();
-	Factura* f = new Factura(descuento, sc, nv, nombreMozo);
-	DtFactura res = f->generarDtFactura();
+	Factura* f = new Factura(descuento, sc, nroVenta, st);
+	DtMozo dt = this->linkMozo->getDtMozo();
+	DtFacturaLocal res = f->generarDtFacturaLocal(dt);
 	this->linkLocal->finalizarVenta(f);
 
 	return res;

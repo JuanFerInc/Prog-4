@@ -32,7 +32,7 @@ public:
     float getSubtotal();
 	float getMontoTotal();
     //Posta
-    DtFactura generarDtFactura();
+    DtFacturaLocal generarDtFacturaLocal(DtMozo dt);
 
 	//Venta a Domicilio
 	DtFacturaDomicilio darDtFacturaDomicilio(DtDelivery dt);

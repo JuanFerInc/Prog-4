@@ -2,6 +2,7 @@
 #include "../Header/DtProducto.h"
 #include "../Header/DtMenu.h"
 
+
 Local::Local(map<int, Mesa*> mesas, string nroVenta, Mozo *mozo):Venta(nroVenta) {
 	this->setsito = mesas;
 	this->linkMozo = mozo;
@@ -100,7 +101,14 @@ set<DtComidaVendida> Local::darComidas() {
 }
 void Local::desvincular(VentaComida vp) {
 	set<VentaComida*>::iterator i;
+	string codigo = vp.darCodigoDeComida();
 	for (i = comidaContenida.begin(); i != comidaContenida.end(); i++) {
-		if()
+		if ((*i)->tieneMismo(codigo)) {
+			comidaContenida.erase(i);
+		}
 	}
+}
+
+bool Local::noEstaFacturada() {
+	return (!this->facturado);
 }

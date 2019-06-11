@@ -1,4 +1,6 @@
 #include "../Header/Fabrica.h"
+#include "../Header/Factura.h"
+#include "../Header/DtFacturaLocal.h"
 #include <ctime>
 
 Factura::Factura(int descuento, set<DtComidaVendida> comidaEnFactura, string nroFactura, float subtotal) {
@@ -55,8 +57,8 @@ float Factura::getMontoTotal() {
 	return this->subtotal* (1 - (descuento / 100));
 }
 
-DtFactura Factura::generarDtFactura() {
+DtFacturaLocal Factura::generarDtFacturaLocal(DtMozo dt) {
 	float montoTotalIVA = this->getMontoTotal() + (this->getMontoTotal() * (Venta::getIVA() / 100));
-	return DtFactura(this->nroFactura, this->fecha, this->hora, this->comidaEnFactura, this->subtotal, this->getMontoTotal(), montoTotalIVA, this->descuento);
+	return (DtFacturaLocal(dt,this->nroFactura, this->fecha, this->hora, this->comidaEnFactura, this->subtotal, this->getMontoTotal(), montoTotalIVA, this->descuento));
 
 }
