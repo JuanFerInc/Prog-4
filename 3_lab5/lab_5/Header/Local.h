@@ -1,12 +1,13 @@
 #include "../Header/Venta.h"
 #include "../Header/Mesa.h"
 
+
 class Local :public Venta {
 private:
-	map<int, Mesa> setsito;
+	map<int, Mesa*> setsito;
 	Mozo* linkMozo;
 public:
-	Local(map<int,Mesa*> mesas,string nroVent, Mozo *mozo );
+	Local(map<int,Mesa*> mesas,string nroVenta, Mozo *mozo );
 	
 	bool hayComidaEnVenta(string codigo);
 	set<DtComida> productosEnVenta();

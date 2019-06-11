@@ -39,3 +39,12 @@ DtComida *Producto::darDataVenta() {
 	DtProductoVenta *res = new DtProductoVenta(this->codigo, this->descripcion, this->getPrecio(), this->cantitatUnidadesFacturadas);
 	return res;
 }
+int Producto::getPrecio() {
+	return this->precio;
+}
+set<MenuProducto*> Producto::getEsContenidoEn() {
+	return this->esContenidoEn;
+}
+void Producto::setPrecio(int precio) {
+	this->precio = precio;
+}

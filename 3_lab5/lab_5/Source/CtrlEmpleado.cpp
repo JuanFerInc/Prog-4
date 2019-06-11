@@ -117,6 +117,7 @@ set<DtAsignacionMesa> CtrlEmpleado::asignarAuto() {
 		for (iterMozos = setMozos.begin(); iterMozos != setMozos.end(); iterMozos++) {
 			for (int i = 0; i < cantAsigancion; i++) {
 				(*iterMozos)->agregarMesa(iterMesas->first, iterMesas->second);
+				iterMesas->second->asociarAMozo(*iterMozos);
 				iterMesas++;
 			}
 
@@ -126,6 +127,7 @@ set<DtAsignacionMesa> CtrlEmpleado::asignarAuto() {
 		//en caso que quede alguna mesa se le agrega a los mozos empesando del primero
 		while (iterMesas != mesas->end()) {
 			(*iterMozos)->agregarMesa(iterMesas->first, iterMesas->second);
+			iterMesas->second->asociarAMozo(*iterMozos);
 			iterMozos++;
 			iterMesas++;
 		}
@@ -168,5 +170,3 @@ Delivery* CtrlEmpleado::pedirDelivery() {
 		throw (5);
 	}
 }
-
-

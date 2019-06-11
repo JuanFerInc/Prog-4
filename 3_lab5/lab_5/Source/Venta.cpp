@@ -1,12 +1,13 @@
 #include "../Header/Venta.h"
 
 
-Venta::Venta() {
+
+Venta::Venta(string nroVenta) {
 	linkFactura = NULL;
 	int subtotal = 0;
 	facturado = false;
+	this->nroVenta = nroVenta;
 }
-
 Venta::Venta(string nroVenta, set<VentaComida*> comidaContenida, int subtotal) {
 	linkFactura = NULL;
 	int subtotal = subtotal;

@@ -44,3 +44,21 @@ void Mesa::decrementarCantidadEnMesaDeComida(string codigo, int cantidad) {
 void Mesa::eliminarComidaDeMesa(string codigo) {
 	this->linkLocal->eliminarComida(codigo);
 }
+
+void Mesa::asociarAMozo(Mozo*m) {
+	this->linkMozo = m;
+}
+void Mesa::asociarALocal(Local *l) {
+	this->linkLocal = l;
+}
+
+int Mesa::getNroMesa() {
+	return this->nroMesa;
+}
+Mozo* Mesa::getMozo() {
+	return this->linkMozo;
+}
+
+Local* Mesa::getLocal() {
+	return this->linkLocal;
+}

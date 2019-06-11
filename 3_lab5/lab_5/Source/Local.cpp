@@ -2,10 +2,11 @@
 #include "../Header/DtProducto.h"
 #include "../Header/DtMenu.h"
 
-Local::Local(map<int, Mesa> set, Mozo* mozo):Venta() {
-	this->setsito = set;
+Local::Local(map<int, Mesa*> mesas, string nroVenta, Mozo *mozo):Venta(nroVenta) {
+	this->setsito = mesas;
 	this->linkMozo = mozo;
 }
+
 
 
 

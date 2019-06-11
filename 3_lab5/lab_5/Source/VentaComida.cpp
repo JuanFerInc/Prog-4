@@ -71,3 +71,12 @@ int VentaComida::darPrecio() {
 DtComidaVendida VentaComida::pedirDatatypeDtComidaVendida() {
 	return DtComidaVendida(this->cantidad, this->linkComida->getDescripcion(), this->linkComida->getPrecio());
 }
+bool VentaComida::estaLaComida(string codigo) {
+	linkComida->sonIguales(codigo);
+}
+int VentaComida::getCantidad() {
+	return this->cantidad;
+}
+void VentaComida::setCantidad(int cant) {
+	this->cantidad = cant;
+}

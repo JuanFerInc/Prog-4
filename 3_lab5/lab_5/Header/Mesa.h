@@ -21,12 +21,12 @@ private:
 
 
 public:
-//seters
-	void setNroMesa(int nroMesa);
+	
 
 //geters
 	int getNroMesa();
 	Mozo* getMozo();
+	Local *getLocal();
 //Otras
 	bool hayComidaEnMesa(string codigo);
 	void aumentarCantidadComidaEnMesa(string codigo, int cantidad);
@@ -36,6 +36,7 @@ public:
 	void decrementarCantidadEnMesaDeComida(string codigo, int cantidad);
 	void eliminarComidaDeMesa(string codigo);
 	DtFactura facturar(int descuento);
-	
+	void asociarAMozo(Mozo*m);
+	void asociarALocal(Local *l);
 };
 #endif
