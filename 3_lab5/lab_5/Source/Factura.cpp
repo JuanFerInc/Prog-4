@@ -54,3 +54,9 @@ float Factura::getSubtotal() {
 float Factura::getMontoTotal() {
 	return this->subtotal* (1 - (descuento / 100));
 }
+
+DtFactura Factura::generarDtFactura() {
+	float montoTotalIVA = this->getMontoTotal() + (this->getMontoTotal() * (Venta::getIVA() / 100));
+	return DtFactura(this->nroFactura, this->fecha, this->hora, this->comidaEnFactura, this->subtotal, this->getMontoTotal(), montoTotalIVA, this->descuento);
+
+}

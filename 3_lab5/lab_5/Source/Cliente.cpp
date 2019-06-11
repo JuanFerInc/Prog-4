@@ -10,7 +10,6 @@ string Cliente::getNombre() {
 	return this->nombre;
 }
 
-
 //setters
 void Cliente::setTelefono(string tel) {
     this->telefono = tel;

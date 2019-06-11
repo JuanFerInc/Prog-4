@@ -81,6 +81,14 @@ public:
 	//retorna un puter a coleccion de mesa
 	map<int, Mesa*> *getColeccionDeMesa();
 
+	//Retorna un DtFacturaResumen que contiene el total de sumar todas las
+	//facturas de ese dia y las facturas de ese dia
+	DtFacturaResumen resumenDelDia(int d, int m, int a);
+
+
+	//retorna un puter a coleccion de mesa
+	map<int, Mesa*> *getColeccionDeMesa();
+
 	//Venta a Domicilio
 	bool iniciarVentaADomicilio(string tel);
 	void seleccionarComida2(string codigo, int cantidad);

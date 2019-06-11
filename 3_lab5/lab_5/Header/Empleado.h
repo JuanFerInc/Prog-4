@@ -13,7 +13,7 @@ private:
     int nroEmpleado;
     string nombre;
 public:
-
+	Empleado(string nombre, int nroEmpleado);
 //seters
 	void setNroEmpleado(int nroEmpleado);
 	void setNombre(string nombre);

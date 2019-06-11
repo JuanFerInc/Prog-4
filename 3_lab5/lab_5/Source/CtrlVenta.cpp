@@ -258,7 +258,7 @@ void CtrlVenta::confirmarVentaADomicilio() {
 //sino invoca facturarVentaADomicilio()
 DtFacturaDomicilio CtrlVenta::facturarVentaADomicilio(int descuento) {
 	map<string, Venta*>::iterator i;
-	i = coleccionDeVenta.find(to_string(nroVenta));
+	i = coleccionDeVenta.find(to_string(nroVenta-1));
 	Venta* re = i->second;
 	Domicilio* dom = dynamic_cast<Domicilio*> (re);
 	Factura* fact = dom->crearFactura(descuento);
@@ -273,6 +273,7 @@ DtFactura CtrlVenta::facturarVentaADomicilioSinDelivery(int descuento) {
 	Domicilio* dom = dynamic_cast<Domicilio*> (re);
 	Factura* fact = dom->crearFactura(descuento);
 	return fact->darDtFacturaDomicilioSinDelivery();
+
 }
 
 void CtrlVenta::confirmarVentaEnMesas() {
@@ -298,3 +299,6 @@ void CtrlVenta::confirmarVentaEnMesas() {
 //si es venta local tiro error
 //sino cancelo venta de domicilio
 void cancelarPedido(int nroVenta);
+
+
+

@@ -1,5 +1,12 @@
 #include "../Header/Empleado.h"
 
+
+Empleado::Empleado(string nombre, int nroEmpleado) {
+	this->nombre = nombre;
+	this->nroEmpleado = nroEmpleado;
+}
+
+
 //seters
 void Empleado::setNroEmpleado(int nroEmpleado) {
 	this->nroEmpleado = nroEmpleado;

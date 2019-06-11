@@ -1,12 +1,12 @@
 #include "../Header/CtrlProducto.h"
 #include "../Header/CtrlVenta.h"
 
+
 CtrlProducto*CtrlProducto::getInstance() {
 	if (instance == NULL) {
 		instance = new CtrlProducto();
 
 	}
-}
 
 
 CtrlProducto::CtrlProducto(){
@@ -186,6 +186,7 @@ bool CtrlProducto::existeComida(string codigo) {
 		codigo.clear();
 	}
 }
+
 
 DtComida* CtrlProducto::ingresarCodigoParaInfo(){
 	map<string, Comida*>::iterator iter;

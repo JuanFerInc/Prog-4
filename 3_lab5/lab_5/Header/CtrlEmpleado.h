@@ -46,6 +46,7 @@ public:
 	
 	set<DtAsignacionMesa> asignarAuto();
 	//Venta a Domicilio
+	void seleccionarRepartidor(string nroEmpleado);
 	set<DtDelivery> darRepartidores();
 	Delivery* pedirDelivery();
 

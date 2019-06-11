@@ -97,4 +97,9 @@ set<DtComidaVendida> Local::darComidas() {
 	}
 	return res;
 }
-
+void Local::desvincular(VentaComida vp) {
+	set<VentaComida*>::iterator i;
+	for (i = comidaContenida.begin(); i != comidaContenida.end(); i++) {
+		if()
+	}
+}

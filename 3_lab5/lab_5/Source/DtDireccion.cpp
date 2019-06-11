@@ -1,6 +1,12 @@
 #include "../header/DtApartamento.h"
 #include <string>
 
+DtDireccion::DtDireccion(string numero, string calle, string calleAdyacente) {
+	this->calleAdyacente = calleAdyacente;
+	this->nombreCalle = calle;
+	this->numero = numero;
+}
+
 
 DtDireccion::DtDireccion(const DtDireccion &direccion) {
 	this->nombreCalle = direccion.nombreCalle;
