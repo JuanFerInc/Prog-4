@@ -74,14 +74,73 @@ void CtrlEmpleado::confirmarEmpleado() {
 }
 
 
-set<DtAsignacionMesa> asignarAuto() {
+set<DtAsignacionMesa> CtrlEmpleado::asignarAuto() {
 	CtrlVenta *cv = CtrlVenta::getInstance();
+
+	set<DtAsignacionMesa> res;
+
+	int cantMesas = 0;
+	int cantMozos = 0;
+
 	map<int,Mesa*> *mesas = cv->getColeccionDeMesa();
 	
-	map<int, Empleado*>::iterator iterE;
-	map<int, Mesa*>::iterator iterM;
+	map<int, Empleado*>::iterator iterEmpleados;
+	map<int, Mesa*>::iterator iterMesas;
 
-	for()
+	set<Mozo*> setMozos;
+
+	for (iterMesas = mesas->begin(); iterMesas != mesas->end(); iterMesas++) {
+		cantMesas++;
+	}
+
+	for (iterEmpleados = coleccionDeEmpleado.begin(); iterEmpleados != coleccionDeEmpleado.end(); iterEmpleados++ ) {
+		Empleado *empleado = iterEmpleados->second;
+		Mozo *empleadoMozo = dynamic_cast<Mozo*>(empleado);
+		if (empleadoMozo != NULL) {
+			setMozos.insert(empleadoMozo);
+			cantMozos++;
+		}
+	}
+	int cantAsigancion = cantMesas / cantMozos;
+		
+	set<Mozo*>::iterator iterMozos;
+	iterMesas = mesas->begin();
+
+	if (cantMesas < cantMozos) {
+		throw(5);
+	}
+	else {
+
+		//recorremos todos los mozos y agregamos la mesa correspondiente, tambien creamos el 
+		//dt y agregamos al set
+		//por cada mozo se agrega cantAsiganciones de mesas
+		for (iterMozos = setMozos.begin(); iterMozos != setMozos.end(); iterMozos++) {
+			for (int i = 0; i < cantAsigancion; i++) {
+				(*iterMozos)->agregarMesa(iterMesas->first, iterMesas->second);
+				iterMesas++;
+			}
+
+		}
+		iterMozos = setMozos.begin();
+
+		//en caso que quede alguna mesa se le agrega a los mozos empesando del primero
+		while (iterMesas != mesas->end()) {
+			(*iterMozos)->agregarMesa(iterMesas->first, iterMesas->second);
+			iterMozos++;
+			iterMesas++;
+		}
+	}
+
+	DtMozo dtm;
+	set<int> nroMesas;
+	//recorremos todo los mozos y armarmos el resultado
+	for (iterMozos = setMozos.begin(); iterMozos != setMozos.end(); iterMozos++) {
+		dtm = (*iterMozos)->getDtMozo();
+		nroMesas = (*iterMozos)->getMesas();
+		res.insert(DtAsignacionMesa(dtm, nroMesas));
+	}
+
+	return res;
 }
 
 //Venta a Domicilio

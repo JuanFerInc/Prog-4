@@ -11,9 +11,11 @@ private:
 
 public:
 	//constructor por copia
+	DtAsignacionMesa(DtMozo mozo, set<int> nroMesas);
 	DtAsignacionMesa(const DtAsignacionMesa &dtasig);
 	//geters
 	DtMozo getMozo();
+	void agregarMesa(int mesa);
 	set<int> getMesasDelMozo();
 	void print(std::ostream& out);
 };

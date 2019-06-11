@@ -6,7 +6,7 @@ private:
 	map<int, Mesa> setsito;
 	Mozo* linkMozo;
 public:
-	Local(map<int,Mesa>, Mozo* mozo);
+	Local(map<int,Mesa*> mesas,string nroVent, Mozo *mozo );
 	
 	bool hayComidaEnVenta(string codigo);
 	set<DtComida> productosEnVenta();

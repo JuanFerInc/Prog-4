@@ -18,14 +18,15 @@ class Venta{
 protected:
 	Factura* linkFactura;
     string nroVenta;
-    static int IVA;
+    static int IVA ;
     int subtotoal;
     bool facturado;
 	set<VentaComida*> comidaContenida;
 
 public:
 	Venta();
-	Venta(string nroVenta, set<VentaComida*> comidaContenida,int subtotal);
+
+	Venta(string nroVenta, set<VentaComida*> comidaContenida,int subtotal); //? no se usa en ningun lado
 //setters
 	void setNroVenta(string nroVenta);
 	static void setIVA(int iva);
@@ -35,10 +36,10 @@ public:
 
 //getters
 	string getNroVenta();
-	int getIVA();
+	static int getIVA();
 	int getSubtotal();
 	bool getFacturado();
-	set<VentaComida> getComidaContenida();
+	set<VentaComida*> getComidaContenida();
 	Factura* getLinkFactura();
 	//otras
 

@@ -12,6 +12,7 @@ private:
 	DtDireccion direccion;
 
 public:
+	DtCliente();
 	//contructor por copia
 	DtCliente(const DtCliente &c);
 	//geters

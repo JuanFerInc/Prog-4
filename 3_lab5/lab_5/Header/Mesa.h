@@ -26,7 +26,7 @@ public:
 
 //geters
 	int getNroMesa();
-
+	Mozo* getMozo();
 //Otras
 	bool hayComidaEnMesa(string codigo);
 	void aumentarCantidadComidaEnMesa(string codigo, int cantidad);

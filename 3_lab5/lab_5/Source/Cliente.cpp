@@ -1,5 +1,16 @@
 #include "../Header/Cliente.h"
 
+Cliente::Cliente(string nombre, string telefono, DtDireccion direccion) {
+	this->nombre = nombre;
+	this->telefono = telefono;
+	this->direccion = direccion;
+}
+
+string Cliente::getNombre() {
+	return this->nombre;
+}
+
+
 //setters
 void Cliente::setTelefono(string tel) {
     this->telefono = tel;
@@ -20,7 +31,7 @@ DtDireccion Cliente::getDireccion() {
 }
 
 set<DtEstadoTerminado> Cliente::getActualizaciones() {
-    return (this->actualizaciones);
+    return(this->actualizaciones);
 }
 
 //otras
@@ -28,6 +39,3 @@ set<DtEstadoTerminado> Cliente::getActualizaciones() {
 void Cliente::notificar(DtEstadoTerminado data) {
     this->actualizaciones.insert(data);
 }
-
-
-

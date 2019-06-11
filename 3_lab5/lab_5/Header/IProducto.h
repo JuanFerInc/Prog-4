@@ -21,14 +21,13 @@ class IProducto{
         virtual void agregarProductoMenu(string codigo,int cantidad) =0;
         virtual void aceptarAltaMenu() =0;
         virtual void cancelarAltaMenu() =0;
-        virtual void darDataType()  =0;
         virtual set<DtComida> listaDeComidaDisponible() = 0;
         virtual void ingresarCodigo(string codigo) =0;
         virtual void cancelarBaja() =0;
         virtual void confirmarBaja() =0;
         virtual Comida* pedirComida(string codigo) =0;	
 		virtual bool existeComida(string codigo) = 0;
-		virtual DtComida* ingresarCodigo() = 0;
+		virtual DtComida* ingresarCodigoParaInfo() = 0;
 };
 
 #endif

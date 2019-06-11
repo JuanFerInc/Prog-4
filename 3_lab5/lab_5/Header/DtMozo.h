@@ -1,5 +1,12 @@
 #include "../Header/DtEmpleado.h"
 
 class DtMozo :public DtEmpleado {
-	string nombre;
+private:
+
+public:
+	DtMozo();
+	DtMozo(int nroEmpleado,string nombre );
+	DtMozo(const DtMozo & dtmozo);
+
+
 };

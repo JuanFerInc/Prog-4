@@ -92,7 +92,8 @@ public:
 	
 	//retorna un DtMenuVentas o un DtProductoVentas que contiene la cantidad de comidas que se vendieron
 	//el nombre de la funcion esta mal, tenemos que arreglar
-	DtComida* ingresarCodigo();
+	//funcion del caso de uso Informacion de un producto
+	DtComida* ingresarCodigoParaInfo();
 
 };
 

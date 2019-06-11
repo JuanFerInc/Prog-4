@@ -43,6 +43,7 @@ public:
 	void incrementarCantidadUnidadesVendidas();
 	//Venta a Domicilio
 	int darPrecio();
+	DtComidaVendida pedirDatatypeDtComidaVendida();
 
 };
 #endif

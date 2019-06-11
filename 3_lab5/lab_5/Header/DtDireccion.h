@@ -11,6 +11,8 @@ private:
 	string nombreCalle, numero, calleAdyacente;
 
 public:
+	DtDireccion() = default;
+	DtDireccion(const DtDireccion &direccion);
 	DtDireccion(string numero, string calle, string esquinas);
 //geters
 	string getNombreCalle();

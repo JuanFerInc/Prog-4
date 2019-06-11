@@ -17,23 +17,26 @@ private:
     DtFecha fecha;
     DtHora hora;
 	int descuento;
-    set<DtComida> comidaEnFactura;            
+    set<DtComidaVendida> comidaEnFactura;    //LA IMPRESION HAY QUE REVISAR        
     string nroFactura;
-    int subtotal;
+    float subtotal;
 public:
-	Factura(int descuento, set<DtComidaVendida> sc, string nv);
+	Factura(int descuento, set<DtComidaVendida> comidaEnFactura, string nroFactura , float subtotal);
     
     //Geters
     DtFecha getFecha();
     DtHora getHora();
     int getDescuento();
-    set<DtComida> getComidaEnFactura();            
+    set<DtComidaVendida> getComidaEnFactura();            
     string getNroFactura();
-    int getSubtotal();
-    string getNombreMozo();
-	int getTotal();
+    float getSubtotal();
+	float getMontoTotal();
     //Posta
     DtFactura generarDtFactura();
+
+	//Venta a Domicilio
+	DtFacturaDomicilio darDtFacturaDomicilio(DtDelivery dt);
+	DtFactura darDtFacturaDomicilioSinDelivery();
 }
 
 
