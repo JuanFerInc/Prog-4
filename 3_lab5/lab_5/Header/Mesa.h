@@ -3,20 +3,21 @@
 
 #include <iostream>
 #include "../Header/Comida.h"
-#include "../Header/DtComida.h"
-#include "../Header/Local.h"
-#include "../Header/DtFacturaLocal.h"
 #include "../Header/Mozo.h"
+#include "../Header/DtFacturaLocal.h"
 
 
+
+
+class Local;
 
 
 using namespace std;
 
 class Mesa {
 private:
-	Mozo* linkMozo;
-	Local* linkLocal;
+	Mozo *linkMozo;
+	Local *linkLocal;
 	int nroMesa;
 
 
@@ -41,8 +42,10 @@ public:
 	void asociarAMozo(Mozo*m);
 	void asociarALocal(Local *l);
 
-	DtFacturaLocal facturar(int descuento);
+	DtFacturaLocal *facturar(int descuento);
 	
 
 };
+#include "../Header/Local.h"
+
 #endif

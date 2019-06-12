@@ -1,10 +1,14 @@
 #include "../Header/Recibido.h"
 #include <string>
+#include "../Header/Estado.h"
+#include "../Header/DtEstado.h"
+
+Recibido* Recibido::instancia = NULL;
 
 Recibido* Recibido::getInstance() {
 	if (instancia == NULL) {
-		Recibido* inst = new Recibido();
-		instancia = inst;
+		instancia = new Recibido();
+		
 	}
 	return instancia;
 }

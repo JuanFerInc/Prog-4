@@ -3,7 +3,7 @@
 
 #include <iostream>
 #include <set>
-
+#include <string>
 
 using namespace std;
 
@@ -18,6 +18,9 @@ public:
 
 	DtEstado(string c);
 	string getEtapaActual() const;
+
+	friend std::ostream& operator<<(std::ostream& out, DtEstado *info);
+	virtual void print(ostream& out);
 };
 
 #endif

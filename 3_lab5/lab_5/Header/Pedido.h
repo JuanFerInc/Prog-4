@@ -10,7 +10,7 @@ class Pedido: public Estado{
 private: 
 	static Pedido* instancia;
 
-	Pedido();
+	Pedido() {}
 public:
 	static Pedido* getInstance();
 	Estado* siguienteEstado();

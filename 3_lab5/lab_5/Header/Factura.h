@@ -2,15 +2,15 @@
 #define FACTURA_H
 
 
-#include <set>
 #include <iostream>
+#include <set>
 
-#include "../Header/DtFecha"
-#include "../Header/DtHora"
-#include "../Header/DtComidaVendida"
-#include "../Header/DtFactura"
 
-using namespace std;
+#include "../Header/DtFecha.h"
+#include "../Header/DtHora.h"
+#include "../Header/DtComidaVendida.h"
+#include "../Header/DtFacturaLocal.h"
+#include "../Header/DtFacturaDomicilio.h"
 
 class Factura {
 private:
@@ -20,24 +20,24 @@ private:
     set<DtComidaVendida> comidaEnFactura;    //LA IMPRESION HAY QUE REVISAR        
     string nroFactura;
     float subtotal;
+
 public:
 	Factura(int descuento, set<DtComidaVendida> comidaEnFactura, string nroFactura , float subtotal);
     
     //Geters
-    DtFecha getFecha();
-    DtHora getHora();
-    int getDescuento();
-    set<DtComidaVendida> getComidaEnFactura();            
-    string getNroFactura();
-    float getSubtotal();
+	DtFecha getFecha();
+	DtHora getHora();
+	int getDescuento();
+	set<DtComidaVendida> getComidaEnFactura();
+	string getNroFactura();
+	float getSubtotal();
 	float getMontoTotal();
     //Posta
-    DtFacturaLocal generarDtFacturaLocal(DtMozo dt);
+    DtFacturaLocal *generarDtFacturaLocal(DtMozo dt);
 
 	//Venta a Domicilio
-	DtFacturaDomicilio darDtFacturaDomicilio(DtDelivery dt);
-	DtFactura darDtFacturaDomicilioSinDelivery();
-}
-
+	DtFacturaDomicilio *darDtFacturaDomicilio(DtDelivery dt);
+	DtFactura *darDtFacturaDomicilioSinDelivery();
+};
 
 #endif

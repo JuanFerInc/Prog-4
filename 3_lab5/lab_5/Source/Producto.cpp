@@ -1,4 +1,10 @@
 #include "../Header/Producto.h"
+#include "../Header/DtProducto.h"
+#include "../Header/Menu.h"
+#include "../Header/Comida.h"
+#include "../Header/DtComida.h"
+#include "../Header/DtProductoVenta.h"
+#include "../Header/MenuProducto.h"
 
 
 Producto::Producto(string codigo, string descripcion, int precio) :Comida(codigo, descripcion) {

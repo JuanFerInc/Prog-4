@@ -4,7 +4,7 @@
 #include <iostream>
 
 #include "../Header/DtProducto.h"
-#include "../Header/DtMenu.h"
+
 #include "../Header/Comida.h"
 
 
@@ -18,12 +18,12 @@ class IProducto{
         virtual void agregarProducto(string codigo,string descripcion,int precio) =0;
         virtual void aceptarAltaProducto() =0;
         virtual void cancelarAltaProducto() =0;
-        virtual set<DtProducto> agregarMenu(string codigo,string descripcion) =0;
+        virtual set<DtProducto*> agregarMenu(string codigo,string descripcion) =0;
         virtual void agregarProductoMenu(string codigo,int cantidad) =0;
         virtual void aceptarAltaMenu() =0;
         virtual void cancelarAltaMenu() =0;
 
-        virtual void darDataType()  =0;
+        //virtual void darDataType()  =0;
         
         //Baja producto
 
@@ -37,6 +37,8 @@ class IProducto{
         virtual bool existeComida(string codigo) = 0;
 
 		virtual DtComida* ingresarCodigoParaInfo() = 0;
+
+		
 };
 
 #endif

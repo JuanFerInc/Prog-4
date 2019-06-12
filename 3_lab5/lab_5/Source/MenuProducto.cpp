@@ -1,5 +1,9 @@
 #include <iostream>
 #include "../Header/MenuProducto.h"
+#include "../Header/Menu.h"
+#include "../Header/DtProductoVenta.h"
+#include "../Header/DtProducto.h"
+#include "../Header/Producto.h"
 
 using namespace std;
 
@@ -12,34 +16,29 @@ MenuProducto::MenuProducto(Menu *m, int cantidad,Producto *p) {
 
 
 }
-DtProductoVenta MenuProducto::darInfo() {
-	DtProducto producto = linkProducto->darDataType();
-	
 
-
-}
 void MenuProducto::setCantidad(int cant) {
 	this->cantidad = cant;
 }
-int MenuProducto::getPrecio() {
+int MenuProducto::getPrecio() const {
 	return (linkProducto->getPrecio()*this->cantidad);
 }
 int MenuProducto::getCantidad() {
 	return this->cantidad;
 }
 
-DtProductoVenta MenuProducto::darInfo() {
+DtProductoVenta *MenuProducto::darInfo() {
 	DtProducto *p = linkProducto->darDataType();
 	DtProducto producto = *p;
-	DtProductoVenta datapv(producto, this->cantidad);
+	DtProductoVenta *datapv = new DtProductoVenta(producto, this->cantidad);
 
 	delete p;
 	return datapv;
 
 }
 
-DtProducto MenuProducto::getDtProducto() {
-
+DtProducto *MenuProducto::getDtProducto() {
+	return this->linkProducto->darDataType();
 }
 
 

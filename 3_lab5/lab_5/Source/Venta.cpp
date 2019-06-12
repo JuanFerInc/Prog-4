@@ -1,6 +1,9 @@
 #include "../Header/Venta.h"
+#include "../Header/VentaComida.h"
+#include "../Header/Factura.h"
 
 
+int Venta::IVA = 22;
 
 Venta::Venta(string nroVenta) {
 	linkFactura = NULL;
@@ -10,7 +13,7 @@ Venta::Venta(string nroVenta) {
 }
 Venta::Venta(string nroVenta, set<VentaComida*> comidaContenida, int subtotal) {
 	linkFactura = NULL;
-	int subtotal = subtotal;
+	this->subtotoal = subtotal;
 	facturado = false;
 	this->comidaContenida = comidaContenida;
 	this->nroVenta = nroVenta;

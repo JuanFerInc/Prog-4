@@ -8,7 +8,7 @@ class Recibido : public Estado {
 private:
 	static Recibido* instancia;
 
-	Recibido();
+	Recibido() {}
 public:
 	static Recibido* getInstance();
 	Estado* siguienteEstado();	//Devuelve null (turvio sino)

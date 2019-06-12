@@ -1,15 +1,23 @@
 #include "../Header/CtrlProducto.h"
+#include "../Header/Producto.h"
+#include "../Header/Comida.h"
+#include "../Header/Menu.h"				
+#include "../Header/DtProducto.h"
+#include "../Header/DtComida.h"
+#include "../Header/DtProductoMenu.h"
+#include "../Header/MenuProducto.h"
+#include "../Header/DtMenu.h"
 #include "../Header/CtrlVenta.h"
 
 
+CtrlProducto*CtrlProducto::instance = NULL;
+
 CtrlProducto*CtrlProducto::getInstance() {
 	if (instance == NULL) {
-		instance = new CtrlProducto();
+		instance = new CtrlProducto;
 
 	}
-
-
-CtrlProducto::CtrlProducto(){
+	return instance;
 }
 //Alta Producto
 bool CtrlProducto::masDeUnProducto() {
@@ -33,19 +41,22 @@ void CtrlProducto::cancelarAltaProducto() {
 
 }
 
-set<DtProducto> CtrlProducto::agregarMenu(string codigo, string descripcion) {
+set<DtProducto*> CtrlProducto::agregarMenu(string codigo, string descripcion) {
 	this->codigo = codigo;
 	this->descripcion = descripcion;
 	map<string, Comida*>::iterator iter;
-	set<DtProducto> res;
+	set<DtProducto*> res;
 	for (iter = coleccionDeComida.begin(); iter != coleccionDeComida.end(); iter++) {
 		DtComida*c = iter->second->darDataType();
 		DtProducto *p = dynamic_cast<DtProducto*>(c);
 		if (p!=NULL) {
-			DtProducto dtp = *p;
+			DtProducto *dtp = p;
 			res.insert(dtp);
 		}
-		delete c;
+		else {
+			delete c;
+		}
+		
 
 	}
 	return res;
@@ -185,6 +196,7 @@ bool CtrlProducto::existeComida(string codigo) {
 	else {
 		codigo.clear();
 	}
+	return encontrado;
 }
 
 

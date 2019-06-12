@@ -2,8 +2,10 @@
 #define IVENTA_H
 
 #include <iostream>
-#include "../Header/DtFactura.h"
+
 #include "../Header/DtComida.h"
+#include "../Header/DtFacturaResumen.h"
+#include "../Header/DtFacturaDomicilio.h"
 
 class IVenta{
     public:
@@ -25,23 +27,18 @@ class IVenta{
         virtual void descartarVentasEnMesa() =0;
         virtual set<int> mesasAsignadas(int nroEmpleado) =0;
         virtual void confirmarVentaEnMesas() =0;
-        virtual DtFactura generarFactura(int nromesa,int descuento) =0;
-        virtual void cancelarPedido(int nroVenta) =0;
+        virtual DtFactura* generarFactura(int nromesa,int descuento) =0;
         
+		virtual void cancelarPedido(int nroVenta) = 0;
+		virtual void siguienteEstado(int nroVenta) = 0;
         
         //Retorna un DtFacturaResumen que contiene el total de sumar todas las
         //facturas de ese dia y las facturas de ese dia
-        virtual DtFacturaResumen resumenDelDia(int d, int m, int a) = 0;
-        
-        //retorna un puter a coleccion de mesa
-        virtual map<int, Mesa*> *getColeccionDeMesa() = 0;
-        
-        
-        
+        virtual DtFacturaResumen resumenDelDia(int d, int m, int a) = 0;        
         //Venta a Domicilio
         virtual bool iniciarVentaADomicilio(string tel) = 0;
         virtual void seleccionarComida2(string codigo, int cantidad) = 0;
-        virtual set<DtDelivery> listarRepartidores() = 0;
+        virtual set<DtDelivery*> listarRepartidores() = 0;
         virtual void seleccionarRepartidor(int nroEmpleado) = 0;
         virtual void cancelarVentaADomicilio() = 0;
         virtual void confirmarVentaADomicilio() = 0;

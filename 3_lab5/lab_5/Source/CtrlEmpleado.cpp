@@ -1,7 +1,17 @@
-#include"../Header/CtrlEmpleado.h"
+#include "../Header/CtrlEmpleado.h"
+#include "../Header/TipoTransporte.h"
+#include "../Header/Empleado.h"
 #include "../Header/Mozo.h"
 #include "../Header/Delivery.h"
-#include "../Header/CtrlVenta.h"
+#include "../Header/DtAsignacionMesa.h"
+#include "../Header/Mesa.h"
+#include "../Header/DtMozo.h"
+#include "../Header/DtDelivery.h"
+#include "../Header/DtEmpleado.h"
+#include"../Header/CtrlVenta.h"
+
+
+CtrlEmpleado* CtrlEmpleado::instancia = NULL;
 
 CtrlEmpleado::CtrlEmpleado() {
 	this->setTransporte =  { BICI, MOTO, PIE };
@@ -146,9 +156,9 @@ set<DtAsignacionMesa> CtrlEmpleado::asignarAuto() {
 }
 
 //Venta a Domicilio
-set<DtDelivery> CtrlEmpleado::darRepartidores() {
+set<DtDelivery*> CtrlEmpleado::darRepartidores() {
 	map<int, Empleado*>::iterator i;
-	set<DtDelivery> res;
+	set<DtDelivery*> res;
 	for (i = coleccionDeEmpleado.begin(); i != coleccionDeEmpleado.end(); i++) {
 		Empleado* c = i->second;
 		Delivery* re = dynamic_cast<Delivery*> (c);
@@ -156,6 +166,7 @@ set<DtDelivery> CtrlEmpleado::darRepartidores() {
 			res.insert(re->darDtDelivery());
 		}
 	}
+	return res;
 }
 
 Delivery* CtrlEmpleado::pedirDelivery() {
@@ -169,4 +180,7 @@ Delivery* CtrlEmpleado::pedirDelivery() {
 	else {
 		throw (5);
 	}
+}
+void CtrlEmpleado::seleccionarRepartidor(string nroEmpleado) {
+	this->nombreEmpleado = nroEmpleado;
 }

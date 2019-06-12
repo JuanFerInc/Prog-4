@@ -14,7 +14,7 @@ class Fabrica{
 private:
 	static Fabrica* instancia;
 
-	void fabrica();
+	Fabrica() {}
 public:
 	static Fabrica* getInstance();
 	IVenta* getIVenta();

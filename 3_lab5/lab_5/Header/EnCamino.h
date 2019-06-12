@@ -10,7 +10,7 @@ class EnCamino : public Estado {
 private:
 	static EnCamino* instancia;
 
-	EnCamino();
+	EnCamino() {}
 public:
 	static EnCamino* getInstance();
 	Estado* siguienteEstado();

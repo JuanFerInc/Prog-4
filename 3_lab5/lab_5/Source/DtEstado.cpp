@@ -11,3 +11,13 @@ DtEstado::DtEstado(string c) {
 string DtEstado::getEtapaActual() const{
 	return this->etapaActual;
 }
+std::ostream& operator<<(std::ostream& out, DtEstado*info) {
+	info->print(out);
+	return out;
+}
+
+void DtEstado::print(std::ostream& out) {
+	using namespace std;
+	out << "Etapa Actual: " << this->etapaActual << endl;
+
+}

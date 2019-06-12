@@ -5,14 +5,11 @@
 #include <set>
 
 
-
 #include "../Header/Factura.h"
 #include "../Header/VentaComida.h"
-#include "../Header/CtrlVenta.h"
 
 
 using namespace std;
-
 
 class Venta{
 protected:
@@ -57,8 +54,7 @@ public:
 	//retorna true sii la venta tiene una comida con el codigo
 	bool tieneComida(string codigo);
 
-	virtual ~Venta() = 0;
+	virtual ~Venta() {};
 };
-
 
 #endif

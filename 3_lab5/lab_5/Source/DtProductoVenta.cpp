@@ -1,4 +1,6 @@
-#include "../Header/DtProductoVenta.h"
+#include "../Header/DtProductoVenta.h"		//Revisar el this->
+#include "../Header/DtProducto.h"
+#include "../Header/DtComida.h"
 
 #include <string>
 #include <iostream>
@@ -15,9 +17,18 @@ int DtProductoVenta::getCantidad() {
 	return this->cantidad;
 }
 
-void DtProductoVenta::operator<<(ostream& out){
-	out << "La descripcion es:" << this->descripcion << endl;
-	out << "El Precio Total es:" << this->precioTotal << endl;
-	out << "La cantidad es:" << this->cantidad << endl;
+void DtProductoVenta::print(std::ostream& out) {
+	using namespace std;
+	out << "Codigo: " << this->codigo << endl;
+	out << "descripcion: " << this->descripcion << endl;
+	out << "precio total " << this->precioTotal << endl;
+	out << "cantidad " << this->cantidad << endl;
 }
-
+bool DtProductoVenta::operator<(const DtProductoVenta& d)const {
+	if (this->codigo.compare(d.codigo) <= 0) {
+		return true;
+	}
+	else {
+		return false;
+	}
+}

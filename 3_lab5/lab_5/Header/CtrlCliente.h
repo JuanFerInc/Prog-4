@@ -3,11 +3,11 @@
 
 #include <iostream>
 #include <map>
-
+#include <set>
 #include "../Header/ICliente.h"
 #include "../Header/Cliente.h"
-#include "../Header/Estado.h"
 #include "../Header/DtCliente.h"
+
 
 
 using namespace std;
@@ -21,10 +21,10 @@ private:
 	//Memoria del controlador del cliente a ser agregado
 	string telefono;
 	string nombre;
-	DtDireccion direccion;
+	DtDireccion *direccion;
 
 
-	CtrlCliente();
+	CtrlCliente() {}
 public:
 	static CtrlCliente* getInstance();
 	set<DtEstadoTerminado> verActualizacion(string tel);
