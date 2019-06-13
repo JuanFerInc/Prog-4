@@ -1,5 +1,7 @@
-#include "../header/DtApartamento.h"
+#include "../Header/DtApartamento.h"
+#include "../Header/DtDireccion.h"
 #include <string>
+
 //getters
 
 string DtApartamento::getNombreEdificio() {
@@ -15,19 +17,17 @@ DtApartamento::DtApartamento (const DtApartamento &apart) {
 	this->numeroApartamento = apart.numeroApartamento;
 }
 
-std::ostream& operator<<(std::ostream& out, DtApartamento*info) {
-	info->print(out);
-	return out;
+DtApartamento::DtApartamento(string nombreEdificio, string numeroApart, string calle, string adyacente, string numeroPuerta):DtDireccion(numeroPuerta, calle, adyacente) {
+	this->nombreEdificio = nombreEdificio;
+	this->numeroApartamento = numeroApart;
 }
 
 void DtApartamento::print(std::ostream& out) {
 	using namespace std;
-	out << "Edificio: " << this->getNombreEdificio() << endl;
-	out << "Apartamento: " << this->getNumeroApartamento() << endl;
-	
-}
+	out << "nombre calle: " << this->getNombreCalle() << endl;
+	out << "numero: " << this->getNumero() << endl;
+	out << "calle adyacente: " << this->getCalleAdyacente() << endl;
+	out << "Edificio: " << this->nombreEdificio << endl;
+	out << "Apartamento: " << this->numeroApartamento << endl;
 
-DtApartamento::DtApartamento(string nombreEdificio, string numeroApart, string calle, string adyacente, string numeroPuerta):DtDireccion(numeroPuerta, calle, adyacente) {
-	this->nombreEdificio = nombreEdificio;
-	this->numeroApartamento = numeroApart;
 }

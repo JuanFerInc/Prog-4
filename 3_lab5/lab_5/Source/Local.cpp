@@ -1,11 +1,20 @@
 #include "../Header/Local.h"
 #include "../Header/DtProducto.h"
 #include "../Header/DtMenu.h"
+#include "../Header/Venta.h"
+#include "../Header/Mesa.h"
+#include "../Header/VentaComida.h"
+#include "../Header/Mozo.h"
+#include "../Header/DtComida.h"
+#include "../Header/Comida.h"
+#include "../Header/DtComidaVendida.h"
 
-Local::Local(map<int, Mesa> set, Mozo* mozo, int subtotal, set<VentaComida*> comidaContenida){
-	this->setsito = set;
+
+Local::Local(map<int, Mesa*> mesas, string nroVenta, Mozo *mozo):Venta(nroVenta) {
+	this->setsito = mesas;
 	this->linkMozo = mozo;
 }
+
 
 
 
@@ -73,17 +82,21 @@ void Local::decrementarCantidad(string codigo, int cantidad) {
 void Local::eliminarComida(string codigo) {
 	set<VentaComida*>::iterator i;
 	set<VentaComida*>::iterator iterAEliminar;
-	VentaComida* r;
+	VentaComida* r = NULL;;
+	
+
 	for (i = comidaContenida.begin(); i != comidaContenida.end(); i++) {
 		if ((*i)->esComidaAEliminar(codigo) != NULL) {
 			iterAEliminar = i;
 			r = (*i)->esComidaAEliminar(codigo);
+			
 		}
 	}
+	
 	comidaContenida.erase(iterAEliminar);
-	delete r;
-
-
+	if (r != NULL) {
+		delete r;
+	}
 }
 
 set<DtComidaVendida> Local::darComidas() {
@@ -109,4 +122,9 @@ void Local::desvincular(VentaComida vp) {
 
 bool Local::noEstaFacturada() {
 	return (!this->facturado);
+}
+
+DtMozo Local::getDtMozo() {
+	return this->linkMozo->getDtMozo();
+
 }

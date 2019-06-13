@@ -1,18 +1,18 @@
 #ifndef CANCELAR_H
 #define CANCELAR_H	
 
-
+#include <iostream>
 #include "../Header/Estado.h"
 
 class Cancelar : public Estado {
 private:
 	static Cancelar* instancia;
 
-	Cancelar();
+	Cancelar() {}
 public:
 	static Cancelar* getInstance();
-	Estado* siguienteEstado();	//Devuelve null (turvio sino)
-	Estado* cancelarPedido();			//Devuelve null (turvio sino)
+	Estado* siguienteEstado();	
+	Estado* cancelarPedido();			
 	DtEstado darEstadoActual();
 };
 #endif

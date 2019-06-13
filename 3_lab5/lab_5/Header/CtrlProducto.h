@@ -6,11 +6,10 @@
 #include <map>
 
 #include "../Header/IProducto.h"
-#include "../Header/Menu.h"
-#include "../Header/Producto.h"
-#include "../Header/DtProductoMenu.h"
-#include "../Header/DtComida.h"
+#include "../Header/Comida.h"
 #include "../Header/DtProducto.h"
+#include "../Header/DtMenu.h"
+#include "../Header/DtProductoMenu.h"
 
 
 using namespace std;
@@ -19,7 +18,7 @@ class CtrlProducto :public IProducto {
 
 private:
 	static CtrlProducto* instance;
-	DtProducto infoProducto;
+	//DtProducto infoProducto;
 	DtMenu infoMenu;
 	string codigo;
 	string descripcion;
@@ -27,7 +26,7 @@ private:
 	set<DtProductoMenu> infoMP;
 	map<string, Comida*> coleccionDeComida;
 
-	CtrlProducto();
+	CtrlProducto(){}
 
 public:
 
@@ -57,7 +56,7 @@ public:
 	//Pre: No existe instancia de menu con el mismo codigo en el sistema
 	//Post: El sistema recuerda los datos del menu
 
-	set<DtProducto> agregarMenu(string codigo, string descripcion);
+	set<DtProducto*> agregarMenu(string codigo, string descripcion);
 
 	//Ingresa al sistema los productos que seran asociado al menu
 	//Pre: Existe producto con el codigo ingresado
@@ -97,4 +96,4 @@ public:
 
 };
 
-#endif,
+#endif

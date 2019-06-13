@@ -1,9 +1,9 @@
 #include "../Header/DtMenu.h"
-
+#include "../Header/DtProductoVenta.h"
 #include <string>
 #include <iostream>
 
-DtMenu::DtMenu(string codigo, string descripcion, int precioTotal, set<DtProductoVenta>datosProductos) : DtComida(codigo, descripcion, precioTotal) {
+DtMenu::DtMenu(string codigo, string descripcion, int precioTotal, set<DtProductoVenta*>datosProductos) : DtComida(codigo, descripcion, precioTotal) {
 	this->productosDeMenu = datosProductos;
 }
 
@@ -13,17 +13,17 @@ DtMenu::DtMenu(const DtMenu &m):DtComida(m.getCodigo(), m.getDescripcion(), m.ge
 	
 }
 
+set<DtProductoVenta*> DtMenu::getProductosDeMenu() {
+	return this->productosDeMenu;
+}
+
 void DtMenu::print(std::ostream& out) {
 	out << "El codigo es:" << this->codigo << endl;
 	out << "La descripcion es:" << this->descripcion << endl;
 	out << "El Precio Total es:" << this->precioTotal << endl;
-	set<DtProductoVenta>::iterator i;
+	set<DtProductoVenta*>::iterator i;
 	for (i = productosDeMenu.begin(); i != productosDeMenu.end(); i++) {
-		DtProductoVenta c = (*i);
+		DtProductoVenta *c = (*i);
 		cout << "    " << c << endl;
 	}
-}
-
-set<DtProductoVenta> DtMenu::getProductosDeMenu() {
-	return this->productosDeMenu;
 }

@@ -1,10 +1,16 @@
 #include "../Header/EnCamino.h"
+#include "../Header/Estado.h"
+#include "../Header/Cancelar.h"
+#include "../Header/Recibido.h"
+#include "../Header/DtEstado.h"
 #include <string>
+
+EnCamino* EnCamino::instancia = NULL;
 
 EnCamino* EnCamino::getInstance() {
 	if (instancia == NULL) {
-		EnCamino* inst = new EnCamino();
-		instancia = inst;
+		instancia = new EnCamino();
+		
 	}
 	return instancia;
 }

@@ -31,7 +31,6 @@ DtComida::DtComida(string codigo, string descripcion, int precioTotal) {
 
 }
 
-
 std::ostream& operator<<(std::ostream& out, DtComida*info) {
 	info->print(out);
 	return out;
@@ -42,4 +41,12 @@ void DtComida::print(std::ostream& out) {
 	out << "Codigo: " << this->codigo << endl;
 	out << "descripcion: " << this->descripcion << endl;
 	out << "precio total " << this->precioTotal << endl;
+}
+bool DtComida::operator<(const DtComida& d)const {
+	if (this->codigo.compare(d.codigo) <= 0) {
+		return true;
+	}
+	else {
+		return false;
+	}
 }

@@ -1,4 +1,7 @@
-#include "../header/DtAsignacionMesa.h"
+#include "../Header/DtAsignacionMesa.h"
+#include "../Header/DtMozo.h"
+#include "../Header/DtAsignacionMesa.h"
+#include <set>
 #include <string>
 //getters
 
@@ -19,17 +22,31 @@ set<int> DtAsignacionMesa::getMesasDelMozo() {
     return (this->mesasDelMozo);
 }
 
+void DtAsignacionMesa::agregarMesa(int mesa) {
+	mesasDelMozo.insert(mesa);
+}
+
 std::ostream& operator<<(std::ostream& out, DtAsignacionMesa*info) {
 	info->print(out);
 	return out;
 }
-void DtAsignacionMesa::agregarMesa(int mesa) {
-	mesasDelMozo.insert(mesa);
-}
+
 void DtAsignacionMesa::print(std::ostream& out) {
 	using namespace std;
-	out << "Mozo: " << this->getMozo() << endl;
+	out << "Mozo: " << &this->mozo << endl;
 	out << "Mesas de un Mozo: ";
-	for()
+	set<int>::iterator iter;
+	for (iter = mesasDelMozo.begin(); iter != mesasDelMozo.end(); iter++) {
+		out << " " << (*iter) << endl;
+	}
+
+}
+bool DtAsignacionMesa::operator<(const DtAsignacionMesa& d) const {
+	if (this->mozo.getNombre().compare(d.mozo.getNombre()) <= 0) {
+		return true;
+	}
+	else {
+		return false;
+	}
 
 }

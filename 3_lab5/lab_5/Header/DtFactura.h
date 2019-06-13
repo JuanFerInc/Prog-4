@@ -3,20 +3,22 @@
 
 #include <iostream>
 #include <set>
-#include "../Header/DtComida.h"
+
+
 #include "../Header/DtFecha.h"
 #include "../Header/DtHora.h"
+#include "../Header/DtComidaVendida.h"
 
 
 using namespace std;
 
 class DtFactura {
-private:
+protected:
 
 	string codigo;			//Es el nroVenta
 	DtFecha fecha;
 	DtHora hora;
-	set<DtComida> comidaVendida;
+	set<DtComidaVendida> comidaVendida;
 	float subtotal, montoTotal, montoTotalIVA; //montoTotal = subtotal* 0.descuento ; montoTotalIVA = montoTotal* 0.IVA
 	int descuento;
 
@@ -26,11 +28,14 @@ public:
 	string getCodigo();
 	DtFecha getFecha();
 	DtHora getHora();
-	set<DtComida> getComidaVendida();
+	set<DtComidaVendida> getComidaVendida();
 	float getSubtotal();
 	float getmontoTotal();
 	float getSubtotalIVA();
 	int getDescuento();
+
+	friend std::ostream& operator<<(std::ostream& out, DtFactura *info);
+	virtual void print(ostream& out);
 
 };
 

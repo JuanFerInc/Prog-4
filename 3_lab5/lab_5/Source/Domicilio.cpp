@@ -1,4 +1,16 @@
+#define _CRT_SECURE_NO_WARNINGS
 #include "../Header/Domicilio.h"
+#include "../Header/Factura.h"
+#include "../Header/Cliente.h"
+#include "../Header/Estado.h"
+#include "../Header/VentaComida.h"
+#include "../Header/Delivery.h"
+#include "../Header/Venta.h"
+#include "../Header/DtComidaVendida.h"
+#include "../Header/DtEstado.h"
+#include "../Header/DtDelivery.h"
+#include "../Header/DtEstadoTerminado.h"
+#include "../Header/DtHora.h"
 #include <ctime>
 
 Domicilio::Domicilio(Cliente* cliente, Estado* estado, string nroVenta, set<VentaComida*> comidaContenida, int subtotal, Delivery* delivery):Venta(nroVenta , comidaContenida, subtotal) {
@@ -17,11 +29,12 @@ Factura* Domicilio::crearFactura(int descuento) {
 		DtComidaVendida comida = (*i)->pedirDatatypeDtComidaVendida();
 		comidasParaFactura.insert(comida);
 	}
-	Factura(descuento, comidasParaFactura, this->nroVenta, subtotal);
+	return new Factura(descuento, comidasParaFactura, this->nroVenta, subtotal);
+
 }
 
-DtDelivery Domicilio::darDtDelivery() {
-	return (this->linkDelivery->darDtDelivery);
+DtDelivery* Domicilio::darDtDelivery() {
+	return (this->linkDelivery->darDtDelivery());
 }
 
 void Domicilio::cancelarPedido() {
@@ -37,8 +50,25 @@ DtEstadoTerminado Domicilio::darDatatypeTerminado(DtEstado estado) {
 	tm *t = localtime(&current_time);
 	int hora = t->tm_hour;
 	int minuto = t->tm_min;
-	DtHora hora = DtHora(minuto, hora);
-	this->linkCliente->getTelefono();
-	this->linkCliente->getNombre();
-	this->comidaContenida;
+	DtHora horas(minuto, hora);
+	
+	set<VentaComida*>::iterator iter;
+	set<DtComidaVendida*>comidas;
+
+
+	for (iter = comidaContenida.begin(); iter != comidaContenida.end(); iter++) {
+		VentaComida *vc = *iter;
+		comidas.insert(vc->darDtComidayCantidad());
+	}
+
+
+	return DtEstadoTerminado(this->linkCliente->getNombre(), this->linkCliente->getTelefono(), horas, estado.getEtapaActual(), comidas);
+}
+bool Domicilio::tieneDelivery() {
+	if (this->linkDelivery == NULL) {
+		return false;
+	}
+	else {
+		return true;
+	}
 }

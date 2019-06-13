@@ -1,21 +1,30 @@
-#include "../Header/DtComida.h"
+#ifndef DTMENU_H
+#define DTMENU_H
+
+
 #include "../Header/DtProductoVenta.h"
 
+class DtProductoVenta;
+
 class DtMenu : public DtComida {
-private:
-	set<DtProductoVenta> productosDeMenu;
+protected:
+	set<DtProductoVenta*> productosDeMenu;
 
 public:
-	DtMenu();
+	DtMenu() = default;
 	//Contructor por copia
 	DtMenu(const DtMenu &m);
 
-	DtMenu(string codigo, string descripcion, int precioTotal, set<DtProductoVenta>datosProductos);
+	DtMenu(string codigo, string descripcion, int precioTotal, set<DtProductoVenta*>datosProductos);
 
 	//geters
 
-	set<DtProductoVenta> getProductosDeMenu();
+	set<DtProductoVenta*> getProductosDeMenu();
 	
-	iostream operator<<(std::ostream& out, DtMenu* dt);
+	
+	virtual void print(ostream& out);
 };
+
+
+#endif // !DTMENU
 

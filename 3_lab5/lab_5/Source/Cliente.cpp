@@ -1,6 +1,8 @@
 #include "../Header/Cliente.h"
+#include"../Header/DtDireccion.h"
+#include"../Header/DtEstadoTerminado.h"
 
-Cliente::Cliente(string nombre, string telefono, DtDireccion direccion) {
+Cliente::Cliente(string nombre, string telefono, DtDireccion* direccion) {
 	this->nombre = nombre;
 	this->telefono = telefono;
 	this->direccion = direccion;
@@ -16,7 +18,7 @@ void Cliente::setTelefono(string tel) {
 }
 
 void Cliente::setDireccion(DtDireccion dir) {
-    this->direccion = dir;
+    this->direccion = new DtDireccion(dir);
 }
 
 //getters
@@ -25,7 +27,7 @@ string Cliente::getTelefono() {
     return (this->telefono);
 }
 
-DtDireccion Cliente::getDireccion() {
+DtDireccion* Cliente::getDireccion() {
     return (this->direccion);
 }
 

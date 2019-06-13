@@ -5,12 +5,16 @@
 #include <map>
 #include <set>
 
-#include "../Header/Empleado.h"
+
 #include "../Header/IEmpleado.h"
-#include "../Header/TipoTransporte.h"
-#include  "../Header/DtAsignacionMesa.h"
+#include "../Header/Empleado.h"
+#include "../Header/DtAsignacionMesa.h"
 #include "../Header/DtDelivery.h"
 #include "../Header/Delivery.h"
+
+
+
+
 
 
 
@@ -47,8 +51,10 @@ public:
 	set<DtAsignacionMesa> asignarAuto();
 	//Venta a Domicilio
 	void seleccionarRepartidor(string nroEmpleado);
-	set<DtDelivery> darRepartidores();
+	set<DtDelivery*> darRepartidores();
 	Delivery* pedirDelivery();
 
 };
+
+
 #endif

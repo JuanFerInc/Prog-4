@@ -1,5 +1,6 @@
 #ifndef DTFECHA_H
 #define DTFECHA_H
+#include <string>
 
 class DtFecha {
 private:
@@ -20,5 +21,7 @@ public:
 
 	bool operator==(DtFecha);
 	bool operator<(const DtFecha&);
+	friend std::ostream& operator<<(std::ostream& out, DtFecha *info);
+	void print(std::ostream& out);
 };
 #endif

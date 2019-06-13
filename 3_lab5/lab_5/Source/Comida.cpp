@@ -1,10 +1,5 @@
-#include "../Header/Producto.h"
-#include "../Header/DtProducto.h"
 #include "../Header/Comida.h"
 
-#include <iostream>
-
-using namespace std;
 Comida::Comida(string codigo, string descripcion) {
 	this->descripcion = descripcion;
 	this->codigo = codigo;

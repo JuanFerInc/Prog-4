@@ -1,5 +1,8 @@
-#pragma once
+#ifndef DTPRODUCTOVENTA_H
+#define DTPRODUCTOVENTA_H
+
 #include "../Header/DtProducto.h"
+#include <string>
 
 class DtProductoVenta : public DtProducto {
 private:
@@ -12,8 +15,14 @@ public:
 	//geters
 	int getCantidad();
 	//impresion
-	void operator<<(ostream& out);
 
-
+	
+	bool operator<(const DtProductoVenta& d)const;
+	
+	void print(ostream& out);
 
 };
+
+
+#endif // !DTPRODUCTOVENTA_H
+

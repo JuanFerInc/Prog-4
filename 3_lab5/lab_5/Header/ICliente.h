@@ -4,6 +4,9 @@
 #include <iostream>
 
 #include "../Header/DtEstadoTerminado.h"
+#include "../Header/Cliente.h"
+#include "../Header/DtCliente.h"
+
 using namespace std;
 
 class ICliente{

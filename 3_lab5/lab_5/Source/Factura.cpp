@@ -1,7 +1,15 @@
-#include "../Header/Fabrica.h"
+#define _CRT_SECURE_NO_WARNINGS
 #include "../Header/Factura.h"
-#include "../Header/DtFacturaLocal.h"
 #include <ctime>
+#include "../Header/DtComidaVendida.h"
+#include "../Header/DtFecha.h"
+#include "../Header/DtHora.h"
+#include "../Header/DtFacturaLocal.h"				//No me cierran estos dos includes
+#include "../Header/DtFacturaDomicilio.h"
+#include "../Header/DtFactura.h"
+#include "../Header/DtDelivery.h"
+#include "../Header/Venta.h"
+#include "../Header/DtMozo.h"
 
 Factura::Factura(int descuento, set<DtComidaVendida> comidaEnFactura, string nroFactura, float subtotal) {
 	this->descuento = descuento;
@@ -23,16 +31,16 @@ Factura::Factura(int descuento, set<DtComidaVendida> comidaEnFactura, string nro
 	this->hora = DtHora(minuto, hora);
 }
 
-DtFacturaDomicilio Factura::darDtFacturaDomicilio(DtDelivery dt) {
+DtFacturaDomicilio *Factura::darDtFacturaDomicilio(DtDelivery dt) {
 	float montoTotal = this->subtotal* (1 -(descuento / 100));
 	float montoTotalIVA = montoTotal + (montoTotal * Venta::getIVA());
-	return DtFacturaDomicilio(dt, this->nroFactura, this->fecha, this->hora, this->comidaEnFactura, this->subtotal, montoTotal ,montoTotalIVA , this->descuento);
+	return new DtFacturaDomicilio(dt, this->nroFactura, this->fecha, this->hora, this->comidaEnFactura, this->subtotal, montoTotal ,montoTotalIVA , this->descuento);
 }
 
-DtFactura Factura::darDtFacturaDomicilioSinDelivery() {
+DtFactura *Factura::darDtFacturaDomicilioSinDelivery() {
 	float montoTotal = this->subtotal* (1 - (descuento / 100));
 	float montoTotalIVA = montoTotal + (montoTotal * Venta::getIVA());
-	return DtFactura(this->nroFactura, this->fecha, this->hora, this->comidaEnFactura, this->subtotal, montoTotal, montoTotalIVA, this->descuento);
+	return new DtFactura(this->nroFactura, this->fecha, this->hora, this->comidaEnFactura, this->subtotal, montoTotal, montoTotalIVA, this->descuento);
 }
 
 DtFecha Factura::getFecha() {
@@ -57,7 +65,8 @@ float Factura::getMontoTotal() {
 	return this->subtotal* (1 - (descuento / 100));
 }
 
-DtFacturaLocal Factura::generarDtFacturaLocal(DtMozo dt) {
+DtFacturaLocal *Factura::generarDtFacturaLocal(DtMozo dt) {
 	float montoTotalIVA = this->getMontoTotal() + (this->getMontoTotal() * (Venta::getIVA() / 100));
-	return (DtFacturaLocal(dt,this->nroFactura, this->fecha, this->hora, this->comidaEnFactura, this->subtotal, this->getMontoTotal(), montoTotalIVA, this->descuento));
+	return (new DtFacturaLocal(dt,this->nroFactura, this->fecha, this->hora, this->comidaEnFactura, this->subtotal, this->getMontoTotal(), montoTotalIVA, this->descuento));
+
 }

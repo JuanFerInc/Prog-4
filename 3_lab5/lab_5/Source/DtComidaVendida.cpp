@@ -1,4 +1,4 @@
-#include "../header/DtComidaVendida.h"
+#include "../Header/DtComidaVendida.h"
 
 //getters
 
@@ -31,10 +31,23 @@ DtComidaVendida::DtComidaVendida(const DtComidaVendida& dcv) {
     this->cantidad=dcv.cantidad;
 }
 
+std::ostream& operator<<(std::ostream& out, DtComidaVendida*info) {
+	info->print(out);
+	return out;
+}
+
 void DtComidaVendida::print(std::ostream& out) {
-    using namespace std;
-    out << "Descripcion: " << this->getNombre() << endl;
-    out << "Precio: " << this->getPrecio() <<endl;
-    out << "PrecioTotal: " << this->getPrecioTotal() << endl;
-    out << "cantidad: " << this->getCantidad() << endl;
+	using namespace std;
+	out << "Descripcion: " << this->nombre << endl;
+	out << "Precio: " << this->precio << endl;
+	out << "PrecioTotal: " << this->getPrecioTotal() << endl;
+	out << "cantidad: " << this->cantidad << endl;
+}
+bool DtComidaVendida::operator<(const DtComidaVendida& d)const {
+	if (this->nombre.compare(d.nombre) <= 0) {
+		return true;
+	}
+	else {
+		return false;
+	}
 }

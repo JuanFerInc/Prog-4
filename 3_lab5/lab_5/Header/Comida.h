@@ -6,7 +6,7 @@
 
 #include "../Header/DtComida.h"
 
-using namespace std;
+
 
 class Comida{
 
@@ -42,7 +42,7 @@ public:
 	virtual DtComida* darDataVenta() = 0;
 	//Franco no uses esta funcion
 	void incrementarCantidadUnidadesVendidas(int jorge);
-	virtual ~Comida() = 0;
+	virtual ~Comida() {};
 
 };
 #endif

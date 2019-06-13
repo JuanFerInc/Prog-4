@@ -1,4 +1,4 @@
-#include "../header/DtApartamento.h"
+#include "../Header/DtDireccion.h"
 #include <string>
 
 DtDireccion::DtDireccion(string numero, string calle, string calleAdyacente) {

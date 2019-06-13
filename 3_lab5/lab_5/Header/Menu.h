@@ -1,9 +1,9 @@
 #ifndef  MENU_H
 #define MENU_H
-#include "../Header/Comida.h"
-class MenuProducto;
 
-class MenuProducto;
+#include "../Header/Comida.h"
+#include "../Header/DtMenuVenta.h"
+#include "../Header/MenuProducto.h"
 
 class Menu :public Comida {
 private:
@@ -16,21 +16,20 @@ public:
 
 	set<MenuProducto*> getProductosContenidos();
 
-	int getPrecio();
+
 
 	//otra
 	void asociarmeAMenuProducto(MenuProducto *mp);
 
-	DtMenu* darDataType();
+	DtComida* darDataType();
 
 	bool desvincularM(MenuProducto *mp);
 
 	void darDeBajaComida();
 
-	DtComida* darDataVenta();
-
+	DtMenuVenta* darDataVenta();
+	~Menu();
 };
 
-#include "../Header/MenuProducto.h"
 
 #endif // ! MENU_H

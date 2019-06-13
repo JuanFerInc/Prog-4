@@ -1,4 +1,7 @@
 #include "../Header/VentaComida.h"
+#include "../Header/Comida.h"
+#include "../Header/DtComidaVendida.h"
+#include "../Header/DtComida.h"
 
 bool VentaComida::tieneMismo(string codigo) {
 	return this->linkComida->sonIguales(codigo);
@@ -42,7 +45,7 @@ void VentaComida::bajarCantidad(string codigo, int cantidad) {
 }
 
 VentaComida* VentaComida::esComidaAEliminar(string codigo) {
-	if (this->linkComida->sonIguales()) {
+	if (this->linkComida->sonIguales(codigo)) {
 		return this;
 	}
 	return NULL;
@@ -51,8 +54,7 @@ VentaComida* VentaComida::esComidaAEliminar(string codigo) {
 DtComidaVendida* VentaComida::darDtComidayCantidad() {
 	int cantidad = this->getCantidad();
 	DtComida* data = this->linkComida->darDataType();
-	int precioTotal = cantidad * data->getPrecioTotal();
-	DtComidaVendida* res = new DtComidaVendida(cantidad, data->getDescripcion(), data->getPrecioTotal);
+	DtComidaVendida* res = new DtComidaVendida(cantidad, data->getDescripcion(), data->getPrecioTotal());
 	return res;
 }
 
@@ -72,6 +74,17 @@ DtComidaVendida VentaComida::pedirDatatypeDtComidaVendida() {
 	return DtComidaVendida(this->cantidad, this->linkComida->getDescripcion(), this->linkComida->getPrecio());
 }
 
+bool VentaComida::estaLaComida(string codigo) {
+	return linkComida->sonIguales(codigo);
+}
+int VentaComida::getCantidad() {
+	return this->cantidad;
+}
+void VentaComida::setCantidad(int cant) {
+	this->cantidad = cant;
+}
+
 string VentaComida::darCodigoDeComida() {
 	return this->linkComida->getCodigo();
+
 }

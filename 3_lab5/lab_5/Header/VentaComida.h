@@ -32,6 +32,7 @@ public:
 	bool esMayor(string codigo, int cantidad);
 	void bajarCantidad(string codigo, int cantidad);
 	VentaComida* esComidaAEliminar(string codigo);
+	//retorna true sii son iguales
 	bool estaLaComida(string codigo);
 
 	//Retora true si la comida asociada a la venta comida tiene el mismo codigo

@@ -4,6 +4,12 @@
 #include <iostream>
 #include <set>
 
+
+#include "../Header/DtAsignacionMesa.h"
+#include "../Header/Delivery.h"
+
+
+
 using namespace std;
 
 
@@ -16,15 +22,14 @@ public:
 	virtual void confirmarEmpleado()=0;
 	virtual void agregarMozo(string nombre)=0;
 	virtual set<TipoTransporte> agregarDelivery(string nombre)=0;
-    virtual void elegirVehiculo(TipoTransporte vehiculo) = 0;
-    virtual set<int> mesasDeMozo(int nroEmpleado) =0;
+
     
     //Asignar automaticamente mozos a mesas
     virtual set<DtAsignacionMesa> asignarAuto() = 0;
     
     //Venta a domicilio
 	virtual void seleccionarRepartidor(string nroEmpleado) = 0;
-	virtual set<DtDelivery> darRepartidores() = 0;
+	virtual set<DtDelivery*> darRepartidores() = 0;
 	virtual Delivery* pedirDelivery() = 0;
 
     

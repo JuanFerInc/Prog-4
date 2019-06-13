@@ -1,6 +1,12 @@
+#ifndef PRODUCTO_H
+#define PRODUCTO_H
+
 #include "../Header/Comida.h"
 #include "../Header/Menu.h"
-#include "../Header/MenuProducto.h"
+#include "../Header/DtProducto.h"
+#include"../Header/MenuProducto.h"
+
+
 
 class Producto : public Comida {
 private:
@@ -14,7 +20,6 @@ public:
 	int getPrecio();
 	set<MenuProducto*> getEsContenidoEn();
 
-	int getPrecio();
 
 	//set
 	void setPrecio(int precio);
@@ -28,3 +33,5 @@ public:
 	DtComida* darDataVenta();
 
 };
+
+#endif

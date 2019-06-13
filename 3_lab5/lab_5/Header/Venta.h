@@ -5,26 +5,27 @@
 #include <set>
 
 
-
 #include "../Header/Factura.h"
 #include "../Header/VentaComida.h"
-#include "../Header/CtrlVenta.h"
 
 
 using namespace std;
-
 
 class Venta{
 protected:
 	Factura* linkFactura;
     string nroVenta;
     static int IVA ;
-    int subtotoal;
+    int subtotal;
     bool facturado;
 	set<VentaComida*> comidaContenida;
 
 public:
-	Venta();
+
+
+	Venta(string nroVenta);
+
+
 
 	Venta(string nroVenta, set<VentaComida*> comidaContenida,int subtotal); //? no se usa en ningun lado
 //setters
@@ -53,8 +54,7 @@ public:
 	//retorna true sii la venta tiene una comida con el codigo
 	bool tieneComida(string codigo);
 
-	virtual ~Venta() = 0;
+	virtual ~Venta() {};
 };
-
 
 #endif

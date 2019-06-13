@@ -1,9 +1,10 @@
 #include "../Header/CtrlCliente.h"
-#include <iostream>
+#include "../Header/Cliente.h"
+#include "../Header/DtEstadoTerminado.h"
+#include "../Header/DtDireccion.h"				//De nuevo lo de si usar DtDireccion*
+#include "../Header/DtCliente.h"
 
-
-using namespace std;
-
+CtrlCliente* CtrlCliente::instancia = NULL;
 
 CtrlCliente* CtrlCliente::getInstance() {
 	if (instancia == NULL) {
@@ -57,7 +58,8 @@ Cliente* CtrlCliente::pedirCliente(string telefono) {
 DtCliente CtrlCliente::agregarCliente(string telefono, string nombre, DtDireccion dirrecion) {
 	this->telefono = telefono;
 	this->nombre = nombre;
-	this->direccion = direccion;
+	this->direccion = new DtDireccion(dirrecion);
+	return DtCliente(telefono,nombre,this->direccion);
 }
 
 void CtrlCliente::cancelarCliente() {

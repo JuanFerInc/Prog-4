@@ -3,8 +3,9 @@
 
 #include <iostream>
 
-#include "../Header/Mesa.h"
+
 #include "../Header/TipoTransporte.h"
+
 
 using namespace std;
 
@@ -22,7 +23,7 @@ public:
 	int getNroEmpleado() const;
 	string getNombre() const;
 
-	virtual ~Empleado() = 0;
+	virtual ~Empleado() {};
 };
 
 #endif

@@ -1,10 +1,15 @@
 #include "../Header/Pedido.h"
 #include <string>
+#include "../Header/Estado.h"
+#include "../Header/EnCamino.h"
+#include "../Header/DtEstado.h"
+#include "../Header/Cancelar.h"
+
+Pedido* Pedido::instancia = NULL;
 
 Pedido* Pedido::getInstance() {
 	if (instancia == NULL) {
-		Pedido* inst = new Pedido();
-		instancia = inst;
+		instancia = new Pedido();
 	}
 	return instancia;
 }

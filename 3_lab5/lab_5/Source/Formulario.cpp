@@ -1,6 +1,7 @@
 #include "../Header/Formulario.h"
 #include "../Header/Fabrica.h"
 #include <iostream>
+#include <string>
 #include <set>
 #include "../Header/DtProducto.h"
 #include "../Header/DtCliente.h"
@@ -10,19 +11,28 @@
 #include "../Header/DtDelivery.h"
 #include "../Header/DtFacturaDomicilio.h"
 #include "../Header/DtFacturaResumen.h"
-
-
+#include "../Header/DtMenuVenta.h"
+#include "../Header/DtComida.h"
 #include "../Header/TipoTransporte.h"
-
+#include "../Header/DtProductoVenta.h"
+#include "../Header/DtEstadoTerminado.h"
+#include "../Header/DtFactura.h"
+/*
+#include "../Header/IVenta.h"
+#include "../Header/ICliente.h"
+#include "../Header/IEmpleado.h"
+#include "../Header/IProducto.h"
+*/
 
 using namespace std;
 //Los menus individuales tiran error x al menu posta
 void menu_admin(){
-
 	int salir = 0;
 	while (!salir) {
 		char comando;
+		system("CLS");//limpia la pantalla
 		cout << endl;
+		
 		cout << "Bienvenido. Elija una opcion:" << endl;
 		cout << "a) Dar de alta un producto" << endl;
 		cout << "b) Dar de alta un cliente" << endl;
@@ -47,16 +57,21 @@ void menu_admin(){
 
 		
 		char seguro;
+		bool quieroSeguirAgregando = true;
 		if (comando == 'a') {
-			bool quieroSeguirAgregando = true;
+			
 			while (quieroSeguirAgregando) {
 				bool hayP = interfazProducto->masDeUnProducto();
+				bool agregar_Producto = true;
 				if (hayP) {
 					cout << "Es un producto o un menu [p/m]" << endl;
 					char temp;
 					cin >> temp;
 					if (temp == 'p') {
-						hayP = false;
+						agregar_Producto = true;
+					}
+					else if (temp == 'm') {
+						agregar_Producto = false;
 					}
 					else if (temp != 'm') {
 						cout << "Por favor ingrese los datos pedidos" << endl;
@@ -64,12 +79,15 @@ void menu_admin(){
 					}
 				}
 				string descripcion, codigo;
+				system("CLS");//limpia la pantalla
+				cin.ignore();//ignore el ENTER precinado en el menu
 				cout << "Ingrese la descripcion " << endl;
-				cin >> descripcion;
-				cout << "Ingrese el codigo" << endl;
-				cin >> codigo;
+				getline(cin, descripcion);
 				
-				if (!hayP) {
+				cout << "Ingrese el codigo" << endl;
+				getline(cin, codigo);
+				
+				if (!hayP || agregar_Producto) {
 					int precio;
 					cout << "Ingrese el precio" << endl;
 					cin >> precio;
@@ -86,530 +104,121 @@ void menu_admin(){
 					}
 				
 				}else {
-					set<DtProducto> cosas = interfazProducto->agregarMenu(codigo, descripcion);
-					set<DtProducto>::iterator iter;
+					set<DtProducto*> cosas = interfazProducto->agregarMenu(codigo, descripcion);
+					set<DtProducto*>::iterator iter;
 					cout << "Estos son los productos disponibles: " << endl;
-					for (iter = cosas.begin(); iter != cosas.end; iter++) {
-						DtProducto dt = *iter;
-						cout << &dt << endl;
+					for (iter = cosas.begin(); iter != cosas.end(); iter++) {
+						DtProducto *dt = *iter;
+						cout << dt << endl;
 					}
-					while (!hayP) {
+					bool continuar_Menu = true;
+					while (continuar_Menu) {
 						string codprod;
 						int cantidad;
 						cout << "Ingrese el codigo del producto" << endl;
-						cin >> codprod;
+						getline(cin, codprod);
 						cout << "Ingrese la cantidad" << endl;
 						cin >> cantidad;
 						interfazProducto->agregarProductoMenu(codprod, cantidad);
-						cout << "Deseas continuar [y/n]";
-						cin >> seguro;
-						if (seguro == 'n')
-							hayP = false;
-						else if (seguro != 'y')
-							throw('x');
-					}
-					cout << "Confirmar [y/n]?" << endl;
-					cin >> seguro;
-					if (seguro == 'y')
-						interfazProducto->aceptarAltaMenu();
-					else if (seguro == 'n')
-						interfazProducto->cancelarAltaMenu();
-					else {
-						cout << "Por favor ingrese los datos pedidos" << endl;
-						throw('x');
-					}
-				}
-
-			}
-			cout << "Desea continuar [Si = 0]" << endl;
-			cin >> salir;
-			//cout << "Que paso amiguito?" << endl;
-		}else if(comando == 'b'){
-			string tel, nombre, calle, numero, ady, ed, eddy;
-			
-			cout << "Ingrese el telefono" << endl;
-			cin >> tel;
-			cout << "Ingrese el nombre" << endl;
-			cin >> nombre;
-			cout << "Ingrese nombre de la calle" << endl;
-			cin >> calle;
-			cout << "Ingrese el numero" << endl;
-			cin >> numero;
-			cout << "Calles esquinas" << endl;
-			cin >> ady;
-			cout << " casa o apartamento [c/a]" << endl;
-			cin >> seguro;
-			if (seguro == 'c') {
-				DtCliente clientepepe = interfazCliente->agregarCliente(tel,nombre, DtDireccion(numero,calle,ady));
-				cout << &clientepepe << endl;
-			}
-			else if (seguro == 'a') {
-				cout << "Ingrese nombre del edificio " << endl;
-				cin >> ed;
-				cout << "Ingrese el numero de apartamento" << endl;
-				cin >> eddy;
-				DtCliente clientepepe = interfazCliente->agregarCliente(tel,nombre,DtApartamento(ed, eddy, calle, ady,numero));
-				cout << &clientepepe << endl;
-			}
-			else {
-				cout << "Por favor ingrese los datos pedidos" << endl;
-				throw('x');
-			}
-			cout << "confirmar[y/n]" << endl;
-			cin >> seguro;
-			if (seguro == 'y') {
-				interfazCliente->aceptarCliente();
-			}
-			else if (seguro == 'n') {
-				interfazCliente->cancelarCliente();
-			}
-			else {
-				cout << "Por favor ingrese los datos pedidos" << endl;
-				throw('x');
-			}
-		} else if (comando == 'c') {
-			bool seguir = true;
-			while (seguir) {
-				cout << "Desea ingresar un mozo(m) o un delivery (d) " << endl;
-				cin >> seguro;
-				string x;
-				if (seguro == 'm') {
-					cout << "Ingrese el nombre del mozo " << endl;
-					cin >> x;
-					interfazEmpleado->agregarMozo(x);
-				}else if  (seguro == 'd') {
-					cout << "Ingrese el nombre del delivery" << endl;
-					cin >> x;
-					interfazEmpleado->agregarDelivery(x);
-					cout << "Los transportes disponible son: Pie (p), Bicicleta (b) o Motocicleta (m). Elija uno!" << endl;
-					cin >> seguro;
-					if (seguro == 'p') {
-						interfazEmpleado->elegirVehiculo('p');
-					}
-					else if (seguro == 'b') {
-						//cambiar firma de funcion elegirvehiculo lcdtm;
-						interfazEmpleado->elegirVehiculo('b');
-					}
-					else if (seguro== 'm') {
-						interfazEmpleado->elegirVehiculo('m');
-					} else {
-						cout << "Por favor ingrese los datos pedidos" << endl;
-						throw('x');
-					}
-				} else {
-					cout << "Por favor ingrese los datos pedidos" << endl;
-					throw('x');
-				}
-				cout << "Desea confirmar [y/n]" << endl;
-				cin >> seguro;
-				if (seguro == 'y') {
-					interfazEmpleado->confirmarEmpleado();
-				} else if (seguro == 'n') {
-					interfazEmpleado->cancelarEmpleado();
-				}
-				else {
-					cout << "Por favor ingrese los datos pedidos" << endl;
-					throw('x');
-				}
-
-			}
-		}
-		else if (comando == 'd') {
-		DtAsignacionMesa dtam = interfazEmpleado->asignarAuto();
-		cout << " " << &dtam << endl;
-		} else if (comando == 'e') {
-			cout << "Ingrese el telefono" << endl;
-			string telef;
-			cin >> telef;
-			bool existe = interfazVenta->iniciarVentaDomicilio(telef);
-			if (!existe) {
-				string nombre, calle, numero, ady, ed, eddy;
-
-				//cout << "Ingrese el telefono" << endl;
-				//cin >> tel;
-				cout << "Ingrese el nombre" << endl;
-				cin >> nombre;
-				cout << "Ingrese nombre de la calle" << endl;
-				cin >> calle;
-				cout << "Ingrese el numero" << endl;
-				cin >> numero;
-				cout << "Calles esquinas" << endl;
-				cin >> ady;
-				cout << "casa o apartamento [c/a]" << endl;
-				cin >> seguro;
-				if (seguro == 'c') {
-					DtCliente clientepepe = interfazCliente->agregarCliente(telef, nombre, DtDireccion(numero, calle, ady));
-					cout << &clientepepe << endl;
-				}
-				else if (seguro == 'a') {
-					cout << "Ingrese nombre del edificio" << endl;
-					cin >> ed;
-					cout << "Ingrese el numero de apartamento" << endl;
-					cin >> eddy;
-					DtCliente clientepepe = interfazCliente->agregarCliente(telef, nombre, DtApartamento(ed, eddy, calle, ady, numero));
-					cout << &clientepepe << endl;
-				}
-				else {
-					cout << "Por favor ingrese los datos pedidos" << endl;
-					throw('x');
-				}
-				cout << "confirmar[y/n]" << endl;
-				cin >> seguro;
-				if (seguro == 'y') {
-					interfazCliente->aceptarCliente();
-				}
-				else if (seguro == 'n') {
-					interfazCliente->cancelarCliente();
-				}
-				else {
-					cout << "Por favor ingrese los datos pedidos" << endl;
-					throw('x');
-				}
-			}
-			set<DtComida> dtc = interfazProducto->listaDeComidaDisponible();
-			set<DtComida>::iterator iter;
-			for (iter = dtc.begin(); iter != dtc.end(); iter++) {
-				cout << " " << &(*iter) << endl;
-			}
-			bool nosalir = true;
-			string cod;
-			int cant;
-			while (nosalir) {
-				cout << "Ingrese codigo" << endl;
-				cin >> cod;
-				cout << "ingrese la cantidad" << endl;
-				cin >> cant;
-				interfazVenta->seleccionarComida(cod, cant);
-				cout << "Desea seguir agregando comidas [y/n]" << endl;
-				cin >> seguro;
-				if (seguro == 'n') {
-					nosalir = false;
-				} else if (seguro !='y') {
-					cout << "Por favor ingrese los datos pedidos" << endl;
-					throw('x');
-				}
-			}
-			cout << "Deseas solicitar un repartidor[y/n]" << endl;
-			cin >> seguro;
-			bool quiereRepartidor = false;
-			if (seguro == 'y') {
-				quiereRepartidor = true;
-				set<DtDelivery> dtc = interfazEmpleado->listarRepartidores();
-				set<DtDelivery>::iterator iter;
-				for (iter = dtc.begin(); iter != dtc.end(); iter++) {
-					cout << " " << &(*iter) << endl;
-				}
-				string repartidor;
-				cout << "Elija un repartidor" << endl;
-				cin >> repartidor;
-				interfazEmpleado->seleccionarRepartidor(repartidor);
-			}
-			else if (seguro != 'n') {
-				cout << "Por favor ingrese los datos pedidos" << endl;
-				throw('x');
-			}
-			cout << "Desea confirmar [y/n]" << endl;
-			cin >> seguro;
-			if (seguro == 'y') {
-				interfazVenta->confirmarVentaDomicilio();
-				int des;
-				cout << "Ingrese el descuento, en caso de no aplicar ingrese 0" << endl;
-				cin >> des;
-				if (quiereRepartidor) {
-					DtFacturaDomicilio dfd = interfazVenta->facturarVentaADomicilio(des);
-					cout << " " << &dfd << endl;
-				}
-				else {
-					DtFactura dfd = interfazVenta->facturarVentaADomicilioSinDelivery();
-					cout << " " << &dfd << endl;
-				}
-			}
-			else if (seguro == 'n') {
-				interfazVenta->cancelarVentaDomicilio();
-			}
-			else {
-				cout << "Por favor ingrese los datos pedidos" << endl;
-				throw('x');
-			}
-		}
-		else if (comando == 'f') {
-			set<DtComida> dtc = interfazProducto->listaDeComidaDisponible();
-			set<DtComida>::iterator iter;
-			for (iter = dtc.begin(); iter != dtc.end(); iter++) {
-				cout << " " << &(*iter) << endl;
-			}
-			bool consultar = true;
-			bool esta = true;
-			string cod;
-			cout << "Que comida desea consultar" << endl;
-			cin >> cod;
-			while (consultar) {
-				esta = interfazProducto->existeComida(cod);
-				if (esta) {
-					DtComida dt = interfazProducto->ingresarCodigo(cod);
-				}
-				cout << "Desea seguir consultando[y/n]" << endl;
-				cin >> seguro;
-				if (seguro == 'n') {
-					consultar = false;
-				}
-				else if (seguro != 'y') {
-					cout << "Por favor ingrese los datos pedidos" << endl;
-					throw('x');
-				}	
-			}
-		}
-		else if (comando == 'g') {
-		int d,m,a;
-		cout << "ingrese el dia " << endl;
-		cin >> d;
-		cout << "ingrese el mes" << endl;
-		cin >> m;
-		cout << "ingrese el anio" << endl;
-		cin >> a;
-		if (d > 0) {
-			if (d < 32) {
-				if (m > 0) {
-					if (m < 13) {
-						if (a >= 0) {
-							DtFacturaResumen dfr = interfazVenta->resumenDelDia(d, m, a);
-							cout << " " << &dfr << endl;
-						}
-						else {
-							cout << "Por favor ingrese un anio no negativos" << endl;
-							throw('x');
-						}
-					}
-					else {
-						cout << "Por favor ingrese un mes menor a 13" << endl;
-						throw('x');
-					}
-				}
-				else {
-					cout << "Por favor ingrese un mes no negativo" << endl;
-					throw('x');
-				}
-			}
-			else {
-				cout << "Por favor ingrese un dia menor a 32" << endl;
-				throw('x');
-			}
-		}
-		else {
-			cout << "Por favor ingrese un dia no negativo" << endl;
-			throw('x');
-		}
-		}
-		else if (comando == 'h') {
-			set<DtComida> dtc = interfazProducto->listaDeComidaDisponible();
-			set<DtComida>::iterator iter;
-			for (iter = dtc.begin(); iter != dtc.end(); iter++) {
-				cout << " " << &(*iter) << endl;
-			}
-			cout << "Ingrese el codigo deseado" << endl;
-			string cod;
-			cin >> cod;
-			interfazProducto->ingresarCodigo(cod);
-			cout << "Desea confirmar [y/n] " << endl;
-			cin >> seguro;
-			if (seguro == 'y') {
-				interfazProducto->confirmarBaja();
-			}
-			else if (seguro == 'n') {
-				interfazProducto->cancelarBaja();
-			}
-			else {
-				cout << "Por favor ingrese los datos pedidos" << endl;
-				throw('x');
-			}
-		}
-		else if (comando == 'i') {
-			set<DtEstadoTerminado> act = interfazCliente->consultarActualizaciones();
-			cout << " " << &act << endl;
-		}
-		else if (comando == '$') {
-		salir = 21; //2121212121 twenty one tueni wuan
-}
-		
-}//while
-
-
-}//menuadmin
-
-void menuPosta() {
-
-
-
-	int salir = 0;
-	while (!salir) {
-		char comando;
-		cout << endl;
-		cout << "Bienvenido. Elija una opcion:" << endl;
-		cout << "a) Dar de alta un producto" << endl;
-		cout << "b) Dar de alta un cliente" << endl;
-		cout << "c) Dar de alta un empleado" << endl;
-		cout << "d) Asignar mozos a mesas" << endl;
-		cout << "e) Empezar una venta a domicilio" << endl;
-		//cout << "f) Ver ventas de un mozo" << endl;
-		cout << "f) Obtener informacion de un producto" << endl;
-		cout << "g) Resumen de facturacion de un dia" << endl;
-		cout << "h) Dar de baja un producto" << endl;
-		//cout << "i) Obtener informacion de un producto" << endl;
-		cout << "i) Consultar actualizaciones de pedidos" << endl;
-		cout << "$) Volver" << endl;
-
-		cout << "Opcion: ";
-		cin >> comando;
-		Fabrica* fabriquita = Fabrica::getInstance();
-		ICliente* interfazCliente = fabriquita->getICliente();
-		IVenta * interfazVenta = fabriquita->getIVenta();
-		IProducto* interfazProducto = fabriquita->getIProducto();
-		IEmpleado* interfazEmpleado = fabriquita->getIEmpleado();
-
-		
-		char seguro;
-		if (comando == 'a') {
-			bool quieroSeguirAgregando = true;
-			while (quieroSeguirAgregando) {
-				bool hayP = interfazProducto->masDeUnProducto();
-				if (hayP) {
-					cout << "Es un producto o un menu [p/m]" << endl;
-					char temp;
-					cin >> temp;
-					if (temp == 'p') {
-						hayP = false;
-					}
-					else if (temp != 'm') {
-						cout << "Por favor ingrese los datos pedidos" << endl;
-						throw('x');
-					}
-				}
-				string descripcion, codigo;
-				cout << "Ingrese la descripcion " << endl;
-				cin >> descripcion;
-				cout << "Ingrese el codigo" << endl;
-				cin >> codigo;
-				
-				if (!hayP) {
-					int precio;
-					cout << "Ingrese el precio" << endl;
-					cin >> precio;
-					interfazProducto->agregarProducto(codigo, descripcion, precio);
-					cout << "Confirmar [y/n]?" << endl;
-					cin >> seguro;
-					if (seguro == 'y')
-						interfazProducto->aceptarAltaProducto();
-					else if (seguro == 'n')
-						interfazProducto->cancelarAltaProducto();
-					else {
-						cout << "Por favor ingrese los datos pedidos" << endl;
-						throw('x');
-					}
-				
-				}else {
-					set<DtProducto> cosas = interfazProducto->agregarMenu(codigo, descripcion);
-					set<DtProducto>::iterator iter;
-					cout << "Estos son los productos disponibles: " << endl;
-					for (iter = cosas.begin(); iter != cosas.end; iter++) {
-						DtProducto dt = *iter;
-						cout << &dt << endl;
-					}
-					while (!hayP) {
-						string codprod;
-						int cantidad;
-						cout << "Ingrese el codigo del producto" << endl;
-						cin >> codprod;
-						cout << "Ingrese la cantidad" << endl;
-						cin >> cantidad;
-						interfazProducto->agregarProductoMenu(codprod, cantidad);
-						cout << "Deseas continuar [y/n]";
-						cin >> seguro;
-						if (seguro == 'n')
-							hayP = false;
-						else if (seguro != 'y')
-							throw('x');
-					}
-					cout << "Confirmar [y/n]?" << endl;
-					cin >> seguro;
-					if (seguro == 'y')
-						interfazProducto->aceptarAltaMenu();
-					else if (seguro == 'n')
-						interfazProducto->cancelarAltaMenu();
-					else {
-						cout << "Por favor ingrese los datos pedidos" << endl;
-						throw('x');
-					}
-				}
-
-			}
-			cout << "Desea continuar [Si = 0]" << endl;
-			cin >> salir;
-			//cout << "Que paso amiguito?" << endl;
-		}else if(comando == 'b'){
-			string tel, nombre, calle, numero, ady, ed, eddy;
-			
-			cout << "Ingrese el telefono" << endl;
-			cin >> tel;
-			cout << "Ingrese el nombre" << endl;
-			cin >> nombre;
-			cout << "Ingrese nombre de la calle" << endl;
-			cin >> calle;
-			cout << "Ingrese el numero" << endl;
-			cin >> numero;
-			cout << "Calles esquinas" << endl;
-			cin >> ady;
-			cout << " casa o apartamento [c/a]" << endl;
-			cin >> seguro;
-			if (seguro == 'c') {
-				DtCliente clientepepe = interfazCliente->agregarCliente(tel,nombre, DtDireccion(numero,calle,ady));
-				cout << &clientepepe << endl;
-			}
-			else if (seguro == 'a') {
-				cout << "Ingrese nombre del edificio " << endl;
-				cin >> ed;
-				cout << "Ingrese el numero de apartamento" << endl;
-				cin >> eddy;
-				DtCliente clientepepe = interfazCliente->agregarCliente(tel,nombre,DtApartamento(ed, eddy, calle, ady,numero));
-				cout << &clientepepe << endl;
-			}
-			else {
-				cout << "Por favor ingrese los datos pedidos" << endl;
-				throw('x');
-			}
-			cout << "confirmar[y/n]" << endl;
-			cin >> seguro;
-			if (seguro == 'y') {
-				interfazCliente->aceptarCliente();
-			}
-			else if (seguro == 'n') {
-				interfazCliente->cancelarCliente();
-			}
-			else {
-				cout << "Por favor ingrese los datos pedidos" << endl;
-				throw('x');
-			}
-		} else if (comando == 'c') {
-			bool seguir = true;
-			while (seguir) {
-				cout << "Desea ingresar un mozo(m) o un delivery (d) " << endl;
-				cin >> seguro;
-				string x;
-				if (seguro == 'm') {
-					cout << "Ingrese el nombre del mozo " << endl;
-					cin >> x;
-					interfazEmpleado->agregarMozo(x);
-				}else if  (seguro == 'd') {
-					cout << "Ingrese el nombre del delivery" << endl;
-					cin >> x;
-					interfazEmpleado->agregarDelivery(x);
-					cout << "Los transportes disponible son: Pie (p), Bicicleta (b) o Motocicleta (m). Elija uno!" << endl;
-					cin >> seguro;
-					if (seguro == 'p') {
+						cout << "Deseas continuar [y/n]" << endl;
 						
+						cin >> seguro;
+						cin.ignore();//ignore el ENTER precinado en el menu
+						if (seguro == 'n')
+							continuar_Menu = false;
+						else if (seguro != 'y')
+							throw('x');
+					}
+					cout << "Confirmar [y/n]?" << endl;
+					cin >> seguro;
+					if (seguro == 'y')
+						interfazProducto->aceptarAltaMenu();
+					else if (seguro == 'n')
+						interfazProducto->cancelarAltaMenu();
+					else {
+						cout << "Por favor ingrese los datos pedidos" << endl;
+						throw('x');
+					}
+				}
+				char continuar;
+				cout << "Quiere Continuar Agregando Comida? [y/n]?" << endl;
+				cin >> continuar;
+				cin.ignore();//ignore el ENTER precinado en el menu
+				if (seguro == 'y')
+					quieroSeguirAgregando = true;
+				else if (seguro == 'n')
+					quieroSeguirAgregando = false;
+				else {
+					cout << "Por favor ingrese los datos pedidos" << endl;
+					throw('x');
+				}
+			}
+			cout << "Desea continuar [Si = 0]" << endl;
+			cin >> salir;
+		}else if(comando == 'b'){
+			string tel, nombre, calle, numero, ady, ed, eddy;
+			
+			cout << "Ingrese el telefono" << endl;
+			getline(cin, tel);
+			cout << "Ingrese el nombre" << endl;
+			getline(cin, nombre);
+			cout << "Ingrese nombre de la calle" << endl;
+			getline(cin, calle );
+			cout << "Ingrese el numero" << endl;
+			getline(cin, numero);
+			cout << "Calles esquinas" << endl;
+			getline(cin, ady );
+			cout << " casa o apartamento [c/a]" << endl;
+			cin >> seguro;
+			if (seguro == 'c') {
+				DtCliente clientepepe = interfazCliente->agregarCliente(tel,nombre, DtDireccion(numero,calle,ady));
+				cout << &clientepepe << endl;
+			}
+			else if (seguro == 'a') {
+				cout << "Ingrese nombre del edificio " << endl;
+				getline(cin, ed);
+				cout << "Ingrese el numero de apartamento" << endl;
+				getline(cin, eddy);
+				DtCliente clientepepe = interfazCliente->agregarCliente(tel,nombre,DtApartamento(ed, eddy, calle, ady,numero));
+				cout << &clientepepe << endl;
+			}
+			else {
+				cout << "Por favor ingrese los datos pedidos" << endl;
+				throw('x');
+			}
+			cout << "confirmar[y/n]" << endl;
+			cin >> seguro;
+			if (seguro == 'y') {
+				interfazCliente->aceptarCliente();
+			}
+			else if (seguro == 'n') {
+				interfazCliente->cancelarCliente();
+			}
+			else {
+				cout << "Por favor ingrese los datos pedidos" << endl;
+				throw('x');
+			}
+		} else if (comando == 'c') {
+			bool seguir = true;
+			while (seguir) {
+				cout << "Desea ingresar un mozo(m) o un delivery (d) " << endl;
+				cin >> seguro;
+				string x;
+				if (seguro == 'm') {
+					cout << "Ingrese el nombre del mozo " << endl;
+					getline(cin, x);
+					interfazEmpleado->agregarMozo(x);
+				}else if  (seguro == 'd') {
+					cout << "Ingrese el nombre del delivery" << endl;
+					getline(cin, x);
+					interfazEmpleado->agregarDelivery(x);
+					cout << "Los transportes disponible son: Pie (p), Bicicleta (b) o Motocicleta (m). Elija uno!" << endl;
+					cin >> seguro;
+					if (seguro == 'p') {
 						interfazEmpleado->elegirVehiculo(PIE);
 					}
 					else if (seguro == 'b') {
-						//cambiar firma de funcion elegirvehiculo lcdtm;
+						
 						interfazEmpleado->elegirVehiculo(BICI);
 					}
 					else if (seguro== 'm') {
@@ -636,19 +245,6 @@ void menuPosta() {
 
 			}
 		}
-
-		else if (comando == '2') {
-			menumozo();
-		}
-		else if (comando == '3') {
-			menurepartidor();
-		}
-		else if (comando == '4') {
-			menucliente();
-		}
-		else if (comando == '5') {
-			cargardatos();
-
 		else if (comando == 'd') {
 		set<DtAsignacionMesa> dtam = interfazEmpleado->asignarAuto();
 		set<DtAsignacionMesa>::iterator iter;
@@ -658,7 +254,7 @@ void menuPosta() {
 		} else if (comando == 'e') {
 			cout << "Ingrese el telefono" << endl;
 			string telef;
-			cin >> telef;
+			getline(cin, telef);
 			bool existe = interfazVenta->iniciarVentaADomicilio(telef);
 			if (!existe) {
 				string nombre, calle, numero, ady, ed, eddy;
@@ -666,13 +262,13 @@ void menuPosta() {
 				//cout << "Ingrese el telefono" << endl;
 				//cin >> tel;
 				cout << "Ingrese el nombre" << endl;
-				cin >> nombre;
+				getline(cin, nombre);
 				cout << "Ingrese nombre de la calle" << endl;
-				cin >> calle;
+				getline(cin, calle);
 				cout << "Ingrese el numero" << endl;
-				cin >> numero;
+				getline(cin, numero);
 				cout << "Calles esquinas" << endl;
-				cin >> ady;
+				getline(cin, ady);
 				cout << "casa o apartamento [c/a]" << endl;
 				cin >> seguro;
 				if (seguro == 'c') {
@@ -681,9 +277,9 @@ void menuPosta() {
 				}
 				else if (seguro == 'a') {
 					cout << "Ingrese nombre del edificio" << endl;
-					cin >> ed;
+					getline(cin, ed);
 					cout << "Ingrese el numero de apartamento" << endl;
-					cin >> eddy;
+					getline(cin, eddy);
 					DtCliente clientepepe = interfazCliente->agregarCliente(telef, nombre, DtApartamento(ed, eddy, calle, ady, numero));
 					cout << &clientepepe << endl;
 				}
@@ -714,7 +310,7 @@ void menuPosta() {
 			int cant;
 			while (nosalir) {
 				cout << "Ingrese codigo" << endl;
-				cin >> cod;
+				getline(cin, cod);
 				cout << "ingrese la cantidad" << endl;
 				cin >> cant;
 				interfazVenta->seleccionarComida(cod, cant);
@@ -729,17 +325,15 @@ void menuPosta() {
 			}
 			cout << "Deseas solicitar un repartidor[y/n]" << endl;
 			cin >> seguro;
-			bool quiereRepartidor = false;
 			if (seguro == 'y') {
-				quiereRepartidor = true;
-				set<DtDelivery> dtc = interfazEmpleado->darRepartidores();
-				set<DtDelivery>::iterator iter;
+				set<DtDelivery*> dtc = interfazEmpleado->darRepartidores();
+				set<DtDelivery*>::iterator iter;
 				for (iter = dtc.begin(); iter != dtc.end(); iter++) {
-					cout << " " << &(*iter) << endl;
+					cout << " " << (*iter) << endl;
 				}
 				string repartidor;
 				cout << "Elija un repartidor" << endl;
-				cin >> repartidor;
+				getline(cin, repartidor);
 				interfazEmpleado->seleccionarRepartidor(repartidor);
 			}
 			else if (seguro != 'n') {
@@ -751,16 +345,10 @@ void menuPosta() {
 			if (seguro == 'y') {
 				interfazVenta->confirmarVentaADomicilio();
 				int des;
-				cout << "Ingrese el descuento, en caso de no aplicar ingrese 0" << endl;
+				cout << "Ingrese el descuento, en caso de no aplicar ingrese(0)" << endl;
 				cin >> des;
-				if (quiereRepartidor) {
-					DtFacturaDomicilio dfd = interfazVenta->facturarVentaADomicilio(des);
-					cout << " " << &dfd << endl;
-				}
-				else {
-					DtFactura dfd = interfazVenta->facturarVentaADomicilioSinDelivery(des);
-					cout << " " << &dfd << endl;
-				}
+				DtFacturaDomicilio dfd = interfazVenta->facturarVentaADomicilio(des);
+				cout << " " << &dfd << endl;
 			}
 			else if (seguro == 'n') {
 				interfazVenta->cancelarVentaADomicilio();
@@ -780,11 +368,30 @@ void menuPosta() {
 			bool esta = true;
 			string cod;
 			cout << "Que comida desea consultar" << endl;
-			cin >> cod;
+			getline(cin, cod);
+			bool hay = interfazProducto->existeComida(cod);
+			if (!hay) {
+				cout << "todo bien, te liste los codigo y le erraste igual" << endl;
+				throw ('x');
+			}
 			while (consultar) {
 				esta = interfazProducto->existeComida(cod);
 				if (esta) {
-					DtComida dt = interfazProducto->ingresarCodigo(cod);//juan lo tiene bien
+					DtComida* dt = interfazProducto->ingresarCodigoParaInfo();
+					DtMenu* menu = dynamic_cast<DtMenu*>(dt);
+					DtMenuVenta* menuvt = dynamic_cast<DtMenuVenta*>(menu);
+					DtProducto* prod = dynamic_cast<DtProducto*> (dt);
+					DtProductoVenta* prodvt = dynamic_cast<DtProductoVenta*>(prod);
+					if (menuvt == NULL && prodvt == NULL) {
+						cout << "estan mal los cast" << endl;
+						throw ('z');
+					}
+					else if (menuvt == NULL) {
+						cout << " " << &prodvt << endl;
+					}
+					else {
+						cout << " " << &menuvt << endl;
+					}
 				}
 				cout << "Desea seguir consultando[y/n]" << endl;
 				cin >> seguro;
@@ -832,17 +439,11 @@ void menuPosta() {
 				cout << "Por favor ingrese un dia menor a 32" << endl;
 				throw('x');
 			}
-
 		}
 		else {
 			cout << "Por favor ingrese un dia no negativo" << endl;
 			throw('x');
 		}
-
-	}
-
-}//menuPosta
-
 		}
 		else if (comando == 'h') {
 			set<DtComida> dtc = interfazProducto->listaDeComidaDisponible();
@@ -852,7 +453,7 @@ void menuPosta() {
 			}
 			cout << "Ingrese el codigo deseado" << endl;
 			string cod;
-			cin >> cod;
+			getline(cin, cod);
 			interfazProducto->ingresarCodigo(cod);
 			cout << "Desea confirmar [y/n] " << endl;
 			cin >> seguro;
@@ -868,15 +469,16 @@ void menuPosta() {
 			}
 		}
 		else if (comando == 'i') {
-		string telefono;
-		cout << "Ingrese telefono" << endl;
-		cin >> telefono;
-			set<DtEstadoTerminado> act = interfazCliente->verActualizacion(telefono);
-			set<DtEstadoTerminado>::iterator iter;
-			for (iter = act.begin(); iter != act.end(); iter++) {
-				cout << " " << &(*iter) << endl;
+		set<set<DtEstadoTerminado>> act = interfazCliente->verTodasActualizaciones();
+		set<set<DtEstadoTerminado>>::iterator i;
+		set<DtEstadoTerminado>::iterator j;
+		for (i = act.begin(); i != act.end(); i++) {
+			set<DtEstadoTerminado> pepe = (*i);
+			for (j = pepe.begin(); j != pepe.end(); j++) {
+				cout << " " << &(*j) << endl;
 			}
 		}
+		}// caso i
 		else if (comando == '$') {
 		salir = 21; //2121212121 twenty one tueni wuan
 }
@@ -886,6 +488,52 @@ void menuPosta() {
 
 }//menuadmin
 
+void menuPosta() {
+
+
+	int salir = 0;
+	while (!salir) {
+		char comando;
+		system("CLS");//limpia la pantalla
+		cout << endl;
+		cout << "Bienvenido a lo de Pepe, elija una opcion:" << endl;
+		cout << "1) Administrador" << endl;
+		cout << "2) Mozo" << endl;
+		cout << "3) Repartidor" << endl;
+		cout << "4) Cliente" << endl;
+		cout << "5) Cargar datos de prueba" << endl;
+		cout << "6) Salir" << endl;
+
+
+		cout << "Opcion: ";
+		cin >> comando;
+		try {
+
+			if (comando == '1') {
+				menu_admin();
+			}
+			else if (comando == '2') {
+				menuMozo();
+			}
+			else if (comando == '3') {
+				menuRepartidor();
+			}
+			else if (comando == '4') {
+				menuCliente();
+			}
+			else if (comando == '5') {
+				//cargarDatos();
+			}
+			else if (comando == '6') {
+				salir = 21;
+			}
+		}
+		catch (char pepe) {
+			cout << "exploto" << endl;
+		}
+	}
+
+}//menuPosta
 
 
 void menuRepartidor() {
@@ -899,7 +547,7 @@ void menuRepartidor() {
 	cout << "Desea actualizar el estado (a) o cancelar (c)" << endl;
 	cin >> x;
 	if (x == 'a') {
-		rep->actualizarVenta();						//No tiene por qué ser en venta, hay que verlo    //Hay que tirar error aca
+		rep->siguienteEstado(num);						//No tiene por qué ser en venta, hay que verlo    //Hay que tirar error aca
 		cout << "El estado ha sido actualizado" << endl;
 	}
 	else if (x == 'c') {
@@ -909,17 +557,24 @@ void menuRepartidor() {
 }
 //Hay dos funciones de ver actualizaciones (en venta y en cliente)
 void menuCliente() {
-	cout << "Ingrese el numero de telefono" << endl;
 	string tel;
-	cin >> tel;
+	system("CLS");//limpia la pantalla
+	
+
+	cout << "Ingrese el numero de telefono" << endl;
+	cin.ignore();//ignore el ENTER precinado en el menu
+	getline(cin, tel);
 	Fabrica* factory = Fabrica::getInstance();
 	ICliente* cliente = factory->getICliente();
-	set<DtEstadoTerminado> printer = cliente->verActualizacion(tel);			//Esto tira error?
-	set<DtEstadoTerminado>::iterator iter;
-	for (iter = printer.begin(); iter != printer.end(); iter++) {
-		DtEstadoTerminado temp = *iter;
-		cout << &temp << endl;
+	if (cliente->existeCliente(tel)) {
+		set<DtEstadoTerminado> printer = cliente->verActualizacion(tel);			//Esto tira error?
+		set<DtEstadoTerminado>::iterator iter;
+		for (iter = printer.begin(); iter != printer.end(); iter++) {
+			DtEstadoTerminado temp = *iter;
+			cout << &temp << endl;
+		}
 	}
+	
 }//menucliente
 
 void menuMozo() {
@@ -972,10 +627,9 @@ void menuMozo() {
 					throw ('x');
 				}
 			}
-			set<int> printer = ventas->mostrarMesasSeleccionadas();
+			printer = ventas->mostrarMesasSeleccionadas();
 			for (iter = printer.begin(); iter != printer.end(); iter++) {
-				int i = *iter;
-				cout << i << endl;
+				cout << (*iter) << endl;
 			}
 			cout << "Desea confirmar?" << endl;
 			char cont;
@@ -1010,7 +664,7 @@ void menuMozo() {
 			char seguro;
 			while (seguir) {
 				cout << "Ingrese el codigo de la comida a agregar a la venta" << endl;
-				cin >> cod;
+				getline(cin, cod);
 				cout << "Ingrese la cantidad" << endl;
 				cin >> cant;
 				ventas->seleccionarComida(cod, cant);
@@ -1047,7 +701,6 @@ void menuMozo() {
 		else if (comando == 'c') {
 			Fabrica* factory = Fabrica::getInstance();
 			IVenta* ventas = factory->getIVenta();
-			IProducto* productos = factory->getIProducto();
 			cout << "Ingrese el numero de mesa" << endl;
 			int nro;
 			cin >> nro;
@@ -1062,7 +715,7 @@ void menuMozo() {
 			int cant;
 			while (seguirQuitando) {
 				cout << "Ingrese el codigo de la comida a quitar" << endl;
-				cin >> cod;
+				getline(cin, cod);
 				cout << "ingrese la cantidad a quitar" << endl;
 				cin >> cant;
 				ventas->seleccionarComida(cod, cant);
@@ -1092,60 +745,22 @@ void menuMozo() {
 		else if (comando == 'd') {
 			Fabrica* factory = Fabrica::getInstance();
 			IVenta* ventas = factory->getIVenta();
-			string nromesa;
+			int nromesa;
 			int des;
 			cout << "Ingrese el numero de mesa" << endl;
 			cin >> nromesa;
 			cout << "ingrese el descuento, en caso de no aplicar descuento ingrese (0)" << endl;
 			cin >> des;
-			DtFactura res = ventas->generarFactura(nromesa, des);
+			DtFactura *res = ventas->generarFactura(nromesa, des);
 			cout << " " << &res << endl;
 		}
 		else if (comando == 'e') {
 			salir = 21;
-		}
+		}// 2212221122212121122 twenty one tuenti wuane
 
 	}
 } //menumozo
 
-void menuPosta() {
-
-
-	int salir = 0;
-	while (!salir) {
-		char comando;
-		cout << endl;
-		cout << "Bienvenido a lo de Pepe, elija una opcion:" << endl;
-		cout << "1) Administrador" << endl;
-		cout << "2) Mozo" << endl;
-		cout << "3) Repartidor" << endl;
-		cout << "4) Cliente" << endl;
-		cout << "5) Cargar datos de prueba" << endl;
-		cout << "6) Salir" << endl;
-
-
-		cout << "Opcion: ";
-		cin >> comando;
-
-
-		if (comando == '1') {
-			menu_admin();
-		}
-		else if (comando == '2') {
-			menuMozo();
-		}
-		else if (comando == '3') {
-			menuRepartidor();
-		}
-		else if (comando == '4') {
-			menuCliente();
-		}
-		else if (comando == '5') {
-			cargarDatos();
-		}
-		else if (comando == '6') {
-			salir = 21;
-		}
-	}
+void cargarDatos() {
 
 }

@@ -3,30 +3,32 @@
 
 #include <iostream>
 #include "../Header/Comida.h"
-#include "../Header/DtComida.h"
-#include "../Header/Local.h"
-#include "../Header/DtFacturaLocal.h"
 #include "../Header/Mozo.h"
+#include "../Header/DtFacturaLocal.h"
 
 
+
+
+class Local;
 
 
 using namespace std;
 
 class Mesa {
 private:
-	Mozo* linkMozo;
-	Local* linkLocal;
+	Mozo *linkMozo;
+	Local *linkLocal;
 	int nroMesa;
 
 
 public:
-//seters
-	void setNroMesa(int nroMesa);
+	
 
 //geters
 	int getNroMesa();
 	Mozo* getMozo();
+	Local *getLocal();
+
 //Otras
 	bool hayComidaEnMesa(string codigo);
 	void aumentarCantidadComidaEnMesa(string codigo, int cantidad);
@@ -35,7 +37,15 @@ public:
 	bool cantEsMayorEnMesa(string codigo, int cantidad);
 	void decrementarCantidadEnMesaDeComida(string codigo, int cantidad);
 	void eliminarComidaDeMesa(string codigo);
-	DtFacturaLocal facturar(int descuento);
+
 	
+	void asociarAMozo(Mozo*m);
+	void asociarALocal(Local *l);
+
+	DtFacturaLocal *facturar(int descuento);
+	
+
 };
+#include "../Header/Local.h"
+
 #endif

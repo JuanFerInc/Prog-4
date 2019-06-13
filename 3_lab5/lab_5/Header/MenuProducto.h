@@ -2,11 +2,11 @@
 #define MENUPRODUCTO_H	
 
 #include "../Header/DtProductoVenta.h"
-#include "../Header/Menu.h"
+
 
 using namespace std;
 class Producto;
-
+class Menu;
 
 class MenuProducto {
 private:
@@ -20,12 +20,12 @@ public:
 	//seter
 	void setCantidad(int cant);
 	//geter
-	int getPrecio();
+	int getPrecio() const;
 	int getCantidad();
-	DtProducto getDtProducto();
+	DtProducto *getDtProducto();
 	
 	//Otras
-	DtProductoVenta darInfo();
+	DtProductoVenta *darInfo();
 	void desvincularProductoDeMenu();
 	//notifica al producto que tiene que desvincularse del mp
 	void notificarProducto();
@@ -33,7 +33,6 @@ public:
 
 
 };
-
-
-#include "../Header/Producto.h"
+#include"../Header/Menu.h"
+#include"../Header/Producto.h"
 #endif

@@ -2,7 +2,7 @@
 #define DTEMPLEADO_H	
 
 #include <iostream>
-#include "../Header/TipoTransporte.h"
+
 
 
 using namespace std;
@@ -20,6 +20,11 @@ public:
 	string getNombre() const;
 
 	//DtAsignacionMesa asignarAuto();
+
+
+	friend std::ostream& operator<<(std::ostream& out, DtEmpleado *info);
+	virtual void print(ostream& out);
+    virtual ~DtEmpleado() {};
 };
 
 

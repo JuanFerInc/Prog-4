@@ -1,12 +1,23 @@
+#ifndef LOCAL_H
+#define LOCAL_H
+#include <map>
 #include "../Header/Venta.h"
+#include "../Header/Mozo.h"
 #include "../Header/Mesa.h"
+#include "../Header/DtComida.h"
+#include "../Header/DtComidaVendida.h"
+#include "../Header/DtMozo.h"
+#include "../Header/Comida.h"
+#include "../Header/VentaComida.h"
+
 
 class Local :public Venta {
 private:
-	map<int, Mesa> setsito;
-	Mozo* linkMozo;
+	map<int, Mesa*> setsito;
+	Mozo *linkMozo;
 public:
-	Local(map<int,Mesa*> mesas, Mozo *mozo, string nroVenta);
+
+	Local(map<int,Mesa*> mesas,string nroVenta, Mozo *mozo );
 	
 
 	bool hayComidaEnVenta(string codigo);
@@ -21,4 +32,7 @@ public:
 	bool noEstaFacturada();
 	void agregarComida(Comida* c, int cantidad);
 
+	DtMozo getDtMozo();
 };
+
+#endif

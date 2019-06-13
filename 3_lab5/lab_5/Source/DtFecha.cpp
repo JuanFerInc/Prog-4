@@ -1,6 +1,7 @@
 
-#include <string>
 #include "../Header/DtFecha.h"
+
+#include <iostream>
 
 //Constructor
 DtFecha::DtFecha() {
@@ -59,4 +60,16 @@ bool DtFecha::operator<(const DtFecha& fechita) {
 			else return false;
 		}
 	}
+}
+
+std::ostream& operator<<(std::ostream& out, DtFecha*info) {
+	info->print(out);
+	return out;
+}
+
+void DtFecha::print(std::ostream& out) {
+	using namespace std;
+	out << "dia: " << this->d << endl;
+	out << "mes: " << this->m << endl;
+	out << "anio: " << this->a << endl;
 }

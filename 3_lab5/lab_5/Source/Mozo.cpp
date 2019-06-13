@@ -1,5 +1,9 @@
 #include "../Header/Mozo.h"
-
+#include "../Header/DtMozo.h"
+#include "../Header/Empleado.h"
+#include "../Header/Mesa.h"
+#include <map>
+#include <set>
 
 
 
@@ -16,6 +20,7 @@ set<int> Mozo::getMesas() {
 
 	return res;
 }
+
 void Mozo::agregarMesa(int nroMesa, Mesa* mesa) {
 	mesas.insert(make_pair(nroMesa, mesa));
 
@@ -25,12 +30,4 @@ DtMozo Mozo::getDtMozo() const {
 	DtMozo res(this->getNroEmpleado(), this->getNombre());
 	return res;
 }
-set<int> Mozo::getMesasDelMozo() const {
-	set<int> res;
-	map<int, Mesa*>::iterator iter;
 
-	for (iter = mesas.begin(); iter != mesas.end(); iter++) {
-		res.insert(iter->first);
-	}
-	return res;
-}

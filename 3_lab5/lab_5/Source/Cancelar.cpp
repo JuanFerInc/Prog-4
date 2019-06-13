@@ -1,9 +1,14 @@
 #include "../Header/Cancelar.h"
+#include"../Header/Estado.h"
+#include"../Header/DtEstado.h"
+
+
+Cancelar* Cancelar::instancia = NULL;
+
 
 Cancelar* Cancelar::getInstance() {
 	if (instancia == NULL) {
-		Cancelar* inst = new Cancelar();
-		instancia = inst;
+		instancia = new Cancelar();
 	}
 	return instancia;
 }

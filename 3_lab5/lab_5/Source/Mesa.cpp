@@ -1,14 +1,24 @@
 #include "../Header/Mesa.h"
+#include "../Header/DtFacturaLocal.h"
+#include "../Header/Factura.h"
+#include "../Header/DtMozo.h"
+#include "../Header/DtComidaVendida.h"
+#include "../Header/DtComida.h"
+#include "../Header/Comida.h"
+#include "../Header/Mozo.h"
+#include "../Header/Local.h"
+#include "../Header/Venta.h"
+#include "../Header/Empleado.h"
 
-DtFacturaLocal Mesa::facturar(int descuento) {
+DtFacturaLocal* Mesa::facturar(int descuento) {
 	set<DtComidaVendida> sc;
 	sc = this->linkLocal->darComidas();
 	string nroVenta = this->linkLocal->getNroVenta();
 	int st = this->linkLocal->getSubtotal();
 	string nombreMozo = this->linkMozo->getNombre();
-	Factura* f = new Factura(descuento, sc, nroVenta, st);
+	Factura* f = new Factura(descuento, sc, nroVenta,(float)st);
 	DtMozo dt = this->linkMozo->getDtMozo();
-	DtFacturaLocal res = f->generarDtFacturaLocal(dt);
+	DtFacturaLocal *res = f->generarDtFacturaLocal(dt);
 	this->linkLocal->finalizarVenta(f);
 
 	return res;
@@ -44,4 +54,22 @@ void Mesa::decrementarCantidadEnMesaDeComida(string codigo, int cantidad) {
 
 void Mesa::eliminarComidaDeMesa(string codigo) {
 	this->linkLocal->eliminarComida(codigo);
+}
+
+void Mesa::asociarAMozo(Mozo*m) {
+	this->linkMozo = m;
+}
+void Mesa::asociarALocal(Local *l) {
+	this->linkLocal = l;
+}
+
+int Mesa::getNroMesa() {
+	return this->nroMesa;
+}
+Mozo* Mesa::getMozo() {
+	return this->linkMozo;
+}
+
+Local* Mesa::getLocal() {
+	return this->linkLocal;
 }
