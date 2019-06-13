@@ -31,7 +31,7 @@ public:
 	set<set<DtEstadoTerminado>> verTodasActualizaciones();
 	
 	//recuenda todo los datos ingresado
-	DtCliente agregarCliente(string telefono, string nombre, DtDireccion dirrecion);
+	DtCliente *agregarCliente(string telefono, string nombre, DtDireccion* dirrecion);
 	void aceptarCliente();
 	void cancelarCliente();
 

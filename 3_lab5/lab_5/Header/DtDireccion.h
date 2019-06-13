@@ -25,6 +25,7 @@ public:
 	friend std::ostream& operator<<(std::ostream& out, DtDireccion *info);
 	virtual void print(ostream& out);
 	
+	
 };
 
 

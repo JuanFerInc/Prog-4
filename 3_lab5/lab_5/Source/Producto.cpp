@@ -8,7 +8,7 @@
 
 
 Producto::Producto(string codigo, string descripcion, int precio) :Comida(codigo, descripcion) {
-
+	this->precio = precio;
 }
 void Producto::asociarAMenu(Menu *m, int cantidad) {
 	MenuProducto *mp = new MenuProducto(m, cantidad,this);

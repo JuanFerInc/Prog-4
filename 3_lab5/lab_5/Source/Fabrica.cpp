@@ -4,7 +4,7 @@ Fabrica* Fabrica::instancia = NULL;
 
 Fabrica* Fabrica::getInstance() {
 	if (instancia == NULL) {
-		instancia = Fabrica::getInstance();
+		instancia = new Fabrica();
 	}
 	return instancia;
 }

@@ -1,7 +1,8 @@
 #include "../Header/CtrlCliente.h"
 #include "../Header/Cliente.h"
 #include "../Header/DtEstadoTerminado.h"
-#include "../Header/DtDireccion.h"				//De nuevo lo de si usar DtDireccion*
+//#include "../Header/DtDireccion.h"				//De nuevo lo de si usar DtDireccion*
+#include "../Header/DtApartamento.h"
 #include "../Header/DtCliente.h"
 
 CtrlCliente* CtrlCliente::instancia = NULL;
@@ -55,11 +56,17 @@ Cliente* CtrlCliente::pedirCliente(string telefono) {
 	return i->second;
 }
 
-DtCliente CtrlCliente::agregarCliente(string telefono, string nombre, DtDireccion dirrecion) {
+DtCliente* CtrlCliente::agregarCliente(string telefono, string nombre, DtDireccion *dirrecion) {
 	this->telefono = telefono;
 	this->nombre = nombre;
-	this->direccion = new DtDireccion(dirrecion);
-	return DtCliente(telefono,nombre,this->direccion);
+	DtApartamento *ap = dynamic_cast<DtApartamento*>(dirrecion);
+	if (ap != NULL) {
+		this->direccion = new DtApartamento(*ap);
+	}
+	else {
+		this->direccion = new DtDireccion(*dirrecion);
+	}
+	return  new DtCliente(telefono,nombre,this->direccion);
 }
 
 void CtrlCliente::cancelarCliente() {

@@ -14,7 +14,7 @@ CtrlProducto*CtrlProducto::instance = NULL;
 
 CtrlProducto*CtrlProducto::getInstance() {
 	if (instance == NULL) {
-		instance = new CtrlProducto;
+		instance = new CtrlProducto();
 
 	}
 	return instance;

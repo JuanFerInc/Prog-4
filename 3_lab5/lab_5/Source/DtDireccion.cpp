@@ -33,7 +33,7 @@ std::ostream& operator<<(std::ostream& out, DtDireccion*info) {
 
 void DtDireccion::print(std::ostream& out) {
 	using namespace std;
-	out << "nombre calle: " << this->nombreCalle << endl;
-	out << "numero: " << this->numero << endl;
-	out << "calle adyacente: " << this->calleAdyacente << endl;
+	out << "	nombre calle: " << this->nombreCalle << endl;
+	out << "	numero: " << this->numero << endl;
+	out << "	calle adyacente: " << this->calleAdyacente << endl;
 }

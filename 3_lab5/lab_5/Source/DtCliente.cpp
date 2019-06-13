@@ -33,5 +33,5 @@ void DtCliente::print(std::ostream& out) {
 	
 	out << "telefono: " << this->telefono << endl;
 	out << "nombre: " << this->nombre << endl;
-	out << "direccion: " << &this->direccion << endl;
+	out << "direccion: " << endl << this->direccion << endl;
 }

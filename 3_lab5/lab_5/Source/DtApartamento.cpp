@@ -24,10 +24,10 @@ DtApartamento::DtApartamento(string nombreEdificio, string numeroApart, string c
 
 void DtApartamento::print(std::ostream& out) {
 	using namespace std;
-	out << "nombre calle: " << this->getNombreCalle() << endl;
-	out << "numero: " << this->getNumero() << endl;
-	out << "calle adyacente: " << this->getCalleAdyacente() << endl;
-	out << "Edificio: " << this->nombreEdificio << endl;
-	out << "Apartamento: " << this->numeroApartamento << endl;
+	out << "	nombre calle: " << this->getNombreCalle() << endl;
+	out << "	numero: " << this->getNumero() << endl;
+	out << "	calle adyacente: " << this->getCalleAdyacente() << endl;
+	out << "	Edificio: " << this->nombreEdificio << endl;
+	out << "	Apartamento: " << this->numeroApartamento << endl;
 
 }

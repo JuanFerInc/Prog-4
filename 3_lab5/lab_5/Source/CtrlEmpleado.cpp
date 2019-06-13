@@ -17,7 +17,7 @@ CtrlEmpleado::CtrlEmpleado() {
 	this->setTransporte =  { BICI, MOTO, PIE };
 	esMozo = false;
 	tipoTransporteEmpleado = PIE;
-	this->genNroEmpleados = 0;
+	this->genNroEmpleados = 1;
 }
 
 CtrlEmpleado* CtrlEmpleado::getInstance() {

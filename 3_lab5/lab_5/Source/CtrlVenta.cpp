@@ -26,7 +26,7 @@ CtrlVenta* CtrlVenta::instancia = NULL;
 
 using namespace std;
 CtrlVenta::CtrlVenta() {
-	genNroVenta = 0;
+	genNroVenta = 1;
 }
 CtrlVenta* CtrlVenta::getInstance() {
 	if (instancia == NULL) {
