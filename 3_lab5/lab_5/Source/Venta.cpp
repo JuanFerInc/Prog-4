@@ -6,14 +6,14 @@
 int Venta::IVA = 22;
 
 Venta::Venta(string nroVenta) {
-	linkFactura = NULL;
-	int subtotal = 0;
-	facturado = false;
+	this->linkFactura = NULL;
+	this->subtotal = 0;
+	this->facturado = false;
 	this->nroVenta = nroVenta;
 }
 Venta::Venta(string nroVenta, set<VentaComida*> comidaContenida, int subtotal) {
 	linkFactura = NULL;
-	this->subtotoal = subtotal;
+	this->subtotal = subtotal;
 	facturado = false;
 	this->comidaContenida = comidaContenida;
 	this->nroVenta = nroVenta;
@@ -60,7 +60,7 @@ void Venta::setIVA(int iva) {
 }
 
 void Venta::setSubtotal(int subtotal) {
-	this->subtotoal = subtotal;
+	this->subtotal = subtotal;
 }
 
 void Venta::setFacturado(bool facturado) {
@@ -77,7 +77,7 @@ int Venta::getIVA() {
 }
 
 int Venta::getSubtotal() {
-	return this->subtotoal;
+	return this->subtotal;
 }
 
 bool Venta::getFacturado() {

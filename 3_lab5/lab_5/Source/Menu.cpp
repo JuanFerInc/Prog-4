@@ -56,7 +56,6 @@ void Menu::asociarmeAMenuProducto(MenuProducto *mp) {
 
 bool Menu::desvincularM(MenuProducto *mp) {
 	set<MenuProducto*>::iterator iter;
-	bool res = false;
 	for (iter = productosContenidos.begin(); iter != productosContenidos.end(); iter++) {
 		if (mp == *iter) {
 			productosContenidos.erase(iter);
@@ -88,6 +87,6 @@ Menu::~Menu() {
 		MenuProducto *aux = *ptr;
 		productosContenidos.erase(ptr);
 		delete aux;
-
 	}
 }
+

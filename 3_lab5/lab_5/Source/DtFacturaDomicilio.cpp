@@ -19,8 +19,8 @@ DtFacturaDomicilio::DtFacturaDomicilio(DtDelivery delivery, string nroFactura, D
 void DtFacturaDomicilio::print(std::ostream& out) {
 	using namespace std;
 	out << "codigo: " << this->getCodigo() << endl;
-	out << "fecha: " << &this->getFecha() << endl;
-	out << "hora: " << &this->getHora() << endl;
+	out << "fecha: " << &this->fecha << endl;
+	out << "hora: " << &this->hora << endl;
 	out << "subtotal: " << this->getSubtotal() << endl;
 	out << "monto total : " << this->getmontoTotal()<< endl;
 	out << "monto total con IVA: " << this->getSubtotalIVA() << endl;
@@ -32,4 +32,6 @@ void DtFacturaDomicilio::print(std::ostream& out) {
 		out << " " << &f << endl;
 	}
 	out << "delivery: " << &this->delivery << endl;
+
 }
+

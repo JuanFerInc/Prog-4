@@ -24,7 +24,9 @@ public:
 
 	friend std::ostream& operator<<(std::ostream& out, DtEmpleado *info);
 	virtual void print(ostream& out);
+
 	virtual ~DtEmpleado() {};
+
 };
 
 

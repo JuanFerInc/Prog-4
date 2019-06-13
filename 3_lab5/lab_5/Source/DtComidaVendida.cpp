@@ -1,4 +1,4 @@
-#include "../header/DtComidaVendida.h"
+#include "../Header/DtComidaVendida.h"
 
 //getters
 

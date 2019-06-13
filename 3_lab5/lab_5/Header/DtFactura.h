@@ -13,7 +13,7 @@
 using namespace std;
 
 class DtFactura {
-private:
+protected:
 
 	string codigo;			//Es el nroVenta
 	DtFecha fecha;

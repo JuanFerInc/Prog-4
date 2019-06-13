@@ -54,7 +54,6 @@ VentaComida* VentaComida::esComidaAEliminar(string codigo) {
 DtComidaVendida* VentaComida::darDtComidayCantidad() {
 	int cantidad = this->getCantidad();
 	DtComida* data = this->linkComida->darDataType();
-	int precioTotal = cantidad * data->getPrecioTotal();
 	DtComidaVendida* res = new DtComidaVendida(cantidad, data->getDescripcion(), data->getPrecioTotal());
 	return res;
 }
@@ -87,5 +86,4 @@ void VentaComida::setCantidad(int cant) {
 
 string VentaComida::darCodigoDeComida() {
 	return this->linkComida->getCodigo();
-
 }

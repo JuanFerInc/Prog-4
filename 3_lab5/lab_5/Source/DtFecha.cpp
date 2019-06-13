@@ -1,6 +1,8 @@
 
 #include "../Header/DtFecha.h"
 
+#include <iostream>
+
 //Constructor
 DtFecha::DtFecha() {
 

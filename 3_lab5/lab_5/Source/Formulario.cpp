@@ -17,12 +17,7 @@
 #include "../Header/DtProductoVenta.h"
 #include "../Header/DtEstadoTerminado.h"
 #include "../Header/DtFactura.h"
-/*
-#include "../Header/IVenta.h"
-#include "../Header/ICliente.h"
-#include "../Header/IEmpleado.h"
-#include "../Header/IProducto.h"
-*/
+
 
 using namespace std;
 //Los menus individuales tiran error x al menu posta
@@ -59,11 +54,10 @@ void menu_admin(){
 		char seguro;
 		bool quieroSeguirAgregando = true;
 		bool agregar_Producto = true;
+
 		if (comando == 'a') {
-			
 			while (quieroSeguirAgregando) {
 				bool hayP = interfazProducto->masDeUnProducto();
-				
 				if (hayP) {
 					system("CLS");//limpia la pantalla
 					cout << "Es un producto o un menu [p/m]" << endl;
@@ -92,6 +86,7 @@ void menu_admin(){
 				cout << "Ingrese el codigo" << endl;
 				getline(cin, codigo);
 				
+
 				if (agregar_Producto) {
 					int precio;
 					cout << "Ingrese el precio" << endl;
@@ -198,6 +193,8 @@ void menu_admin(){
 				getline(cin, eddy);
 				DtCliente *clientepepe = interfazCliente->agregarCliente(tel,nombre,&DtApartamento(ed, eddy, calle, ady,numero));
 				cout << clientepepe << endl;
+				delete clientepepe;
+
 			}
 			else {
 				cout << "Por favor ingrese los datos pedidos" << endl;
@@ -301,6 +298,7 @@ void menu_admin(){
 					DtCliente *clientepepe = interfazCliente->agregarCliente(telef, nombre, &DtApartamento(ed, eddy, calle, ady, numero));
 					cout << clientepepe << endl;
 					delete clientepepe;
+
 				}
 				else {
 					cout << "Por favor ingrese los datos pedidos" << endl;
@@ -550,6 +548,7 @@ void menuPosta() {
 		catch (char pepe) {
 			cout << "exploto" << endl;
 			system("pause");
+
 		}
 	}
 
@@ -721,7 +720,6 @@ void menuMozo() {
 		else if (comando == 'c') {
 			Fabrica* factory = Fabrica::getInstance();
 			IVenta* ventas = factory->getIVenta();
-			//IProducto* productos = factory->getIProducto();
 			cout << "Ingrese el numero de mesa" << endl;
 			int nro;
 			cin >> nro;
@@ -783,5 +781,4 @@ void menuMozo() {
 } //menumozo
 
 void cargarDatos() {
-
 }

@@ -16,7 +16,7 @@ protected:
 	Factura* linkFactura;
     string nroVenta;
     static int IVA ;
-    int subtotoal;
+    int subtotal;
     bool facturado;
 	set<VentaComida*> comidaContenida;
 
@@ -57,4 +57,7 @@ public:
 	virtual ~Venta() {};
 };
 
+
+
 #endif
+

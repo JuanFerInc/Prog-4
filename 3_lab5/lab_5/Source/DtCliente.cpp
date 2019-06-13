@@ -1,5 +1,6 @@
 #include "../Header/DtCliente.h"				//Hay que ver lo de direccion*
 #include "../Header/DtDireccion.h"
+
 DtCliente::DtCliente(string telefono, string nombre, DtDireccion*direccion) {
 	this->nombre = nombre;
 	this->telefono = telefono;
@@ -34,4 +35,5 @@ void DtCliente::print(std::ostream& out) {
 	out << "telefono: " << this->telefono << endl;
 	out << "nombre: " << this->nombre << endl;
 	out << "direccion: " << endl << this->direccion << endl;
+
 }

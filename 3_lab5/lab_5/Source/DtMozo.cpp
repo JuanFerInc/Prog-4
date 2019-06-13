@@ -1,4 +1,5 @@
-#include "../header/DtMozo.h"
+
+#include "../Header/DtMozo.h"
 #include "../Header/DtEmpleado.h"
 #include <iostream>
 #include <string>
