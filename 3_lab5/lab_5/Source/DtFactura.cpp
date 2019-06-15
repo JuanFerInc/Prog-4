@@ -60,16 +60,17 @@ std::ostream& operator<<(std::ostream& out, DtFactura*info) {
 void DtFactura::print(std::ostream& out) {
 	using namespace std;
 	out << "codigo: " << this->codigo << endl;
-	out << "fecha: " << &this->fecha << endl;
-	out << "hora: " << &this->hora << endl;
-	out << "subtotal: " << this->subtotal << endl;
-	out << "monto total : " << this->montoTotal << endl;
-	out << "monto total con IVA: " << this->montoTotalIVA << endl;
-	out << "descuento: " << this->descuento << endl;
+	out << "fecha: " << endl << &this->fecha << endl;
+	out << &this->hora << endl;
+	
 	set<DtComidaVendida>::iterator iter;
-	out << "Las comidas son:" << endl;
+	out << "Las comidas son: " << endl;
 	for (iter = comidaVendida.begin(); iter != comidaVendida.end(); iter++) {
 		DtComidaVendida f = (*iter);
-		out << " " << &f << endl;
+		out << "" << &f << endl;
 	}
+	out << "subtotal: " << this->subtotal << endl;
+	out << "descuento: " << this->descuento << endl;
+	out << "monto total : " << this->montoTotal << endl;
+	out << "monto total con IVA: " << this->montoTotalIVA << endl;
 }

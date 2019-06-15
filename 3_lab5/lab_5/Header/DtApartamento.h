@@ -13,8 +13,8 @@ public:
 	//Contructor por copia
 	DtApartamento(const DtApartamento &apart);
 	//geters
-	string getNombreEdificio();
-	string getNumeroApartamento();
+	string getNombreEdificio()const;
+	string getNumeroApartamento()const;
 
 	void print(std::ostream& out);
 };

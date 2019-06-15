@@ -5,7 +5,7 @@
 #include <string>
 //getters
 
-DtMozo DtAsignacionMesa::getMozo() {
+DtMozo DtAsignacionMesa::getMozo() const {
     return(this->mozo);
 }
 DtAsignacionMesa::DtAsignacionMesa(DtMozo mozo, set<int> nroMesas){
@@ -33,8 +33,9 @@ std::ostream& operator<<(std::ostream& out, DtAsignacionMesa*info) {
 
 void DtAsignacionMesa::print(std::ostream& out) {
 	using namespace std;
+	cout << endl;
 	out << "Mozo: " << &this->mozo << endl;
-	out << "Mesas de un Mozo: ";
+	out << "Mesas del Mozo: " << endl;
 	set<int>::iterator iter;
 	for (iter = mesasDelMozo.begin(); iter != mesasDelMozo.end(); iter++) {
 		out << " " << (*iter) << endl;
@@ -42,7 +43,7 @@ void DtAsignacionMesa::print(std::ostream& out) {
 
 }
 bool DtAsignacionMesa::operator<(const DtAsignacionMesa& d) const {
-	if (this->mozo.getNombre().compare(d.mozo.getNombre()) <= 0) {
+	if (this->getMozo().getNroEmpleado() < d.getMozo().getNroEmpleado()){
 		return true;
 	}
 	else {

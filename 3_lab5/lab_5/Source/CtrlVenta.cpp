@@ -26,7 +26,7 @@ CtrlVenta* CtrlVenta::instancia = NULL;
 
 using namespace std;
 CtrlVenta::CtrlVenta() {
-	genNroVenta = 1;
+	genNroVenta = 4;
 }
 CtrlVenta* CtrlVenta::getInstance() {
 	if (instancia == NULL) {
@@ -38,7 +38,9 @@ CtrlVenta* CtrlVenta::getInstance() {
 DtFactura* CtrlVenta::generarFactura(int nromesa, int descuento){
 	map<int, Mesa*>::iterator i;
 	i = coleccionDeMesa.find(nroMesa);
-	return (i->second->facturar(descuento));
+	DtFactura*res = i->second->facturar(descuento);
+	i->second->getLocal()->desvincularMesaDeMiEnVentaActual();
+	return (res);
 }
 
 void CtrlVenta::quitarComidaVenta(string codigo) {
@@ -94,6 +96,7 @@ void CtrlVenta::agregarPorPrimeraVez() {
 	map<int, Mesa*>::iterator i;
 	i = coleccionDeMesa.find(nroMesa);
 	i->second->agregarComidaEnMesa(c, cantidad);
+	
 
 }
 
@@ -153,10 +156,10 @@ DtFacturaResumen CtrlVenta::resumenDelDia(int d, int m, int a) {
 	float total = 0;
 	for (iter = coleccionDeVenta.begin(); iter != coleccionDeVenta.end(); iter++) {
 		if (iter->second->getFacturado()) {
-
+			aux = iter->second->getLinkFactura();
 			if (aux->getFecha() == pepe) {
 						
-				aux = iter->second->getLinkFactura();
+				
 				Local *l = dynamic_cast<Local*>(iter->second);
 				Domicilio *d = dynamic_cast<Domicilio*>(iter->second);
 				
@@ -237,7 +240,7 @@ void CtrlVenta::confirmarVentaADomicilio() {
 	else {
 		Pedido* pedido = Pedido::getInstance();
 		CtrlEmpleado* ctrlE = CtrlEmpleado::getInstance();
-		Delivery* del = ctrlE->pedirDelivery();
+		Delivery* del = ctrlE->pedirDelivery(this->nroEmpleado);
 		dom = new Domicilio(cl, pedido, to_string(genNroVenta), comidaCont, subtot, del);
 	}
 	Venta* res = dom;
@@ -247,18 +250,53 @@ void CtrlVenta::confirmarVentaADomicilio() {
 	
 	coleccionProductosADomicilio.clear();
 }
+void CtrlVenta::confirmarVentaADomicilio(DtHora horita) {
+	CtrlCliente* ctrlC = CtrlCliente::getInstance();
+	Cliente* cl = ctrlC->pedirCliente();
+	Domicilio* dom;
+	set<VentaComida*> comidaCont;
+	set<DtProductoMenu>::iterator i;
+	CtrlProducto* ctrlP = CtrlProducto::getInstance();
+	int subtot = 0;
+
+	for (i = coleccionProductosADomicilio.begin(); i != coleccionProductosADomicilio.end(); i++) {
+		string cod = i->getCodigo();
+		int cant = i->getCantidad();
+		Comida* com = ctrlP->pedirComida(cod);
+		VentaComida* vc = new VentaComida(com, cant);
+		subtot = subtot + vc->darPrecio();
+		comidaCont.insert(vc);
+	}
+	if (retiraEnElLocal) {
+		Recibido* recibido = Recibido::getInstance();
+		dom = new Domicilio(horita ,cl, recibido, to_string(genNroVenta), comidaCont, subtot, NULL);
+	}
+	else {
+		Pedido* pedido = Pedido::getInstance();
+		CtrlEmpleado* ctrlE = CtrlEmpleado::getInstance();
+		Delivery* del = ctrlE->pedirDelivery(this->nroEmpleado);
+		dom = new Domicilio(horita ,cl, pedido, to_string(genNroVenta), comidaCont, subtot, del);
+	}
+	Venta* res = dom;
+	coleccionDeVenta.insert(make_pair(to_string(genNroVenta), res));
+	nroVenta = genNroVenta;//
+	genNroVenta = genNroVenta + 1;
+
+	coleccionProductosADomicilio.clear();
+}
 
 //Si retiraEnLocal == true invoca facturarVentaADomicilioSinDelivery()
 //sino invoca facturarVentaADomicilio()
 DtFacturaDomicilio CtrlVenta::facturarVentaADomicilio(int descuento) {
-	map<string, Venta*>::iterator i;
-	i = coleccionDeVenta.find(to_string(nroVenta-1));
-	Venta* re = i->second;
+	//map<string, Venta*>::iterator i;
+	Venta* re = coleccionDeVenta.find(to_string(nroVenta))->second;
+	//Venta* re = i->second;
 	Domicilio* dom = dynamic_cast<Domicilio*> (re);
 	Factura* fact = dom->crearFactura(descuento);
+	re->finalizarVenta(fact);
 	DtDelivery *dt = dom->darDtDelivery();
 	DtFacturaDomicilio *res = fact->darDtFacturaDomicilio(*dt);
-	delete dt;
+	//delete dt;
 	return *res;
 }
 
@@ -268,6 +306,7 @@ DtFactura CtrlVenta::facturarVentaADomicilioSinDelivery(int descuento) {
 	Venta* re = i->second;
 	Domicilio* dom = dynamic_cast<Domicilio*> (re);
 	Factura* fact = dom->crearFactura(descuento);
+	re->finalizarVenta(fact);
 	return *fact->darDtFacturaDomicilioSinDelivery();
 
 }
@@ -279,16 +318,28 @@ void CtrlVenta::confirmarVentaEnMesas() {
 
 	for (iterNroMesa = Mesas.begin(); iterNroMesa != Mesas.end(); iterNroMesa++) {
 		iterMesa = coleccionDeMesa.find(*iterNroMesa);
+		if (iterMesa->second->getLocal() != NULL) {
+			Mesas.clear();
+			throw(8);
+		}
 		mesasParaAsociar.insert(make_pair(iterMesa->first, iterMesa->second));
 	}
 
 	iterMesa = coleccionDeMesa.begin();
 
 	Mozo *m = iterMesa->second->getMozo();
-	Venta *v = new Local(mesasParaAsociar,to_string(genNroVenta),m);
+	Local *v = new Local(mesasParaAsociar,to_string(genNroVenta),m);
+	map<int, Mesa*>::iterator iter;
+	
+	for (iter = mesasParaAsociar.begin(); iter != mesasParaAsociar.end(); iter++) {
+		(*iter).second->asociarALocal(v);
+	}
+	
+	
 	genNroVenta++;
 
 	coleccionDeVenta.insert(make_pair(v->getNroVenta(),v));
+	Mesas.clear();
 }
 
 //obtengo venta
@@ -311,9 +362,9 @@ void CtrlVenta::cancelarPedido(int nroVenta) {
 
 
 
-map<int, Mesa*> *CtrlVenta::getColeccionDeMesa() {
-	map<int, Mesa*> *res = NULL;
-	*res = coleccionDeMesa;
+map<int, Mesa*> CtrlVenta::getColeccionDeMesa() {
+	map<int, Mesa*> res = coleccionDeMesa;
+	
 	return res;
 }
 
@@ -321,12 +372,34 @@ void CtrlVenta::siguienteEstado(int nroVenta) {
 	map<string, Venta*>::iterator iter;
 
 	iter = coleccionDeVenta.find(to_string(nroVenta));
-
+	if (iter == coleccionDeVenta.end()) {
+		throw(9);
+	}
 	Domicilio*c = dynamic_cast<Domicilio*>(iter->second);
 	if (c != NULL) {
 		c->siguienteEstado();
 	}
 	else {
+		throw(9);
+	}
+}
+void CtrlVenta::siguienteEstado(int nroVenta, DtHora horita) {
+	map<string, Venta*>::iterator iter;
+
+	iter = coleccionDeVenta.find(to_string(nroVenta));
+
+	Domicilio*c = dynamic_cast<Domicilio*>(iter->second);
+	if (c != NULL) {
+		c->siguienteEstado(horita);
+	}
+	else {
 		throw(6);
+	}
+}
+
+void CtrlVenta::iniciliazarMesas() {
+	for (int i = 1; i <= 7; i++) {
+		Mesa* m = new Mesa(NULL, NULL, i);
+		coleccionDeMesa.insert(make_pair(i, m));
 	}
 }

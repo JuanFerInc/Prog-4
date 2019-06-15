@@ -18,12 +18,15 @@ set<DtProductoVenta*> DtMenu::getProductosDeMenu() {
 }
 
 void DtMenu::print(std::ostream& out) {
-	out << "El codigo es:" << this->codigo << endl;
-	out << "La descripcion es:" << this->descripcion << endl;
-	out << "El Precio Total es:" << this->precioTotal << endl;
+	out << "El codigo es: " << this->codigo << endl;
+	out << "La descripcion es: " << this->descripcion << endl;
+	out << "El Precio Total es: " << this->precioTotal << endl;
 	set<DtProductoVenta*>::iterator i;
+	cout << endl;
+	cout << "================================================== " << endl;
 	for (i = productosDeMenu.begin(); i != productosDeMenu.end(); i++) {
-		DtProductoVenta *c = (*i);
-		cout << "    " << c << endl;
+		cout << endl;
+		cout << (*i) << endl;
 	}
+	cout << "^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^" << endl;
 }

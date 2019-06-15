@@ -24,10 +24,11 @@ DtProducto* Producto::darDataType() {
 
 void Producto::darDeBajaComida() {
 	set<MenuProducto*>::iterator iter;
-	for (iter = this->esContenidoEn.begin(); iter != this->esContenidoEn.begin(); iter++) {
+	for (iter = this->esContenidoEn.begin(); iter != this->esContenidoEn.end(); iter++) {
 		(*iter)->desvincularProductoDeMenu();
 		delete (*iter);//posible mismo error que en menu
 	}
+
 }
 
 void Producto::desvincular(MenuProducto *mp) {

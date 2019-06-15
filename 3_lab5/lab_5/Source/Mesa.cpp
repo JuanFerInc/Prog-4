@@ -10,6 +10,12 @@
 #include "../Header/Venta.h"
 #include "../Header/Empleado.h"
 
+Mesa::Mesa(Mozo* linkMozo, Local* linkLocal, int nroMesa) {
+	this->linkMozo = linkMozo;
+	this->linkLocal = linkLocal;
+	this->nroMesa = nroMesa;
+}
+
 DtFacturaLocal* Mesa::facturar(int descuento) {
 	set<DtComidaVendida> sc;
 	sc = this->linkLocal->darComidas();
@@ -72,4 +78,7 @@ Mozo* Mesa::getMozo() {
 
 Local* Mesa::getLocal() {
 	return this->linkLocal;
+}
+void Mesa::desvincularmeDelLocal() {
+	this->linkLocal = NULL;
 }

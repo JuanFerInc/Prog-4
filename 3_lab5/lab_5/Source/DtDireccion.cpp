@@ -1,7 +1,7 @@
 #include "../Header/DtDireccion.h"
 #include <string>
 
-DtDireccion::DtDireccion(string numero, string calle, string calleAdyacente) {
+DtDireccion::DtDireccion( string numero, string calle,  string calleAdyacente){
 	this->calleAdyacente = calleAdyacente;
 	this->nombreCalle = calle;
 	this->numero = numero;
@@ -14,15 +14,15 @@ DtDireccion::DtDireccion(const DtDireccion &direccion) {
 	this->calleAdyacente = direccion.calleAdyacente;
 }
 
-string DtDireccion::getNombreCalle() {
+string DtDireccion::getNombreCalle()const {
 	return(this->nombreCalle);
 }
 
-string DtDireccion::getNumero() {
+string DtDireccion::getNumero()const {
 	return (this->numero);
 }
 
-string DtDireccion::getCalleAdyacente() {
+string DtDireccion::getCalleAdyacente()const {
 	return (this->calleAdyacente);
 }
 

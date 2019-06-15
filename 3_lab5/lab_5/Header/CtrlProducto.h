@@ -70,6 +70,7 @@ public:
 	//Tambien el sistme olvida todo lo recordado en este caso de uso.
 	void aceptarAltaMenu();
 
+
 	//Libera la memoria del sistema asociada al menu y los productos
 	//Pre: El sistema tiene almacenado los datos del Menu y los productos con los que sera asociado mediante el identificador
 	//codigo y la cantidad de dicho producto que estan en el menu
@@ -77,7 +78,7 @@ public:
 	void cancelarAltaMenu();
 
 	//Baja de Producto
-	set<DtComida> listaDeComidaDisponible();
+	set<DtComida*> listaDeComidaDisponible();
 	void ingresarCodigo(string codigo);
 	void cancelarBaja();
 	void confirmarBaja();
@@ -93,6 +94,11 @@ public:
 	//el nombre de la funcion esta mal, tenemos que arreglar
 	//funcion del caso de uso Informacion de un producto
 	DtComida* ingresarCodigoParaInfo();
+	
+	//carga los datos pedido por el profe
+	void agregarDatosPredef();
+
+	void quitarMenu(string codigo);
 
 };
 

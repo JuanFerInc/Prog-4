@@ -14,16 +14,17 @@ public:
 	DtDireccion() = default;
 	DtDireccion(const DtDireccion &direccion);
 
-	DtDireccion(string numero, string calle, string calleAdyacente);
+	DtDireccion(string numero,  string calle, string calleAdyacente) ;
 
 //geters
-	string getNombreCalle();
-	string getNumero();
-	string getCalleAdyacente();
+	string getNombreCalle()const;
+	string getNumero()const;
+	string getCalleAdyacente()const;
 
 
 	friend std::ostream& operator<<(std::ostream& out, DtDireccion *info);
 	virtual void print(ostream& out);
+    virtual ~DtDireccion() {};
 
 };
 

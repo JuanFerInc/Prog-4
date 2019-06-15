@@ -30,8 +30,10 @@ public:
 	void aumentarCantidad(string codigo, int cantidad);
 	
 	bool noEstaFacturada();
-	void agregarComida(Comida* c, int cantidad);
 
+	//agrega la comida a la venta local e ingrementa el subtotal
+	void agregarComida(Comida* c, int cantidad);
+	void desvincularMesaDeMiEnVentaActual();
 	DtMozo getDtMozo();
 };
 

@@ -14,7 +14,7 @@ using namespace std;
 class DtComida {
 protected:
 	string codigo, descripcion;
-	int precioTotal;
+	int precioTotal; // es precio del producto
 
 public:
 	DtComida() {};

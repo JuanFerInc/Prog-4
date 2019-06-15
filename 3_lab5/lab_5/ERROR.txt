@@ -1,16 +1,14 @@
-Comida sonIguales()
-Venta borarVentaProducto()
-ventaComida added .cpp
-			tienemismo()
-CtrlVenta quitarcomidaenventa()
-CtrlProducto ConfirmarBaja
-menuProducto desvincularproductodemenu
-menu desvincularM			
-
-
 ERRORES
 1 existe una venta no facturada que tiene el producto que queres eliminar en quitarComidaVenta() ctrlVenta
 2 intento ingresar a un Menu como un producto que contiene el Menu
 3 el Codigo no pertenece a un producto
 4 El numero de empelado corresponde a un Delivery
 5 la cantidad de mesas es moenor que la cantidad de mozos  asignarAuto() en ctrlEmpleado
+6 Cantidad de mozos es 0
+7 no hay mozo
+8 Usted ingreso una mesa que ya contiene una venta asociada a ella, el caso de uso se a cancelado
+9 La venta no existe
+10 Ya existe un cliente con ese numero de telefono
+11 no existe la comida con ese codigo
+12 la mesa selecciona no le pertence al mozo o esta ocupada
+13 el producto no existe

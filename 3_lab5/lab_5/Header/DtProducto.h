@@ -14,6 +14,7 @@ public:
 	DtProducto(string codigo, string descripcion, int precioTotal);
 	
 	void print(std::ostream& out);
+
 	bool operator<(const DtProducto& d)const;
 };
 

@@ -39,14 +39,21 @@ set<DtComidaVendida*> DtEstadoTerminado::getComidasVendidas() {
 
 //impresion
 void DtEstadoTerminado::print(ostream& out) {
-	out << "Etapa actual" << this->getEtapaActual() << endl;
+	out << "Etapa actual: " << this->getEtapaActual() << endl;
 	out << "El nombre es:" << this->nombre << endl;
 	out << "El telefono es:" << this->telefono << endl;
-	out << "La hora es:" << &this->hora << endl;
+	out << &this->hora << endl;
+	set<DtComidaVendida*>::iterator iter;
+	out << "-------------------" << endl;
+	out << "Las comidas son: " << endl;
+	for (iter = comidasVendidas.begin(); iter != comidasVendidas.end(); iter++) {
+		out << "" << (*iter) << endl;
+	}
+	out << "-------------------" << endl;
 
 }
 bool DtEstadoTerminado::operator<(const DtEstadoTerminado& d) const{
-	if (this->telefono.compare(d.telefono) <= 0) {
+	if (this < &d) {
 		return true;
 	}else { 
 		return false;

@@ -20,7 +20,19 @@ set<int> Mozo::getMesas() {
 
 	return res;
 }
+set<int> Mozo::getMesasLibre() {
+	map<int, Mesa*>::iterator iter;
+	set<int>res;
 
+	for (iter = mesas.begin(); iter != mesas.end(); iter++) {
+		if ((*iter).second->getLocal()== NULL) {
+			res.insert(iter->first);
+		}
+		
+	}
+
+	return res;
+}
 void Mozo::agregarMesa(int nroMesa, Mesa* mesa) {
 	mesas.insert(make_pair(nroMesa, mesa));
 

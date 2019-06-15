@@ -32,14 +32,16 @@ Factura::Factura(int descuento, set<DtComidaVendida> comidaEnFactura, string nro
 }
 
 DtFacturaDomicilio *Factura::darDtFacturaDomicilio(DtDelivery dt) {
-	float montoTotal = this->subtotal* (1 -(descuento / 100));
-	float montoTotalIVA = montoTotal + (montoTotal * Venta::getIVA());
+	float desc = 1 - ((float)descuento / (float)100);
+	float montoTotal = this->subtotal* desc;
+	float montoTotalIVA = montoTotal + (montoTotal * ((float)Venta::getIVA()/100));
 	return new DtFacturaDomicilio(dt, this->nroFactura, this->fecha, this->hora, this->comidaEnFactura, this->subtotal, montoTotal ,montoTotalIVA , this->descuento);
 }
 
 DtFactura *Factura::darDtFacturaDomicilioSinDelivery() {
-	float montoTotal = this->subtotal* (1 - (descuento / 100));
-	float montoTotalIVA = montoTotal + (montoTotal * Venta::getIVA());
+	float desc = 1 - ((float)descuento / (float)100);
+	float montoTotal = this->subtotal* desc;
+	float montoTotalIVA = (montoTotal + (montoTotal * ((float)Venta::getIVA()/100)));
 	return new DtFactura(this->nroFactura, this->fecha, this->hora, this->comidaEnFactura, this->subtotal, montoTotal, montoTotalIVA, this->descuento);
 }
 

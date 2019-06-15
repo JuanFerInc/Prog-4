@@ -53,7 +53,7 @@ public:
 	void borrarVentaComida(string codigo);
 	//retorna true sii la venta tiene una comida con el codigo
 	bool tieneComida(string codigo);
-
+	
 	virtual ~Venta() {};
 };
 

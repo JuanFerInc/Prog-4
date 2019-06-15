@@ -3,6 +3,7 @@
 #include "../Header/DtComidaVendida.h"
 #include "../Header/DtComida.h"
 
+
 bool VentaComida::tieneMismo(string codigo) {
 	return this->linkComida->sonIguales(codigo);
 }
@@ -19,6 +20,7 @@ bool VentaComida::ventaContieneComida(string codigo) {
 void VentaComida::incrementarCantidad(string codigo, int cantidad) {
 	if (this->linkComida->sonIguales(codigo)) {
 		this->aumentoCantidad(cantidad);
+		
 	}
 }
 

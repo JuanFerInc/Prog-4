@@ -48,11 +48,12 @@ public:
 	void cancelarEmpleado();
 	void confirmarEmpleado();
 	
-	set<DtAsignacionMesa> asignarAuto();
+	set<DtAsignacionMesa*> asignarAuto();
 	//Venta a Domicilio
 	void seleccionarRepartidor(string nroEmpleado);
 	set<DtDelivery*> darRepartidores();
-	Delivery* pedirDelivery();
+	//otro controlador usa esta funcion
+	Delivery* pedirDelivery(int nroEmpleado);
 
 };
 

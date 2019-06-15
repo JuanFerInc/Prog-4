@@ -22,7 +22,8 @@ private:
 
 
 public:
-	
+	//constructor
+	Mesa(Mozo* linkMozo, Local* linkLocal, int nroMesa);
 
 //geters
 	int getNroMesa();
@@ -41,7 +42,7 @@ public:
 	
 	void asociarAMozo(Mozo*m);
 	void asociarALocal(Local *l);
-
+	void desvincularmeDelLocal();
 	DtFacturaLocal *facturar(int descuento);
 	
 

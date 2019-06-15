@@ -25,12 +25,12 @@ public:
 
     
     //Asignar automaticamente mozos a mesas
-    virtual set<DtAsignacionMesa> asignarAuto() = 0;
+    virtual set<DtAsignacionMesa*> asignarAuto() = 0;
     
     //Venta a domicilio
 	virtual void seleccionarRepartidor(string nroEmpleado) = 0;
 	virtual set<DtDelivery*> darRepartidores() = 0;
-	virtual Delivery* pedirDelivery() = 0;
+	virtual Delivery* pedirDelivery(int nroEmpleado) = 0;
 
     
     

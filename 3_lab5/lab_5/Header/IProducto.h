@@ -27,7 +27,7 @@ class IProducto{
         
         //Baja producto
 
-        virtual set<DtComida> listaDeComidaDisponible() = 0;
+        virtual set<DtComida*> listaDeComidaDisponible() = 0;
         virtual void ingresarCodigo(string codigo) =0;
         virtual void cancelarBaja() =0;
         virtual void confirmarBaja() =0;
@@ -38,7 +38,8 @@ class IProducto{
 
 		virtual DtComida* ingresarCodigoParaInfo() = 0;
 
-		
+		//carga los datos pedido por el profe
+		virtual void agregarDatosPredef() = 0;
 };
 
 #endif

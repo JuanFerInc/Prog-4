@@ -20,7 +20,8 @@ using namespace std;
 class CtrlVenta: public IVenta {
 private:
 	static CtrlVenta* instancia;
-	string codigo, nroEmpleado;
+	string codigo;
+	int nroEmpleado;
 
 	int nroMesa, cantidad, nroVenta,genNroVenta;
 	map<int, Mesa*> coleccionDeMesa;
@@ -56,6 +57,7 @@ public:
 	void agregarMesaAVenta(int nroMesa);
 	set<int> mostrarMesasSeleccionadas();
 	void descartarVentasEnMesa();
+	
 	set<int> mesasAsignadas(int nroEmpleado);
 
 	void confirmarVentaEnMesas();
@@ -64,6 +66,7 @@ public:
 	void cancelarPedido(int nroVenta);
 	
 	void siguienteEstado(int nroVenta);
+	void siguienteEstado(int nroVenta, DtHora horita);
 	
 
 	//Retorna un DtFacturaResumen que contiene el total de sumar todas las
@@ -72,7 +75,7 @@ public:
 
 	//esta funcion
 	//retorna un puter a coleccion de mesa, la llama otro contorlador
-	map<int, Mesa*> *getColeccionDeMesa();
+	map<int, Mesa*> getColeccionDeMesa();
 
 	//Venta a Domicilio
 	bool iniciarVentaADomicilio(string tel);
@@ -81,9 +84,12 @@ public:
 	void seleccionarRepartidor(int nroEmpleado);
 	void cancelarVentaADomicilio();
 	void confirmarVentaADomicilio();
+	void confirmarVentaADomicilio(DtHora horita);
 	DtFacturaDomicilio facturarVentaADomicilio(int descuento);
 	DtFactura facturarVentaADomicilioSinDelivery(int descuento);
 
+	//incializar mesa predeterminado
+	void iniciliazarMesas();
 };
 
 #endif 

@@ -8,7 +8,7 @@
 #include "../Header/DtComida.h"
 #include "../Header/Comida.h"
 #include "../Header/DtComidaVendida.h"
-
+#include "../Header/CtrlProducto.h"
 
 Local::Local(map<int, Mesa*> mesas, string nroVenta, Mozo *mozo):Venta(nroVenta) {
 	this->setsito = mesas;
@@ -21,26 +21,34 @@ Local::Local(map<int, Mesa*> mesas, string nroVenta, Mozo *mozo):Venta(nroVenta)
 bool Local::hayComidaEnVenta(string codigo) {
 	set<VentaComida*>::iterator i;
 	bool hay = false;
+	
 	for (i = comidaContenida.begin(); i != comidaContenida.end(); i++) {
 		if ((*i)->ventaContieneComida(codigo)) {
-			hay = true;
+			hay = true;			
 		}
 	}
+
+	
 	return hay;
 }
 
 void Local::aumentarCantidad(string codigo, int cantidad) {
 	set<VentaComida*>::iterator i;
+	CtrlProducto *v = CtrlProducto::getInstance();
+	Comida *c = v->pedirComida(codigo);
+	this->subtotal = this->subtotal + c->getPrecio()*cantidad;
 	for (i = comidaContenida.begin(); i != comidaContenida.end(); i++) {
 		(*i)->incrementarCantidad(codigo, cantidad);
+
 	}
 }
 
 void Local::agregarComida(Comida* c, int cantidad) {
 	VentaComida* res = new VentaComida(c, cantidad);
 	comidaContenida.insert(res);
+	this->subtotal = this->subtotal + c->getPrecio()*cantidad;
 }
-//REVISAR LOS PUNTEROS
+
 set<DtComida> Local::productosEnVenta() {
 	set<VentaComida*>::iterator i;
 	set<DtComida> res;
@@ -50,17 +58,17 @@ set<DtComida> Local::productosEnVenta() {
 		if (pepe != NULL) {
 			DtProducto dtestatico = (*pepe);
 			res.insert(dtestatico);
-		}else{
+		}
+		else {
 			DtMenu* pep = dynamic_cast<DtMenu*> (c);
 			DtMenu dtestatico = (*pep);
 			res.insert(dtestatico);
 		}
 		delete c;
-		
+
 	}
 	return res;
 }
-
 bool Local::cantEsMayor(string codigo, int cantidad) {
 	set<VentaComida*>::iterator i;
 	bool mayor = false;
@@ -78,21 +86,28 @@ void Local::decrementarCantidad(string codigo, int cantidad) {
 		(*i)->bajarCantidad(codigo,cantidad);
 	}
 }
-
+void Local::desvincularMesaDeMiEnVentaActual() {
+	map<int, Mesa*>::iterator iter;
+	for (iter = this->setsito.begin(); iter != this->setsito.end(); iter++) {
+		(*iter).second->desvincularmeDelLocal();
+	}
+	
+}
 void Local::eliminarComida(string codigo) {
 	set<VentaComida*>::iterator i;
 	set<VentaComida*>::iterator iterAEliminar;
-	VentaComida* r = NULL;;
-	
+	VentaComida* r = NULL;
+
 
 	for (i = comidaContenida.begin(); i != comidaContenida.end(); i++) {
 		if ((*i)->esComidaAEliminar(codigo) != NULL) {
 			iterAEliminar = i;
+			this->subtotal = this->subtotal - (*i)->darPrecio();
 			r = (*i)->esComidaAEliminar(codigo);
-			
+
 		}
 	}
-	
+
 	comidaContenida.erase(iterAEliminar);
 	if (r != NULL) {
 		delete r;

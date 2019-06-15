@@ -21,7 +21,7 @@ void DtProductoVenta::print(std::ostream& out) {
 	using namespace std;
 	out << "Codigo: " << this->codigo << endl;
 	out << "descripcion: " << this->descripcion << endl;
-	out << "precio total " << this->precioTotal << endl;
+	out << "precio " << this->precioTotal << endl;
 	out << "cantidad " << this->cantidad << endl;
 }
 bool DtProductoVenta::operator<(const DtProductoVenta& d)const {

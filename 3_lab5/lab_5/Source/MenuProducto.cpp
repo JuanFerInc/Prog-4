@@ -5,6 +5,8 @@
 #include "../Header/DtProducto.h"
 #include "../Header/Producto.h"
 
+
+#include "../Header/CtrlProducto.h"
 using namespace std;
 
 MenuProducto::MenuProducto(Menu *m, int cantidad,Producto *p) {
@@ -42,9 +44,12 @@ DtProducto *MenuProducto::getDtProducto() {
 }
 
 
-void MenuProducto::desvincularProductoDeMenu(){
+void  MenuProducto::desvincularProductoDeMenu(){
+	
 	if (this->linkMenu->desvincularM(this)) {
-		delete linkMenu;
+		CtrlProducto *c = CtrlProducto::getInstance();
+		c->quitarMenu(this->linkMenu->getCodigo());
+		//delete linkMenu;
 	}
 }
 void MenuProducto::notificarProducto() {

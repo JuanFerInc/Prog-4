@@ -13,7 +13,8 @@ void DtMenuVenta::print(ostream& out) {
 	set<DtProductoVenta*>::iterator i;
 	for (i = productosDeMenu.begin(); i != productosDeMenu.end(); i++) {
 		DtProductoVenta *c = (*i);
-		cout << "    " << c << endl;
+		cout << endl;
+		cout << c << endl;
 	}
 	cout << "Cantidad: " << cantidad << endl;
 }

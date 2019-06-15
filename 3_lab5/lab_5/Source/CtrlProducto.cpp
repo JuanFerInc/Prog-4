@@ -38,7 +38,7 @@ void CtrlProducto::aceptarAltaProducto() {
 }
 
 void CtrlProducto::cancelarAltaProducto() {
-
+	infoMP.clear();
 }
 
 set<DtProducto*> CtrlProducto::agregarMenu(string codigo, string descripcion) {
@@ -63,8 +63,11 @@ set<DtProducto*> CtrlProducto::agregarMenu(string codigo, string descripcion) {
 }
 
 void CtrlProducto::agregarProductoMenu(string codigo, int cantidad) {
+	set<DtProductoMenu>::iterator iter;
+
 	DtProductoMenu dtpm(codigo, cantidad);
 	infoMP.insert(dtpm);
+	
 }
 
 void CtrlProducto::aceptarAltaMenu() {
@@ -88,10 +91,11 @@ void CtrlProducto::aceptarAltaMenu() {
 		c = iterComida->second;
 		Producto *p = dynamic_cast<Producto*>(c);
 		if (p == NULL) {
-			throw(5);
+			throw(2);
 		}
 
 	}
+
 	for (iter = infoMP.begin(); iter != infoMP.end(); iter++) {
 		iterComida = coleccionDeComida.find(iter->getCodigo());
 		c = iterComida->second;
@@ -103,12 +107,6 @@ void CtrlProducto::aceptarAltaMenu() {
 			throw (2);
 		}
 
-	}
-	for (iter = infoMP.begin(); iter != infoMP.end(); iter++) {
-		iterComida = coleccionDeComida.find(iter->getCodigo());
-		c = iterComida->second;
-		Producto *p = dynamic_cast<Producto*>(c);
-		p->asociarAMenu(m, iter->getCantidad());
 	}
 
 	c = m;
@@ -124,24 +122,29 @@ void CtrlProducto::cancelarAltaMenu(){
 }
 
 //Baja de Producto
-set<DtComida> CtrlProducto::listaDeComidaDisponible() {
+set<DtComida*> CtrlProducto::listaDeComidaDisponible() {
 	map<string,Comida*>::iterator iter;
-	set<DtComida> res;
+	set<DtComida*> res;
 
 	//puede ser ++iter
 	for (iter = coleccionDeComida.begin(); iter != coleccionDeComida.end();iter++) {
 		DtComida *c = iter->second->darDataType();
+		res.insert(c);
+		
+		/*
 		DtProducto *p = dynamic_cast<DtProducto*>(c);
 		DtMenu *m = dynamic_cast<DtMenu*>(c);
+		
+		
 		if (p != NULL) {
-			DtProducto resp = *p;
-			res.insert(resp);
+			
+			res.insert(p);
 		}
 		else {
-			DtMenu resm = *m;
-			res.insert(resm);
+			
+			res.insert(m);
 		}
-
+		*/
 		
 	}
 	return res;
@@ -206,4 +209,65 @@ DtComida* CtrlProducto::ingresarCodigoParaInfo(){
 	DtComida* res = iter->second->darDataVenta();
 	codigo.clear();
 	return res;
+}
+void CtrlProducto::quitarMenu(string codigo) {
+	map<string, Comida*>::iterator iter = coleccionDeComida.find(codigo);	
+	this->coleccionDeComida.erase(iter);
+}
+
+void CtrlProducto::agregarDatosPredef() {
+	//Productos
+	Producto *p = new Producto("1", "Pizza con muzzarella", 130);
+	Comida *c;
+	c = p;
+	coleccionDeComida.insert(make_pair("1", c));
+
+	p = new Producto("2", "Milanesa con guarnicion", 230);
+	c = p;
+	coleccionDeComida.insert(make_pair("2", c));
+
+	p = new Producto("3", "Coca Cola 1.25L", 95);
+	c = p;
+	coleccionDeComida.insert(make_pair("3", c));
+
+	p = new Producto("4", "Empanada Capresse", 72);
+	c = p;
+	coleccionDeComida.insert(make_pair("4", c));
+
+	p = new Producto("5", "Flan con dulce de leche", 110);
+	c = p;
+	coleccionDeComida.insert(make_pair("5", c));
+
+	//Menues//
+
+
+	Comida* d;
+
+	Menu* m = new Menu("6", "Combo Pizza");
+	d = coleccionDeComida.find("1")->second;
+	Producto *a = dynamic_cast<Producto*> (d);
+
+	a->asociarAMenu(m, 1);
+
+	d = coleccionDeComida.find("3")->second;
+	a = dynamic_cast<Producto*> (d);
+	a->asociarAMenu(m, 1);
+
+	c = m;
+	coleccionDeComida.insert(make_pair("6", c));
+
+
+	//Next	
+
+	m = new Menu("7", "Combo Empanadas");
+	a = dynamic_cast<Producto*> (d);
+	d = coleccionDeComida.find("3")->second;
+	a->asociarAMenu(m, 1);
+
+	d = coleccionDeComida.find("4")->second;
+	a = dynamic_cast<Producto*> (d);
+	a->asociarAMenu(m, 3);
+
+	c = m;
+	coleccionDeComida.insert(make_pair("7", c));
 }

@@ -33,7 +33,7 @@ DtComida* Menu::darDataType() {
 		MenuProducto *mp = *ptr;
 		DtProductoVenta *pv = mp->darInfo();
 		datosProductos.insert(pv);
-		delete pv;
+		
 	}
 
 	DtComida *datamenu = new DtMenu(this->getCodigo(), this->getDescripcion(), this->getPrecio(), datosProductos);
@@ -56,9 +56,14 @@ void Menu::asociarmeAMenuProducto(MenuProducto *mp) {
 
 bool Menu::desvincularM(MenuProducto *mp) {
 	set<MenuProducto*>::iterator iter;
-	for (iter = productosContenidos.begin(); iter != productosContenidos.end(); iter++) {
+	bool found = false;
+	for (iter = productosContenidos.begin(); !found && iter != productosContenidos.end()  ;) {
 		if (mp == *iter) {
-			productosContenidos.erase(iter);
+			iter = productosContenidos.erase(iter);
+			found = true;
+		}
+		else {
+			iter++;
 		}
 	}
 
@@ -76,17 +81,12 @@ DtMenuVenta *Menu::darDataVenta() {
 		MenuProducto *mp = *ptr;
 		DtProductoVenta *pv = mp->darInfo();
 		datosProductos.insert(pv);
-		delete pv;
+		//delete pv;
 	}
 	DtMenuVenta *res = new DtMenuVenta(this->codigo, this->descripcion, this->getPrecio(), this->cantitatUnidadesFacturadas,datosProductos);
 	return res;
 }
 Menu::~Menu() {
-	set<MenuProducto*>::iterator ptr;
-	for (ptr = this->productosContenidos.begin(); ptr != this->productosContenidos.end(); ptr++) {
-		MenuProducto *aux = *ptr;
-		productosContenidos.erase(ptr);
-		delete aux;
-	}
+	this->productosContenidos.clear();
 }
 

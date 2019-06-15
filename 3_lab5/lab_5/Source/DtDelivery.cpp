@@ -22,10 +22,20 @@ void DtDelivery::print(std::ostream& out) {
 	using namespace std;
 	out << "numero de empleado: " << this->getNroEmpleado() << endl;
 	out << "nombre: " << this->getNombre() << endl;
-	out << "tipo de transporte: " << this->transporte << endl;
+
+	if (this->transporte == 0) {
+		out << "tipo de transporte: BICI" << endl;
+	}
+	else if (this->transporte == 1) {
+		out << "tipo de transporte: MOTO" << endl;
+	}
+	else {
+		out << "tipo de transporte: PIE" << endl;
+	}
+
 }
 bool DtDelivery::operator<(const DtDelivery& d)const {
-	if (nombre.compare(d.nombre) <= 0) {
+	if (this->getNroEmpleado() < d.getNroEmpleado()) {
 		return true;
 	}else {
 		return false;

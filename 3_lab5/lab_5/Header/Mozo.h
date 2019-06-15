@@ -14,6 +14,8 @@ public:
 	Mozo(string nombre, int nroEmpleado);
 
 	set<int> getMesas();
+
+	set<int> getMesasLibre();
 	void agregarMesa(int nroMesa, Mesa* mesa);
 	DtMozo getDtMozo() const;
 	

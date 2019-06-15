@@ -35,7 +35,7 @@ set<int> CtrlEmpleado::mesasDeMozo(int nroEmpleado) {
 
 
 	if (pepito != NULL) {
-		return pepito->getMesas();
+		return pepito->getMesasLibre();
 	}
 	else {
 		throw(4);
@@ -48,6 +48,7 @@ void CtrlEmpleado::agregarMozo(string nombre) {
 	this->nombreEmpleado = nombre;
 }
 set<TipoTransporte> CtrlEmpleado::agregarDelivery(string nombre) {
+	esMozo = false;
 	this->nombreEmpleado = nombre;
 	return this->setTransporte;
 
@@ -84,22 +85,22 @@ void CtrlEmpleado::confirmarEmpleado() {
 }
 
 
-set<DtAsignacionMesa> CtrlEmpleado::asignarAuto() {
+set<DtAsignacionMesa*> CtrlEmpleado::asignarAuto() {
 	CtrlVenta *cv = CtrlVenta::getInstance();
 
-	set<DtAsignacionMesa> res;
+	set<DtAsignacionMesa*> res;
 
 	int cantMesas = 0;
 	int cantMozos = 0;
 
-	map<int,Mesa*> *mesas = cv->getColeccionDeMesa();
+	map<int,Mesa*> mesas = cv->getColeccionDeMesa();
 	
 	map<int, Empleado*>::iterator iterEmpleados;
 	map<int, Mesa*>::iterator iterMesas;
 
 	set<Mozo*> setMozos;
 
-	for (iterMesas = mesas->begin(); iterMesas != mesas->end(); iterMesas++) {
+	for (iterMesas = mesas.begin(); iterMesas != mesas.end(); iterMesas++) {
 		cantMesas++;
 	}
 
@@ -111,13 +112,16 @@ set<DtAsignacionMesa> CtrlEmpleado::asignarAuto() {
 			cantMozos++;
 		}
 	}
+	if (cantMozos == 0) {
+		throw (7);
+	}
 	int cantAsigancion = cantMesas / cantMozos;
 		
 	set<Mozo*>::iterator iterMozos;
-	iterMesas = mesas->begin();
+	iterMesas = mesas.begin();
 
 	if (cantMesas < cantMozos) {
-		throw(5);
+		throw(6);
 	}
 	else {
 
@@ -135,7 +139,7 @@ set<DtAsignacionMesa> CtrlEmpleado::asignarAuto() {
 		iterMozos = setMozos.begin();
 
 		//en caso que quede alguna mesa se le agrega a los mozos empesando del primero
-		while (iterMesas != mesas->end()) {
+		while (iterMesas != mesas.end()) {
 			(*iterMozos)->agregarMesa(iterMesas->first, iterMesas->second);
 			iterMesas->second->asociarAMozo(*iterMozos);
 			iterMozos++;
@@ -149,9 +153,9 @@ set<DtAsignacionMesa> CtrlEmpleado::asignarAuto() {
 	for (iterMozos = setMozos.begin(); iterMozos != setMozos.end(); iterMozos++) {
 		dtm = (*iterMozos)->getDtMozo();
 		nroMesas = (*iterMozos)->getMesas();
-		res.insert(DtAsignacionMesa(dtm, nroMesas));
+		res.insert(new DtAsignacionMesa(dtm, nroMesas));
 	}
-
+	mesas.clear();
 	return res;
 }
 
@@ -169,7 +173,7 @@ set<DtDelivery*> CtrlEmpleado::darRepartidores() {
 	return res;
 }
 
-Delivery* CtrlEmpleado::pedirDelivery() {
+Delivery* CtrlEmpleado::pedirDelivery(int nroEmpleado) {
 	map<int, Empleado*>::iterator i;
 	i = coleccionDeEmpleado.find(nroEmpleado);
 	Empleado* re = i->second;

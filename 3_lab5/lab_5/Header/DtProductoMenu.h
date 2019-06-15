@@ -21,6 +21,7 @@ public:
 	string getCodigo() const;
 	int getCantidad() const;
 
+	
 	friend std::ostream& operator<<(std::ostream& out, DtProductoMenu *info);
 	void print(ostream& out); 
 	bool operator<(const DtProductoMenu& d)const;

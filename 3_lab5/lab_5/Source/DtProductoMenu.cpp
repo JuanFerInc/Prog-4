@@ -33,7 +33,7 @@ void DtProductoMenu::print(std::ostream& out) {
 
 }
 bool DtProductoMenu::operator<(const DtProductoMenu& d)const {
-	if (this->codigo.compare(d.codigo) <= 0) {
+	if (this < &d) {
 		return true;
 	}
 	else {

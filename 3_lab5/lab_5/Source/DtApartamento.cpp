@@ -4,15 +4,15 @@
 
 //getters
 
-string DtApartamento::getNombreEdificio() {
+string DtApartamento::getNombreEdificio()const {
     return (this->nombreEdificio);
 }
 
-string DtApartamento::getNumeroApartamento() {
+string DtApartamento::getNumeroApartamento() const {
     return (this->numeroApartamento);
 }
 // Contructor por copia
-DtApartamento::DtApartamento (const DtApartamento &apart) {
+DtApartamento::DtApartamento (const DtApartamento &apart):DtDireccion(apart.getNumero(),apart.getNombreCalle(),apart.getCalleAdyacente()) {
     this->nombreEdificio= apart.nombreEdificio;
 	this->numeroApartamento = apart.numeroApartamento;
 }
