@@ -60,4 +60,27 @@ bool DtFecha::operator<(const DtFecha& fechita) {
 	}
 
 }
+bool  DtFecha::operator>( const DtFecha& fechita) {
+	if (this->a > fechita.a) {
+		return true;
+	}
+	else if (fechita.a > this->a) {
+		return false;
+	}
+	else {
+		if (this->m > fechita.m) {
+			return true;
+		}
+		else if (fechita.m > this->m) {
+			return false;
+		}
+		else {
+			if (this->d > fechita.d) {
+				return true;
+			}
+			else return false;
+		}
+	}
+
+}
 

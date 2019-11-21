@@ -40,6 +40,15 @@ public:
 	void eliminarViaje(DtFecha); //Elimina todos los viajes hechos en esa fecha si no hay ninguno no hace nada
 	int contarViajes(const DtFecha&);
 	Viaje** arregloViajesMenores(const DtFecha&, int);
+
+
+
+	//nueva funicones
+	//cuenta la cantidad de viajes que estan entre fecha inicio y fecha fin
+	int contarViajesEntre(const DtFecha& , const DtFecha& );
+
+	//retorna un arrelgo con los vaijes que estan entre fecha inicio y fecha fin
+	Viaje** arregloViajesEntre(const DtFecha& , const DtFecha& , int );
 };
 
 #endif

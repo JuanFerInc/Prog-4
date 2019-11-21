@@ -90,6 +90,18 @@ int Usuario::contarViajes(const DtFecha& fechita) {
 	return cantViajes;
 }
 
+int Usuario::contarViajesEntre(const DtFecha& inicio, const DtFecha& fin) {
+	int cantViajes = 0;
+	for (int i = 0; i < 100; i++) {
+		if (Viajes[i] != NULL) {
+			if ((Viajes[i]->getfecha() < fin) && (Viajes[i]->getfecha() > inicio)) {
+				cantViajes++;
+			}
+		}
+	}
+	return cantViajes;
+}
+
 Viaje** Usuario::arregloViajesMenores(const DtFecha& fechita, int cantViajes) {
 	Viaje **nuevoViaje = NULL;
 	int j = 0;
@@ -108,6 +120,26 @@ Viaje** Usuario::arregloViajesMenores(const DtFecha& fechita, int cantViajes) {
 
 	return nuevoViaje;
 }
+
+Viaje** Usuario::arregloViajesEntre(const DtFecha& inicio, const DtFecha& fin, int cantViajes) {
+	Viaje** nuevoViaje = NULL;
+	int j = 0;
+	if (cantViajes > 0) {
+		nuevoViaje = new Viaje * [cantViajes];
+		for (int i = 0; i < 100; i++) {
+			if (Viajes[i] != NULL) {
+				if (this->Viajes[i]->getfecha() < fin && this->Viajes[i]->getfecha() > inicio) {
+					nuevoViaje[j] = Viajes[i];
+
+					j++;
+				}
+			}
+		}
+	}
+
+	return nuevoViaje;
+}
+
 
 //Destructor
 Usuario:: ~Usuario() {

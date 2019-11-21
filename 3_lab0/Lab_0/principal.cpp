@@ -3,6 +3,10 @@
 #include <string>
 #include <ctime>
 #include <stdlib.h>
+#include <set>
+#include <thread>
+#include <vector>
+#include <mutex>
 
 #include "Header/bicicleta.h"
 #include "Header/DtBicicleta.h"
@@ -18,12 +22,13 @@
 
 
 #define MAX_VEHICULOS 3
-#define MAX_USUARIOS 3
+#define MAX_USUARIOS 5
 
 
 Usuario *Usuarios[MAX_USUARIOS];
 Vehiculo *Vehiculos[MAX_VEHICULOS];
 
+using namespace std;
 
 //Devuelve un puntero al Usuario con ci o NULL si no existe
 static Usuario* existeUsuario(std::string ci){
@@ -36,6 +41,7 @@ static Usuario* existeUsuario(std::string ci){
 	}
 	return res;
 }
+
 //Devuelve un puntero al vehiculo con nroSerieVehiculo o NULL si no existe
 static Vehiculo* existeVehiculo(int nroSerieVehiculo) {
 	Vehiculo* res = NULL;
@@ -46,10 +52,12 @@ static Vehiculo* existeVehiculo(int nroSerieVehiculo) {
 	}
 	return res;
 }
+
 //Devuelve true si y solo si la duracion > 0
 static bool duracionValida(DtViajeBase via) {
 	return (via.getDuracion() > 0);
 }
+
 //Devuelve true si y solo si la distancia > 0
 static bool distanciaValida(DtViajeBase via) {//ins
 	return (via.getDistancia() > 0);
@@ -66,6 +74,7 @@ static bool noestallenoUsuarios() {//ins
 	}
 	return res;
 }
+
 static bool noestallenoVehiculos() {
 	bool res = false;
 	int i = 0;
@@ -177,7 +186,6 @@ void agregarVehiculo(const DtVehiculo& vehiculo) {
 	}
 }
 
-
 /*
 Crea un viaje entre el usuario y el vehículo identificados por ci y
 nroSerieVehiculo, respectivamente. Controlar que se cumplen: (1) existe un
@@ -277,7 +285,6 @@ DtViaje** verViajesAntesDeFecha(const DtFecha& fecha, std::string ci, int &cantV
 	return res;
 }
 
-
 /*
 Elimina los viajes del usuario identificado por ci, realizados en la fecha ingresada. Si
 no existe un usuario registrado con esa cédula, se levanta una excepción
@@ -356,11 +363,131 @@ DtVehiculo** obtenerVehiculos(int& cantVehiculos) {
 }
 
 /*
+Calcula el total recaudado entre las fechas de los usuarios seleccionados
+*/
+float calcularTotalEntreFechas(const DtFecha& desde, const DtFecha& hasta, set<string> cedula) {
+	set<string>::iterator iter;
+	vector<thread> threads;
+	float total = 0;
+	mutex totalLock;
+
+
+	/*
+	lambda?
+	Pide los viajes que cumplen la condicion, por cada viaje pide el total del viaje y se lo suma al total global
+	totalLock es un mutex limitando el acceso a la variable total
+	*/
+	auto calcualrTotalEntreFechasUsuario = [&desde, &hasta, &total, &totalLock](string ci) {
+		Usuario* u = existeUsuario(ci);
+		Viaje** Viajes = NULL;
+		float precioViaje = 0;
+		if (u != NULL) {
+
+			int cantViajes = u->contarViajesEntre(desde, hasta);
+			Viajes = u->arregloViajesEntre(desde, hasta, cantViajes);
+			int subTotal = 0;
+
+			for (int i = 0; i < cantViajes; i++) {
+				precioViaje = Viajes[i]->getPrecioViaje();
+				subTotal = subTotal + precioViaje;
+				
+			}
+			/*
+			Excluye el acceso a la variable total en el momento de actualizar
+			*/
+			totalLock.lock();
+			total = total + subTotal;
+			totalLock.unlock();
+		}
+
+	};
+
+
+	/*
+	Crea un thread por cada c.i.  guardando la referencia a los threads en un set para poder  
+	mantener un control de la cantidad de  hilos a unificar al final antes de retornal el total
+	*/
+	for (iter = cedula.begin(); iter != cedula.end(); iter++) {
+		//meto los thread en un vector ya que no se cuantos son y necesito esperar que terminen todos
+		threads.emplace_back(thread(calcualrTotalEntreFechasUsuario, *iter));
+
+	}
+
+	/*
+	Recorre el vector uniendo los hilos, 
+	no importa el orden en que terminan solo que todos terminen.
+	*/
+	for (auto& th : threads) {
+		th.join();
+	}
+
+
+	return total;
+
+}
+
+void cargarDatos() {
+	//cargar usuarios
+	registrarUsuario("1", "Usuario1");
+	registrarUsuario("2", "Usuario2");
+	registrarUsuario("3", "Usuario3");
+	registrarUsuario("4", "Usuario4");
+	registrarUsuario("5", "Usuario5");
+
+	//cargar vehiculos
+	agregarVehiculo(DtBicicleta(1, 20, 30, MONTANIA, 10));
+	agregarVehiculo(DtMonopatin(2, 10, 20, true));
+	agregarVehiculo(DtMonopatin(3, 10, 20, false));
+	//cargar viajes
+	//Usuario 1
+	ingresarViaje("1", 1, DtViajeBase(DtFecha(21, 11, 2020), 10, 56));
+	ingresarViaje("1", 2, DtViajeBase(DtFecha(22, 11, 2020), 10, 15));
+	
+	//Usuario2
+	ingresarViaje("2", 1, DtViajeBase(DtFecha(21, 11, 2020), 10, 75));
+	ingresarViaje("2", 1, DtViajeBase(DtFecha(22, 11, 2020), 8, 15));
+	ingresarViaje("2", 2, DtViajeBase(DtFecha(23, 12, 2020), 10, 75));
+	ingresarViaje("2", 3, DtViajeBase(DtFecha(29, 12, 2020), 4, 15));
+
+	//Usuario3
+	ingresarViaje("3", 1, DtViajeBase(DtFecha(21, 11, 2020), 10, 15));
+	ingresarViaje("3", 2, DtViajeBase(DtFecha(22, 11, 2020), 9, 256));
+	ingresarViaje("3", 3, DtViajeBase(DtFecha(27, 12, 2020), 10, 15));
+
+	//Usuario4
+	ingresarViaje("4", 1, DtViajeBase(DtFecha(21, 11, 2020), 10, 201));
+	ingresarViaje("4", 2, DtViajeBase(DtFecha(22, 1, 2021), 3, 15));
+	ingresarViaje("4", 2, DtViajeBase(DtFecha(23, 11, 2020), 10, 31));
+	ingresarViaje("4", 1, DtViajeBase(DtFecha(24, 11, 2020), 10, 15));
+	ingresarViaje("4", 2, DtViajeBase(DtFecha(25, 10, 2021), 2, 12));
+	ingresarViaje("4", 3, DtViajeBase(DtFecha(26, 1, 2021), 10, 15));
+
+	//Usuario5
+	ingresarViaje("5", 1, DtViajeBase(DtFecha(21, 11, 2020), 10, 15));
+	ingresarViaje("5", 3, DtViajeBase(DtFecha(25, 11, 2020), 5, 100));
+	ingresarViaje("5", 3, DtViajeBase(DtFecha(20, 11, 2020), 10, 15));
+	ingresarViaje("5", 1, DtViajeBase(DtFecha(21, 11, 2020), 9, 99));
+	ingresarViaje("5", 2, DtViajeBase(DtFecha(21, 11, 2020), 10, 15));
+	ingresarViaje("5", 3, DtViajeBase(DtFecha(21, 11, 2020), 7, 88));
+	ingresarViaje("5", 2, DtViajeBase(DtFecha(21, 11, 2020), 10, 15));
+	ingresarViaje("5", 3, DtViajeBase(DtFecha(21, 12, 2020), 45, 15));
+	ingresarViaje("5", 3, DtViajeBase(DtFecha(21, 12, 2020), 10, 9));
+	ingresarViaje("5", 3, DtViajeBase(DtFecha(2, 1, 2021), 22, 15));
+	ingresarViaje("5", 1, DtViajeBase(DtFecha(21, 1, 2021), 123, 15));
+	ingresarViaje("5", 1, DtViajeBase(DtFecha(23, 1, 2021), 10, 58));
+	ingresarViaje("5", 2, DtViajeBase(DtFecha(21, 2, 2021), 13, 12));
+	ingresarViaje("5", 1, DtViajeBase(DtFecha(21, 11, 2020), 10, 2));
+	ingresarViaje("5", 3, DtViajeBase(DtFecha(21, 11, 2021), 5, 12));
+	ingresarViaje("5", 1, DtViajeBase(DtFecha(21, 11, 2021), 455, 23));
+	ingresarViaje("5", 1, DtViajeBase(DtFecha(21, 11, 2022), 5, 20));
+}
+
+/*
 Menu sencillo interactivo para poder probar 
 las funcionalidades requeridas
 */
 int menuSencillo(int comando) {
-	system("clear");
+	system("CLS");
 	try{
 	using namespace std;
 		if(comando == 1){ // Registrar Usuario
@@ -591,44 +718,44 @@ int menuSencillo(int comando) {
 
 		}else if(comando ==5){ // Eliminar Viajes
 			string ci;
-			
+
 			int di, me, an;
 
 			cout << "Ingrese Cedula: " << endl;
 			cin >> ci;
-						cout << "Ingrese dia: " << endl;
+			cout << "Ingrese dia: " << endl;
 			cin >> di;
-			if((!cin) || (di > 31) || (di < 0)){
+			if ((!cin) || (di > 31) || (di < 0)) {
 				cout << "Ingrese un dia valido" << endl;
 				return 0;
 			}
 			cout << "Ingrese mes: " << endl;
 			cin >> me;
 			bool mesdetreinta = ((me == 4) || (me == 6) || (me == 9) || (me == 11));
-			if((!cin) || (me > 12) || (me < 0) || ((me == 2) && (di > 29)) || ((mesdetreinta) && ( di == 31))){				//Controlar la cantidad de dias del mes (ademas de las otras giladas)
+			if ((!cin) || (me > 12) || (me < 0) || ((me == 2) && (di > 29)) || ((mesdetreinta) && (di == 31))) {				//Controlar la cantidad de dias del mes (ademas de las otras giladas)
 				cout << "Ingrese un mes valido con respecto al dia colocado anteriormente" << endl;
 				return 0;
 			}
 			cout << "Ingrese anio: " << endl;
 			cin >> an;
-			if((!cin) || ((an % 4 != 0 ) && (di == 29))){			//Este chequeo es de bisiesto (hay que verlo bien)
+			if ((!cin) || ((an % 4 != 0) && (di == 29))) {			//Este chequeo es de bisiesto (hay que verlo bien)
 				cout << "Ingrese un anio valido con respecto al dia y mes colocado anteriormente" << endl;
 				return 0;
 			}
-			
+
 			DtFecha fecha(di, me, an);
 			try {
 				eliminarViajes(ci, fecha);
 				cout << "El viaje fue eliminado correctamente!" << endl;
 			}
-			catch (const std::exception &invalid_argument) {
+			catch (const std::exception & invalid_argument) {
 				cout << "El usuario no existe" << endl;
 				return 0;
 			}
-			
 
 
-			
+
+
 
 		}else if (comando == 6) { // Cambiar Bateria de Vehiculo
 			int nroSerieVehiculo;
@@ -671,7 +798,74 @@ int menuSencillo(int comando) {
 				i++;
 			}
 			delete[] arreglo;
-		}else {
+		}
+		else if (comando == 8) {
+		set<string> cedulas;
+		int di, me, an;
+		cout << "Porfavor ingrese la fecha inicio" << endl;
+		cout << "Ingrese dia: " << endl;
+		cin >> di;
+		if ((!cin) || (di > 31) || (di < 0)) {
+			cout << "Ingrese un dia valido" << endl;
+			return 0;
+		}
+		cout << "Ingrese mes: " << endl;
+		cin >> me;
+		bool mesdetreinta = ((me == 4) || (me == 6) || (me == 9) || (me == 11));
+		if ((!cin) || (me > 12) || (me < 0) || ((me == 2) && (di > 29)) || ((mesdetreinta) && (di == 31))) {				//Controlar la cantidad de dias del mes (ademas de las otras giladas)
+			cout << "Ingrese un mes valido con respecto al dia colocado anteriormente" << endl;
+			return 0;
+		}
+		cout << "Ingrese anio: " << endl;
+		cin >> an;
+		if ((!cin) || ((an % 4 != 0) && (di == 29))) {			//Este chequeo es de bisiesto (hay que verlo bien)
+			cout << "Ingrese un anio valido con respecto al dia y mes colocado anteriormente" << endl;
+			return 0;
+		}
+
+		DtFecha inicio(di, me, an);
+		cout << "Porfavor ingrese la fecha fin" << endl;
+		cout << "Ingrese dia: " << endl;
+		cin >> di;
+		if ((!cin) || (di > 31) || (di < 0)) {
+			cout << "Ingrese un dia valido" << endl;
+			return 0;
+		}
+		cout << "Ingrese mes: " << endl;
+		cin >> me;
+		mesdetreinta = ((me == 4) || (me == 6) || (me == 9) || (me == 11));
+		if ((!cin) || (me > 12) || (me < 0) || ((me == 2) && (di > 29)) || ((mesdetreinta) && (di == 31))) {				//Controlar la cantidad de dias del mes (ademas de las otras giladas)
+			cout << "Ingrese un mes valido con respecto al dia colocado anteriormente" << endl;
+			return 0;
+		}
+		cout << "Ingrese anio: " << endl;
+		cin >> an;
+		if ((!cin) || ((an % 4 != 0) && (di == 29))) {			//Este chequeo es de bisiesto (hay que verlo bien)
+			cout << "Ingrese un anio valido con respecto al dia y mes colocado anteriormente" << endl;
+			return 0;
+		}
+
+		DtFecha fin(di, me, an);
+		int salida = 1;
+		string ci;
+		while (salida != 0) {
+			cout << "Ingrese la cedula o 0 para salir: ";
+			cin >> ci;
+			if (ci.compare("0") != 0) {
+
+
+				cedulas.insert(ci);
+				cout << endl;
+			}
+			else {
+				salida = 0;
+			}
+		}
+		
+		
+		cout << "El total es: " << calcularTotalEntreFechas(inicio, fin, cedulas);
+		}
+		else {
 			
 		
 		cout << "Comando no reconocido, intente nuevamente" << endl;
@@ -684,12 +878,17 @@ int menuSencillo(int comando) {
     }
 	return 1;
 }
+
+
 int main(){
 	using namespace std;
 	for (int i = 0; i < MAX_USUARIOS; i++)
 		Usuarios[i] = NULL;
 	for (int i = 0; i < MAX_VEHICULOS; i++)
 		Vehiculos[i] = NULL;
+
+
+	cargarDatos();
 
 	int comando = -1;
 	while (comando != 0) {
@@ -704,6 +903,7 @@ int main(){
 		cout << "5) Eliminar viajes" << endl;
 		cout << "6) Cambiar bateria de un vehiculo" << endl;
 		cout << "7) Obtener vehiculos" << endl;
+		cout << "8) Calcular total entre fechas" << endl;
 		cout << "0) Salir" << endl;
 
 		cout << "Opcion: ";
@@ -723,7 +923,7 @@ int main(){
 		delete Vehiculos[i];
 	}
 
-	system("clear");
+	system("CLS");
 
 	return 0;
 }
