@@ -29,23 +29,25 @@ EJECUTABLE=principal
 
 # compilador
 CC = g++
+#thread
+PTHREAD = -pthread
 # opciones de compilación
 CCFLAGS = -Wall -Werror -I$(HDIR) -g -DNDEBUG
 # -DNDEBUG
 # se agrega esta opción para que las llamadas a assert no hagan nada.
 
 $(ODIR)/$(PRINCIPAL).o:$(PRINCIPAL).cpp
-	$(CC) $(CCFLAGS) -c $< -o $@
+	$(CC) $(PTHREAD) $(CCFLAGS) -c $< -o $@
 
 # cada .o depende de su .cpp
 # $@ se expande para tranformarse en el objetivo
 # $< se expande para tranformarse en la primera dependencia
 $(ODIR)/%.o: $(CPPDIR)/%.cpp $(HDIR)/%.h
-	$(CC) $(CCFLAGS) -c $< -o $@
+	$(CC) $(PTHREAD) $(CCFLAGS) -c $< -o $@
 
 # $^ se expande para tranformarse en todas las dependencias
 $(EJECUTABLE): $(ODIR)/$(PRINCIPAL).o $(OS)
-	$(CC) $(CCFLAGS) $^ -o $@
+	$(CC) $(PTHREAD) $(CCFLAGS) $^ -o $@
 
 # borra binarios
 clean_bin:
